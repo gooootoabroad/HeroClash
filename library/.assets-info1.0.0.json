@@ -5,9 +5,58 @@
       "time": 1739504774415.7922
     },
     "/Users/yinshi/study/pfq/project/HeroClash/assets/heroClash.scene": {
-      "time": 1739504775836.5193,
+      "time": 1739506247330.5737,
       "uuid": "1f0ebe06-b91c-4767-abb1-d2ee1d771249"
+    },
+    "/Users/yinshi/study/pfq/project/HeroClash/assets/animations.meta": {
+      "time": 1739506039584.1892
+    },
+    "/Users/yinshi/study/pfq/project/HeroClash/assets/animations": {
+      "time": 1739506039581.8792,
+      "uuid": "1c318b3c-3fef-4ab5-bc45-580721762f2e"
+    },
+    "/Users/yinshi/study/pfq/project/HeroClash/assets/prefabs.meta": {
+      "time": 1739505986088.78
+    },
+    "/Users/yinshi/study/pfq/project/HeroClash/assets/prefabs": {
+      "time": 1739505986085.9487,
+      "uuid": "0aad8e5d-87eb-4d93-9df0-2bc8b990f40f"
+    },
+    "/Users/yinshi/study/pfq/project/HeroClash/assets/src.meta": {
+      "time": 1739506091982.1826
+    },
+    "/Users/yinshi/study/pfq/project/HeroClash/assets/src": {
+      "time": 1739506091980.1575,
+      "uuid": "a7fb8f76-37fc-49b6-9b30-d22c67d9aa22"
+    },
+    "/Users/yinshi/study/pfq/project/HeroClash/assets/materials.meta": {
+      "time": 1739506238066.9812
+    },
+    "/Users/yinshi/study/pfq/project/HeroClash/assets/materials": {
+      "time": 1739506238064.5999,
+      "uuid": "3959e65c-9e73-4e4f-bc7e-e3e55c0408ab"
     }
   },
-  "missing": {}
+  "missing": {
+    "0aad8e5d-87eb-4d93-9df0-2bc8b990f40f": {
+      "path": "/Users/yinshi/study/pfq/project/HeroClash/assets/prefab",
+      "time": 1739505986085.9487,
+      "removeTime": 1739506051905
+    },
+    "a7fb8f76-37fc-49b6-9b30-d22c67d9aa22": {
+      "path": "/Users/yinshi/study/pfq/project/HeroClash/assets/folder",
+      "time": 1739506091980.1575,
+      "removeTime": 1739506102509
+    },
+    "ce029524-61fa-4603-bec8-e583bb360718": {
+      "path": "/Users/yinshi/study/pfq/project/HeroClash/assets/folder",
+      "time": 1739506122830.5022,
+      "removeTime": 1739506127829
+    },
+    "41b99677-ded5-43b7-9fd5-58e1af5625e4": {
+      "path": "/Users/yinshi/study/pfq/project/HeroClash/assets/material.mtl",
+      "time": 1739506229093.7324,
+      "removeTime": 1739506232807
+    }
+  }
 }

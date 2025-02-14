@@ -8,5 +8,35 @@
       "dependScripts": []
     },
     "versionCode": 1
+  },
+  "0aad8e5d-87eb-4d93-9df0-2bc8b990f40f": {
+    "url": "db://assets/prefabs",
+    "value": {},
+    "versionCode": 1
+  },
+  "1c318b3c-3fef-4ab5-bc45-580721762f2e": {
+    "url": "db://assets/animations",
+    "value": {},
+    "versionCode": 1
+  },
+  "a7fb8f76-37fc-49b6-9b30-d22c67d9aa22": {
+    "url": "db://assets/src",
+    "value": {},
+    "versionCode": 1
+  },
+  "ce029524-61fa-4603-bec8-e583bb360718": {
+    "url": "db://assets/folder",
+    "value": {},
+    "versionCode": 1
+  },
+  "41b99677-ded5-43b7-9fd5-58e1af5625e4": {
+    "url": "db://assets/material.mtl",
+    "value": {},
+    "versionCode": 1
+  },
+  "3959e65c-9e73-4e4f-bc7e-e3e55c0408ab": {
+    "url": "db://assets/materials",
+    "value": {},
+    "versionCode": 1
   }
 }
