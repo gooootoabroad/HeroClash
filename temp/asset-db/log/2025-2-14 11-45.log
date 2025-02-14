@@ -1,0 +1,141 @@
+2025-2-14 11:45:46-debug: start **** info
+2025-2-14 11:45:46-log: Cannot access game frame or container.
+2025-2-14 11:45:47-debug: asset-db:require-engine-code (474ms)
+2025-2-14 11:45:47-log: meshopt wasm decoder initialized
+2025-2-14 11:45:47-log: [box2d]:box2d wasm lib loaded.
+2025-2-14 11:45:47-log: [bullet]:bullet wasm lib loaded.
+2025-2-14 11:45:47-log: Cocos Creator v3.8.5
+2025-2-14 11:45:47-log: Using legacy pipeline
+2025-2-14 11:45:48-debug: [Assets Memory track]: asset-db-plugin-register: builder start:87.91MB, end 206.84MB, increase: 118.93MB
+2025-2-14 11:45:48-debug: [Assets Memory track]: asset-db-plugin-register: project start:80.12MB, end 205.90MB, increase: 125.78MB
+2025-2-14 11:45:48-debug: [Assets Memory track]: asset-db:worker-init: initPlugin start:79.43MB, end 205.92MB, increase: 126.49MB
+2025-2-14 11:45:47-log: Forward render pipeline initialized.
+2025-2-14 11:45:47-debug: [Assets Memory track]: asset-db:worker-init: initEngine start:29.28MB, end 79.41MB, increase: 50.12MB
+2025-2-14 11:45:47-debug: [Assets Memory track]: asset-db-plugin-register: programming start:80.24MB, end 87.89MB, increase: 7.65MB
+2025-2-14 11:45:48-debug: run package(native) handler(enable) start
+2025-2-14 11:45:48-debug: run package(native) handler(enable) success!
+2025-2-14 11:45:48-debug: run package(ohos) handler(enable) start
+2025-2-14 11:45:48-debug: run package(oppo-mini-game) handler(enable) start
+2025-2-14 11:45:48-debug: run package(runtime-dev-tools) handler(enable) start
+2025-2-14 11:45:48-debug: run package(oppo-mini-game) handler(enable) success!
+2025-2-14 11:45:48-debug: run package(taobao-mini-game) handler(enable) start
+2025-2-14 11:45:48-debug: run package(taobao-mini-game) handler(enable) success!
+2025-2-14 11:45:48-debug: run package(vivo-mini-game) handler(enable) start
+2025-2-14 11:45:48-debug: run package(vivo-mini-game) handler(enable) success!
+2025-2-14 11:45:48-debug: run package(ohos) handler(enable) success!
+2025-2-14 11:45:48-debug: run package(web-desktop) handler(enable) success!
+2025-2-14 11:45:48-debug: run package(web-mobile) handler(enable) success!
+2025-2-14 11:45:48-debug: run package(wechatgame) handler(enable) start
+2025-2-14 11:45:48-debug: run package(wechatgame) handler(enable) success!
+2025-2-14 11:45:48-debug: run package(wechatprogram) handler(enable) start
+2025-2-14 11:45:48-debug: run package(wechatprogram) handler(enable) success!
+2025-2-14 11:45:48-debug: run package(windows) handler(enable) start
+2025-2-14 11:45:48-debug: run package(web-mobile) handler(enable) start
+2025-2-14 11:45:48-debug: run package(windows) handler(enable) success!
+2025-2-14 11:45:48-debug: run package(xiaomi-quick-game) handler(enable) start
+2025-2-14 11:45:48-debug: run package(web-desktop) handler(enable) start
+2025-2-14 11:45:48-debug: run package(cocos-service) handler(enable) success!
+2025-2-14 11:45:48-debug: run package(im-plugin) handler(enable) start
+2025-2-14 11:45:48-debug: run package(im-plugin) handler(enable) success!
+2025-2-14 11:45:48-debug: run package(placeholder) handler(enable) start
+2025-2-14 11:45:48-debug: run package(placeholder) handler(enable) success!
+2025-2-14 11:45:48-debug: asset-db:worker-init: initPlugin (1097ms)
+2025-2-14 11:45:48-debug: run package(xiaomi-quick-game) handler(enable) success!
+2025-2-14 11:45:48-debug: run package(cocos-service) handler(enable) start
+2025-2-14 11:45:48-debug: run package(runtime-dev-tools) handler(enable) success!
+2025-2-14 11:45:48-debug: [Assets Memory track]: asset-db:worker-init start:29.27MB, end 207.27MB, increase: 178.00MB
+2025-2-14 11:45:48-debug: Run asset db hook engine-extends:beforePreStart success!
+2025-2-14 11:45:48-debug: Run asset db hook programming:beforePreStart ...
+2025-2-14 11:45:48-debug: Run asset db hook engine-extends:beforePreStart ...
+2025-2-14 11:45:48-debug: Run asset db hook programming:beforePreStart success!
+2025-2-14 11:45:48-debug: asset-db:worker-init (1692ms)
+2025-2-14 11:45:48-debug: asset-db-hook-programming-beforePreStart (50ms)
+2025-2-14 11:45:48-debug: asset-db-hook-engine-extends-beforePreStart (49ms)
+2025-2-14 11:45:48-debug: Preimport db internal success
+2025-2-14 11:45:48-debug: starting packer-driver...
+2025-2-14 11:45:48-debug: Run asset db hook programming:afterPreStart ...
+2025-2-14 11:45:48-debug: Preimport db assets success
+2025-2-14 11:45:48-debug: initialize scripting environment...
+2025-2-14 11:45:48-debug: [[Executor]] prepare before lock
+2025-2-14 11:45:48-debug: Set detail map pack:///resolution-detail-map.json: {}
+2025-2-14 11:45:48-debug: [[Executor]] prepare after unlock
+2025-2-14 11:45:48-debug: [Assets Memory track]: asset-db:worker-init: preStart start:207.29MB, end 211.25MB, increase: 3.96MB
+2025-2-14 11:45:48-debug: Start up the 'internal' database...
+2025-2-14 11:45:48-debug: Run asset db hook engine-extends:afterPreStart success!
+2025-2-14 11:45:48-debug: Run asset db hook programming:afterPreStart success!
+2025-2-14 11:45:48-debug: Run asset db hook engine-extends:afterPreStart ...
+2025-2-14 11:45:48-debug: asset-db-hook-programming-afterPreStart (287ms)
+2025-2-14 11:45:48-debug: asset-db:worker-effect-data-processing (176ms)
+2025-2-14 11:45:48-debug: asset-db-hook-engine-extends-afterPreStart (176ms)
+2025-2-14 11:45:48-debug: [Assets Memory track]: asset-db:worker-startup-database[internal] start:207.36MB, end 225.60MB, increase: 18.24MB
+2025-2-14 11:45:48-debug: Start up the 'assets' database...
+2025-2-14 11:45:48-debug: asset-db:worker-startup-database[internal] (387ms)
+2025-2-14 11:45:48-debug: [Assets Memory track]: asset-db:worker-startup-database[assets] start:211.34MB, end 225.66MB, increase: 14.32MB
+2025-2-14 11:45:48-debug: lazy register asset handler text
+2025-2-14 11:45:48-debug: lazy register asset handler json
+2025-2-14 11:45:48-debug: lazy register asset handler spine-data
+2025-2-14 11:45:48-debug: lazy register asset handler directory
+2025-2-14 11:45:48-debug: lazy register asset handler dragonbones-atlas
+2025-2-14 11:45:48-debug: lazy register asset handler terrain
+2025-2-14 11:45:48-debug: lazy register asset handler javascript
+2025-2-14 11:45:48-debug: [Assets Memory track]: asset-db:worker-init: startup start:211.26MB, end 225.68MB, increase: 14.42MB
+2025-2-14 11:45:48-debug: lazy register asset handler scene
+2025-2-14 11:45:48-debug: lazy register asset handler prefab
+2025-2-14 11:45:48-debug: lazy register asset handler dragonbones
+2025-2-14 11:45:48-debug: lazy register asset handler buffer
+2025-2-14 11:45:48-debug: lazy register asset handler tiled-map
+2025-2-14 11:45:48-debug: lazy register asset handler image
+2025-2-14 11:45:48-debug: lazy register asset handler sign-image
+2025-2-14 11:45:48-debug: lazy register asset handler sprite-frame
+2025-2-14 11:45:48-debug: lazy register asset handler texture
+2025-2-14 11:45:48-debug: lazy register asset handler *
+2025-2-14 11:45:48-debug: lazy register asset handler erp-texture-cube
+2025-2-14 11:45:48-debug: lazy register asset handler alpha-image
+2025-2-14 11:45:48-debug: lazy register asset handler texture-cube-face
+2025-2-14 11:45:48-debug: lazy register asset handler rt-sprite-frame
+2025-2-14 11:45:48-debug: lazy register asset handler render-texture
+2025-2-14 11:45:48-debug: lazy register asset handler gltf-mesh
+2025-2-14 11:45:48-debug: lazy register asset handler gltf-animation
+2025-2-14 11:45:48-debug: lazy register asset handler typescript
+2025-2-14 11:45:48-debug: lazy register asset handler gltf-material
+2025-2-14 11:45:48-debug: lazy register asset handler gltf-scene
+2025-2-14 11:45:48-debug: lazy register asset handler gltf-embeded-image
+2025-2-14 11:45:48-debug: lazy register asset handler fbx
+2025-2-14 11:45:48-debug: lazy register asset handler material
+2025-2-14 11:45:48-debug: lazy register asset handler gltf-skeleton
+2025-2-14 11:45:48-debug: lazy register asset handler effect
+2025-2-14 11:45:48-debug: lazy register asset handler effect-header
+2025-2-14 11:45:48-debug: lazy register asset handler audio-clip
+2025-2-14 11:45:48-debug: lazy register asset handler animation-clip
+2025-2-14 11:45:48-debug: lazy register asset handler gltf
+2025-2-14 11:45:48-debug: lazy register asset handler animation-graph-variant
+2025-2-14 11:45:48-debug: lazy register asset handler animation-mask
+2025-2-14 11:45:48-debug: lazy register asset handler ttf-font
+2025-2-14 11:45:48-debug: lazy register asset handler animation-graph
+2025-2-14 11:45:48-debug: lazy register asset handler physics-material
+2025-2-14 11:45:48-debug: lazy register asset handler sprite-atlas
+2025-2-14 11:45:48-debug: lazy register asset handler auto-atlas
+2025-2-14 11:45:48-debug: lazy register asset handler texture-cube
+2025-2-14 11:45:48-debug: lazy register asset handler bitmap-font
+2025-2-14 11:45:48-debug: lazy register asset handler particle
+2025-2-14 11:45:48-debug: lazy register asset handler render-flow
+2025-2-14 11:45:48-debug: lazy register asset handler instantiation-material
+2025-2-14 11:45:48-debug: lazy register asset handler instantiation-mesh
+2025-2-14 11:45:48-debug: lazy register asset handler instantiation-skeleton
+2025-2-14 11:45:48-debug: lazy register asset handler render-pipeline
+2025-2-14 11:45:48-debug: lazy register asset handler video-clip
+2025-2-14 11:45:48-debug: lazy register asset handler instantiation-animation
+2025-2-14 11:45:48-debug: lazy register asset handler label-atlas
+2025-2-14 11:45:48-debug: lazy register asset handler render-stage
+2025-2-14 11:45:48-debug: asset-db:worker-startup-database[assets] (345ms)
+2025-2-14 11:45:48-debug: asset-db:start-database (415ms)
+2025-2-14 11:45:48-debug: asset-db:ready (3508ms)
+2025-2-14 11:45:48-debug: init worker message success
+2025-2-14 11:45:48-debug: programming:execute-script (3ms)
+2025-2-14 11:45:49-debug: [Build Memory track]: builder:worker-init start:226.80MB, end 239.74MB, increase: 12.94MB
+2025-2-14 11:45:49-debug: builder:worker-init (233ms)
+2025-2-14 11:46:14-debug: start refresh asset from /Users/yinshi/study/pfq/project/HeroClash/assets/heroClash.scene...
+2025-2-14 11:46:14-debug: %cImport%c: /Users/yinshi/study/pfq/project/HeroClash/assets/heroClash.scenebackground: #aaff85; color: #000;color: #000;
+2025-2-14 11:46:14-debug: refresh asset /Users/yinshi/study/pfq/project/HeroClash/assets success
+2025-2-14 11:46:15-debug: %cImport%c: /Users/yinshi/study/pfq/project/HeroClash/assets/heroClash.scenebackground: #aaff85; color: #000;color: #000;
+2025-2-14 11:46:15-debug: asset-db:reimport-asset1f0ebe06-b91c-4767-abb1-d2ee1d771249 (3ms)

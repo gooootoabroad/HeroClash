@@ -1,0 +1,12 @@
+{
+  "1f0ebe06-b91c-4767-abb1-d2ee1d771249": {
+    "url": "db://assets/heroClash.scene",
+    "value": {
+      "depends": [
+        "1f0ebe06-b91c-4767-abb1-d2ee1d771249"
+      ],
+      "dependScripts": []
+    },
+    "versionCode": 1
+  }
+}
