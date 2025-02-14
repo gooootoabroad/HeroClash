@@ -239,3 +239,10 @@
 2025-2-14 12:10:38-debug: refresh asset /Users/yinshi/study/pfq/project/HeroClash/assets success
 2025-2-14 12:10:47-debug: %cImport%c: /Users/yinshi/study/pfq/project/HeroClash/assets/heroClash.scenebackground: #aaff85; color: #000;color: #000;
 2025-2-14 12:10:47-debug: asset-db:reimport-asset1f0ebe06-b91c-4767-abb1-d2ee1d771249 (5ms)
+2025-2-14 12:12:12-debug: refresh db internal success
+2025-2-14 12:12:12-debug: refresh db assets success
+2025-2-14 12:12:12-debug: Run asset db hook engine-extends:afterRefresh success!
+2025-2-14 12:12:12-debug: Run asset db hook engine-extends:afterRefresh ...
+2025-2-14 12:12:12-debug: asset-db:refresh-all-database (43ms)
+2025-2-14 12:12:12-debug: asset-db:worker-effect-data-processing (1ms)
+2025-2-14 12:12:12-debug: asset-db-hook-engine-extends-afterRefresh (1ms)
