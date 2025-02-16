@@ -1,11 +1,117 @@
-2-14-2025 12:04:01 - log: Load engine in /Applications/Cocos/Creator/3.8.5/CocosCreator.app/Contents/Resources/resources/3d/engine
-2-14-2025 12:04:01 - log: Profile changed: engine (modules.includeModules: 2d,animation,audio,base,custom-pipeline,dragon-bones,gfx-webgl,gfx-webgl2,intersection-2d,particle-2d,physics-2d-box2d,profiler,spine,tiled-map,tween,ui,video,webview)
-2-14-2025 12:04:01 - log: Register native engine in /Applications/Cocos/Creator/3.8.5/CocosCreator.app/Contents/Resources/resources/3d/engine/native
-2-14-2025 12:04:01 - log: Request namespace: device-list
-2-14-2025 12:04:05 - log: [Scene] meshopt wasm decoder initialized
-2-14-2025 12:04:05 - log: [Scene] [box2d]:box2d wasm lib loaded.
-2-14-2025 12:04:05 - log: [Scene] [bullet]:bullet wasm lib loaded.
-2-14-2025 12:04:05 - log: [Scene] [PHYSICS]: using builtin.
-2-14-2025 12:04:05 - log: [Scene] Cocos Creator v3.8.5
-2-14-2025 12:04:05 - log: [Scene] Using custom pipeline: Builtin
-2-14-2025 12:04:05 - log: [Scene] [PHYSICS2D]: switch from box2d-wasm to box2d.
+2-16-2025 10:49:27 - log: Load engine in /Applications/Cocos/Creator/3.8.5/CocosCreator.app/Contents/Resources/resources/3d/engine
+2-16-2025 10:49:27 - log: Profile changed: engine (modules.includeModules: 2d,animation,audio,base,custom-pipeline,dragon-bones,gfx-webgl,gfx-webgl2,intersection-2d,particle-2d,physics-2d-box2d,profiler,spine,tiled-map,tween,ui,video,webview)
+2-16-2025 10:49:27 - log: Register native engine in /Applications/Cocos/Creator/3.8.5/CocosCreator.app/Contents/Resources/resources/3d/engine/native
+2-16-2025 10:49:28 - log: Request namespace: device-list
+2-16-2025 10:49:32 - info: [PreviewInEditor] 预览环境初始化完毕
+2-16-2025 10:49:32 - log: [Scene] meshopt wasm decoder initialized
+2-16-2025 10:49:32 - log: [Scene] [bullet]:bullet wasm lib loaded.
+2-16-2025 10:49:32 - log: [Scene] [box2d]:box2d wasm lib loaded.
+2-16-2025 10:49:32 - log: [Scene] [PHYSICS]: using builtin.
+2-16-2025 10:49:32 - log: [Scene] Cocos Creator v3.8.5
+2-16-2025 10:49:32 - log: [Scene] Using custom pipeline: Builtin
+2-16-2025 10:49:32 - log: [Scene] [PHYSICS2D]: switch from box2d-wasm to box2d.
+2-16-2025 12:12:57 - log: [PreviewInEditor] meshopt wasm decoder initialized
+2-16-2025 12:12:57 - log: [PreviewInEditor] [bullet]:bullet wasm lib loaded.
+2-16-2025 12:12:57 - log: [PreviewInEditor] [box2d]:box2d wasm lib loaded.
+2-16-2025 12:12:57 - log: [PreviewInEditor] [PHYSICS]: using builtin.
+2-16-2025 12:12:57 - log: [PreviewInEditor] Cocos Creator v3.8.5
+2-16-2025 12:12:57 - log: [PreviewInEditor] Using custom pipeline: Builtin
+2-16-2025 12:12:57 - log: [PreviewInEditor] [PHYSICS2D]: switch from box2d-wasm to box2d.
+2-16-2025 12:13:07 - warn: [PreviewInEditor] IPC message has been lost.Error: [PreviewInEditor] IPC message has been lost.
+    at console.warn (/Applications/Cocos/Creator/3.8.5/CocosCreator.app/Contents/Resources/app.asar/node_modules/@sentry/src/instrument/console.ts:40:20)
+    at IpcRenderer.<anonymous> (/Applications/Cocos/Creator/3.8.5/CocosCreator.app/Contents/Resources/app.asar/builtin/scene/dist/script/3d/manager/ipc/web/webview.ccc:1:1495)
+    at IpcRenderer.emit (node:events:519:28)
+    at Object.onMessage (node:electron/js2c/renderer_init:2:8837)
+2-16-2025 12:13:07 - info: [PreviewInEditor] 预览环境初始化完毕
+2-16-2025 12:13:53 - log: [PreviewInEditor] meshopt wasm decoder initialized
+2-16-2025 12:13:53 - log: [PreviewInEditor] [box2d]:box2d wasm lib loaded.
+2-16-2025 12:13:53 - log: [PreviewInEditor] [bullet]:bullet wasm lib loaded.
+2-16-2025 12:13:53 - log: [PreviewInEditor] [PHYSICS]: using builtin.
+2-16-2025 12:13:53 - log: [PreviewInEditor] Cocos Creator v3.8.5
+2-16-2025 12:13:53 - log: [PreviewInEditor] Using custom pipeline: Builtin
+2-16-2025 12:13:53 - log: [PreviewInEditor] [PHYSICS2D]: switch from box2d-wasm to box2d.
+2-16-2025 12:13:55 - info: [PreviewInEditor] 预览环境初始化完毕
+2-16-2025 13:43:26 - error: Cannot create asset because options.target is required.Error: Cannot create asset because options.target is required.
+    at AssetManager.createAsset (/Applications/Cocos/Creator/3.8.5/CocosCreator.app/Contents/Resources/app.asar/builtin/asset-db/dist/worker/manager/asset-manager.ccc:4:89)
+    at Object.create-asset (/Applications/Cocos/Creator/3.8.5/CocosCreator.app/Contents/Resources/app.asar/builtin/asset-db/dist/worker/messages/operation.ccc:1:2837)
+    at /Applications/Cocos/Creator/3.8.5/CocosCreator.app/Contents/Resources/app.asar/builtin/asset-db/dist/worker/index.ccc:1:589
+    at Ipc.<anonymous> (/Applications/Cocos/Creator/3.8.5/CocosCreator.app/Contents/Resources/app.asar/builtin/asset-db/dist/worker/ipc.ccc:1:536)
+2-16-2025 17:10:46 - warn: [Assets] 为更好地打开脚本，请在 {preferences} -> {program} -> {scriptEditor} 里配置打开脚本的应用程序Warn: [Assets] 为更好地打开脚本，请在 {preferences} -> {program} -> {scriptEditor} 里配置打开脚本的应用程序
+    at console.warn (/Applications/Cocos/Creator/3.8.5/CocosCreator.app/Contents/Resources/app.asar/node_modules/@sentry/src/instrument/console.ts:40:20)
+    at NewConsole.warn (/Applications/Cocos/Creator/3.8.5/CocosCreator.app/Contents/Resources/app.asar/builtin/asset-db/dist/worker/console.ccc:1:1510)
+    at findVsCode (/Applications/Cocos/Creator/3.8.5/CocosCreator.app/Contents/Resources/app.asar/modules/engine-extensions/extensions/engine-extends/dist/handler/utils.ccc:1:3546)
+    at Object.openCode [as open] (/Applications/Cocos/Creator/3.8.5/CocosCreator.app/Contents/Resources/app.asar/modules/engine-extensions/extensions/engine-extends/dist/handler/utils.ccc:1:3282)
+    at Ipc.<anonymous> (/Applications/Cocos/Creator/3.8.5/CocosCreator.app/Contents/Resources/app.asar/builtin/asset-db/dist/worker/ipc.ccc:1:530)
+2-16-2025 17:44:12 - log: [PreviewInEditor] meshopt wasm decoder initialized
+2-16-2025 17:44:12 - log: [PreviewInEditor] [box2d]:box2d wasm lib loaded.
+2-16-2025 17:44:12 - log: [PreviewInEditor] [bullet]:bullet wasm lib loaded.
+2-16-2025 17:44:12 - log: [PreviewInEditor] [PHYSICS]: using builtin.
+2-16-2025 17:44:12 - log: [PreviewInEditor] Cocos Creator v3.8.5
+2-16-2025 17:44:12 - log: [PreviewInEditor] Using custom pipeline: Builtin
+2-16-2025 17:44:12 - log: [PreviewInEditor] [PHYSICS2D]: switch from box2d-wasm to box2d.
+2-16-2025 17:44:17 - warn: [PreviewInEditor] IPC message has been lost.Error: [PreviewInEditor] IPC message has been lost.
+    at console.warn (/Applications/Cocos/Creator/3.8.5/CocosCreator.app/Contents/Resources/app.asar/node_modules/@sentry/src/instrument/console.ts:40:20)
+    at IpcRenderer.<anonymous> (/Applications/Cocos/Creator/3.8.5/CocosCreator.app/Contents/Resources/app.asar/builtin/scene/dist/script/3d/manager/ipc/web/webview.ccc:1:1495)
+    at IpcRenderer.emit (node:events:519:28)
+    at Object.onMessage (node:electron/js2c/renderer_init:2:8837)
+2-16-2025 17:44:17 - info: [PreviewInEditor] 预览环境初始化完毕
+2-16-2025 17:44:44 - log: [PreviewInEditor] meshopt wasm decoder initialized
+2-16-2025 17:44:44 - log: [PreviewInEditor] [bullet]:bullet wasm lib loaded.
+2-16-2025 17:44:44 - log: [PreviewInEditor] [box2d]:box2d wasm lib loaded.
+2-16-2025 17:44:44 - log: [PreviewInEditor] [PHYSICS]: using builtin.
+2-16-2025 17:44:44 - log: [PreviewInEditor] Cocos Creator v3.8.5
+2-16-2025 17:44:44 - log: [PreviewInEditor] Using custom pipeline: Builtin
+2-16-2025 17:44:44 - log: [PreviewInEditor] [PHYSICS2D]: switch from box2d-wasm to box2d.
+2-16-2025 17:44:48 - info: [PreviewInEditor] 预览环境初始化完毕
+2-16-2025 20:12:46 - log: [PreviewInEditor] meshopt wasm decoder initialized
+2-16-2025 20:12:46 - log: [PreviewInEditor] [bullet]:bullet wasm lib loaded.
+2-16-2025 20:12:46 - log: [PreviewInEditor] [box2d]:box2d wasm lib loaded.
+2-16-2025 20:12:46 - log: [PreviewInEditor] [PHYSICS]: using builtin.
+2-16-2025 20:12:46 - log: [PreviewInEditor] Cocos Creator v3.8.5
+2-16-2025 20:12:46 - log: [PreviewInEditor] Using custom pipeline: Builtin
+2-16-2025 20:12:46 - log: [PreviewInEditor] [PHYSICS2D]: switch from box2d-wasm to box2d.
+2-16-2025 20:13:27 - info: [PreviewInEditor] 预览环境初始化完毕
+2-16-2025 20:15:27 - log: [PreviewInEditor] meshopt wasm decoder initialized
+2-16-2025 20:15:27 - log: [PreviewInEditor] [box2d]:box2d wasm lib loaded.
+2-16-2025 20:15:27 - log: [PreviewInEditor] [bullet]:bullet wasm lib loaded.
+2-16-2025 20:15:27 - log: [PreviewInEditor] [PHYSICS]: using builtin.
+2-16-2025 20:15:27 - log: [PreviewInEditor] Cocos Creator v3.8.5
+2-16-2025 20:15:27 - log: [PreviewInEditor] Using custom pipeline: Builtin
+2-16-2025 20:15:27 - log: [PreviewInEditor] [PHYSICS2D]: switch from box2d-wasm to box2d.
+2-16-2025 20:15:33 - warn: [PreviewInEditor] IPC message has been lost.Error: [PreviewInEditor] IPC message has been lost.
+    at console.warn (/Applications/Cocos/Creator/3.8.5/CocosCreator.app/Contents/Resources/app.asar/node_modules/@sentry/src/instrument/console.ts:40:20)
+    at IpcRenderer.<anonymous> (/Applications/Cocos/Creator/3.8.5/CocosCreator.app/Contents/Resources/app.asar/builtin/scene/dist/script/3d/manager/ipc/web/webview.ccc:1:1495)
+    at IpcRenderer.emit (node:events:519:28)
+    at Object.onMessage (node:electron/js2c/renderer_init:2:8837)
+2-16-2025 20:15:33 - warn: [PreviewInEditor] IPC message has been lost.Error: [PreviewInEditor] IPC message has been lost.
+    at console.warn (/Applications/Cocos/Creator/3.8.5/CocosCreator.app/Contents/Resources/app.asar/node_modules/@sentry/src/instrument/console.ts:40:20)
+    at IpcRenderer.<anonymous> (/Applications/Cocos/Creator/3.8.5/CocosCreator.app/Contents/Resources/app.asar/builtin/scene/dist/script/3d/manager/ipc/web/webview.ccc:1:1495)
+    at IpcRenderer.emit (node:events:519:28)
+    at Object.onMessage (node:electron/js2c/renderer_init:2:8837)
+2-16-2025 20:15:33 - info: [PreviewInEditor] 预览环境初始化完毕
+2-16-2025 20:15:53 - warn: [Assets] 为更好地打开脚本，请在 {preferences} -> {program} -> {scriptEditor} 里配置打开脚本的应用程序Warn: [Assets] 为更好地打开脚本，请在 {preferences} -> {program} -> {scriptEditor} 里配置打开脚本的应用程序
+    at console.warn (/Applications/Cocos/Creator/3.8.5/CocosCreator.app/Contents/Resources/app.asar/node_modules/@sentry/src/instrument/console.ts:40:20)
+    at NewConsole.warn (/Applications/Cocos/Creator/3.8.5/CocosCreator.app/Contents/Resources/app.asar/builtin/asset-db/dist/worker/console.ccc:1:1510)
+    at findVsCode (/Applications/Cocos/Creator/3.8.5/CocosCreator.app/Contents/Resources/app.asar/modules/engine-extensions/extensions/engine-extends/dist/handler/utils.ccc:1:3546)
+    at Object.openCode [as open] (/Applications/Cocos/Creator/3.8.5/CocosCreator.app/Contents/Resources/app.asar/modules/engine-extensions/extensions/engine-extends/dist/handler/utils.ccc:1:3282)
+    at Ipc.<anonymous> (/Applications/Cocos/Creator/3.8.5/CocosCreator.app/Contents/Resources/app.asar/builtin/asset-db/dist/worker/ipc.ccc:1:530)
+2-16-2025 20:17:19 - log: [PreviewInEditor] meshopt wasm decoder initialized
+2-16-2025 20:17:19 - log: [PreviewInEditor] [box2d]:box2d wasm lib loaded.
+2-16-2025 20:17:19 - log: [PreviewInEditor] [bullet]:bullet wasm lib loaded.
+2-16-2025 20:17:19 - log: [PreviewInEditor] [PHYSICS]: using builtin.
+2-16-2025 20:17:19 - log: [PreviewInEditor] Cocos Creator v3.8.5
+2-16-2025 20:17:19 - log: [PreviewInEditor] Using custom pipeline: Builtin
+2-16-2025 20:17:19 - log: [PreviewInEditor] [PHYSICS2D]: switch from box2d-wasm to box2d.
+2-16-2025 20:17:24 - info: [PreviewInEditor] 预览环境初始化完毕
+2-16-2025 20:18:19 - warn: [Assets] 为更好地打开脚本，请在 {preferences} -> {program} -> {scriptEditor} 里配置打开脚本的应用程序Warn: [Assets] 为更好地打开脚本，请在 {preferences} -> {program} -> {scriptEditor} 里配置打开脚本的应用程序
+    at console.warn (/Applications/Cocos/Creator/3.8.5/CocosCreator.app/Contents/Resources/app.asar/node_modules/@sentry/src/instrument/console.ts:40:20)
+    at NewConsole.warn (/Applications/Cocos/Creator/3.8.5/CocosCreator.app/Contents/Resources/app.asar/builtin/asset-db/dist/worker/console.ccc:1:1510)
+    at findVsCode (/Applications/Cocos/Creator/3.8.5/CocosCreator.app/Contents/Resources/app.asar/modules/engine-extensions/extensions/engine-extends/dist/handler/utils.ccc:1:3546)
+    at Object.openCode [as open] (/Applications/Cocos/Creator/3.8.5/CocosCreator.app/Contents/Resources/app.asar/modules/engine-extensions/extensions/engine-extends/dist/handler/utils.ccc:1:3282)
+    at Ipc.<anonymous> (/Applications/Cocos/Creator/3.8.5/CocosCreator.app/Contents/Resources/app.asar/builtin/asset-db/dist/worker/ipc.ccc:1:530)
+2-16-2025 20:19:50 - warn: [Assets] 为更好地打开脚本，请在 {preferences} -> {program} -> {scriptEditor} 里配置打开脚本的应用程序Warn: [Assets] 为更好地打开脚本，请在 {preferences} -> {program} -> {scriptEditor} 里配置打开脚本的应用程序
+    at console.warn (/Applications/Cocos/Creator/3.8.5/CocosCreator.app/Contents/Resources/app.asar/node_modules/@sentry/src/instrument/console.ts:40:20)
+    at NewConsole.warn (/Applications/Cocos/Creator/3.8.5/CocosCreator.app/Contents/Resources/app.asar/builtin/asset-db/dist/worker/console.ccc:1:1510)
+    at findVsCode (/Applications/Cocos/Creator/3.8.5/CocosCreator.app/Contents/Resources/app.asar/modules/engine-extensions/extensions/engine-extends/dist/handler/utils.ccc:1:3546)
+    at Object.openCode [as open] (/Applications/Cocos/Creator/3.8.5/CocosCreator.app/Contents/Resources/app.asar/modules/engine-extensions/extensions/engine-extends/dist/handler/utils.ccc:1:3282)
+    at Ipc.<anonymous> (/Applications/Cocos/Creator/3.8.5/CocosCreator.app/Contents/Resources/app.asar/builtin/asset-db/dist/worker/ipc.ccc:1:530)

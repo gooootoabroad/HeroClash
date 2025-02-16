@@ -1,0 +1,51 @@
+{
+  "544e49d6-3f05-4fa8-9a9e-091f98fc2ce8@6c48a": {
+    "texture": {
+      "mipfilter": "none"
+    }
+  },
+  "b730527c-3233-41c2-aaf7-7cdab58f9749@6c48a": {
+    "texture": {
+      "mipfilter": "none"
+    }
+  },
+  "4f1af21e-ae22-4c20-be78-c5975e439193@6c48a": {
+    "texture": {
+      "mipfilter": "none"
+    }
+  },
+  "df39b462-0acc-479b-b07b-99d73826dd87@6c48a": {
+    "texture": {
+      "mipfilter": "none",
+      "wrapMode": "Clamp"
+    }
+  },
+  "037266e6-97f5-447a-bedc-8332bc5ec393": {
+    "texture": {
+      "mipfilter": "none"
+    }
+  },
+  "d4940fe7-b7f1-4217-bdb7-f63ed08a0908": {
+    "texture": {
+      "mipfilter": "none"
+    }
+  },
+  "57b8bcd2-5e81-44c0-a152-73b0c32dec57@6c48a": {
+    "texture": {
+      "mipfilter": "none",
+      "wrapMode": "Clamp"
+    }
+  },
+  "55d07216-63d2-4dbd-8f7f-536601e998b1@6c48a": {
+    "texture": {
+      "mipfilter": "none",
+      "wrapMode": "Clamp"
+    }
+  },
+  "581f2dbb-f354-4e25-a821-58f3590b7e64@6c48a": {
+    "texture": {
+      "mipfilter": "none",
+      "wrapMode": "Clamp"
+    }
+  }
+}

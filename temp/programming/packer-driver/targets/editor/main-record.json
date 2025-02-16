@@ -1,7 +1,7 @@
 {
   "modules": {
     "cce:/internal/x/cc": {
-      "mTimestamp": 3328.311375,
+      "mTimestamp": 3427.609,
       "chunkId": "93ba276ea7b26ffcdc433fab14afc1ed6f05647b",
       "imports": [
         {
@@ -724,7 +724,7 @@
       ]
     },
     "cce:/internal/x/prerequisite-imports": {
-      "mTimestamp": 3889.302042,
+      "mTimestamp": 34148604.118792,
       "chunkId": "6d8fd2b0177941b032ddc0733af48a561fb60657",
       "imports": [
         {
@@ -810,6 +810,90 @@
               "column": 1058
             }
           }
+        },
+        {
+          "value": "file:///Users/yinshi/study/pfq/project/HeroClash/assets/src/resource/currency/kind.ts",
+          "resolved": "__unresolved_6",
+          "loc": {
+            "start": {
+              "line": 5,
+              "column": 1074
+            },
+            "end": {
+              "line": 5,
+              "column": 1161
+            }
+          }
+        },
+        {
+          "value": "file:///Users/yinshi/study/pfq/project/HeroClash/assets/src/resource/currency/manager.ts",
+          "resolved": "__unresolved_7",
+          "loc": {
+            "start": {
+              "line": 5,
+              "column": 1177
+            },
+            "end": {
+              "line": 5,
+              "column": 1267
+            }
+          }
+        },
+        {
+          "value": "file:///Users/yinshi/study/pfq/project/HeroClash/assets/src/resource/store/store.ts",
+          "resolved": "__unresolved_8",
+          "loc": {
+            "start": {
+              "line": 5,
+              "column": 1283
+            },
+            "end": {
+              "line": 5,
+              "column": 1368
+            }
+          }
+        },
+        {
+          "value": "file:///Users/yinshi/study/pfq/project/HeroClash/assets/src/user.ts",
+          "resolved": "__unresolved_9",
+          "loc": {
+            "start": {
+              "line": 5,
+              "column": 1384
+            },
+            "end": {
+              "line": 5,
+              "column": 1453
+            }
+          }
+        },
+        {
+          "value": "file:///Users/yinshi/study/pfq/project/HeroClash/assets/src/utils/errors.ts",
+          "resolved": "__unresolved_10",
+          "loc": {
+            "start": {
+              "line": 5,
+              "column": 1469
+            },
+            "end": {
+              "line": 5,
+              "column": 1546
+            }
+          }
+        },
+        {
+          "value": "file:///Users/yinshi/study/pfq/project/HeroClash/assets/src/utils/mutex.ts",
+          "resolved": "__unresolved_11",
+          "loc": {
+            "start": {
+              "line": 5,
+              "column": 1562
+            },
+            "end": {
+              "line": 5,
+              "column": 1638
+            }
+          }
         }
       ],
       "type": "esm",
@@ -853,6 +937,48 @@
           "resolved": {
             "type": "module",
             "url": "file:///Applications/Cocos/Creator/3.8.5/CocosCreator.app/Contents/Resources/resources/3d/engine/editor/assets/tools/debug-view-runtime-control.ts"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///Users/yinshi/study/pfq/project/HeroClash/assets/src/resource/currency/kind.ts"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///Users/yinshi/study/pfq/project/HeroClash/assets/src/resource/currency/manager.ts"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///Users/yinshi/study/pfq/project/HeroClash/assets/src/resource/store/store.ts"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///Users/yinshi/study/pfq/project/HeroClash/assets/src/user.ts"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///Users/yinshi/study/pfq/project/HeroClash/assets/src/utils/errors.ts"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///Users/yinshi/study/pfq/project/HeroClash/assets/src/utils/mutex.ts"
           },
           "messages": []
         }
@@ -1421,11 +1547,394 @@
       ]
     },
     "cce:/internal/code-quality/cr.mjs": {
-      "mTimestamp": 1739505841339,
+      "mTimestamp": 1739674167950,
       "chunkId": "6a5019a719a9014c047e67aa1cf34453ab8392ce",
       "imports": [],
       "type": "esm",
       "resolutions": []
+    },
+    "file:///Users/yinshi/study/pfq/project/HeroClash/assets/src/utils/Mutex.ts": {
+      "erroneous": true,
+      "mTimestamp": {
+        "mtime": 1739520127051.7502,
+        "uuid": "be16fb31-8e59-428f-80c9-c145f7fe8ea3"
+      },
+      "chunkId": "4c8f4bfa6911ed02a9380cada42972485e0d9397"
+    },
+    "file:///Users/yinshi/study/pfq/project/HeroClash/assets/src/resource/kind.ts": {
+      "mTimestamp": {
+        "mtime": 1739524514366.034,
+        "uuid": "89052a95-fb80-4a44-b21f-068dff5b2b0e"
+      },
+      "chunkId": "d76b69b92b4717f7276b94122151fa1f907090c6",
+      "imports": [
+        {
+          "value": "cc"
+        }
+      ],
+      "type": "esm",
+      "resolutions": [
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        }
+      ]
+    },
+    "file:///Users/yinshi/study/pfq/project/HeroClash/assets/src/resource/resourceManager.ts": {
+      "mTimestamp": {
+        "mtime": 1739605621389.6658,
+        "uuid": "39181c00-2ea4-4f27-81d4-2a213b9309c9"
+      },
+      "chunkId": "02efd9ea1fc6d7d9433e978ccc21c9e5f5b6bd53",
+      "imports": [
+        {
+          "value": "cce:/internal/code-quality/cr.mjs",
+          "resolved": "__unresolved_0"
+        },
+        {
+          "value": "cc"
+        },
+        {
+          "value": "../utils/mutex",
+          "resolved": "__unresolved_1",
+          "loc": {
+            "start": {
+              "line": 4,
+              "column": 22
+            },
+            "end": {
+              "line": 4,
+              "column": 38
+            }
+          }
+        }
+      ],
+      "type": "esm",
+      "resolutions": [
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/code-quality/cr.mjs"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///Users/yinshi/study/pfq/project/HeroClash/assets/src/utils/mutex.ts"
+          },
+          "messages": []
+        }
+      ]
+    },
+    "file:///Users/yinshi/study/pfq/project/HeroClash/assets/src/user.ts": {
+      "mTimestamp": {
+        "mtime": 1739708312446.0627,
+        "uuid": "42855bec-a86a-46c3-bb1f-d61f56b57d50"
+      },
+      "chunkId": "b0c54d84bdaacfddc591be5268851abe6efb7b3e",
+      "imports": [
+        {
+          "value": "cc"
+        },
+        {
+          "value": "cc"
+        },
+        {
+          "value": "cc",
+          "loc": {
+            "start": {
+              "line": 2,
+              "column": 51
+            },
+            "end": {
+              "line": 2,
+              "column": 55
+            }
+          }
+        }
+      ],
+      "type": "esm",
+      "resolutions": [
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        }
+      ]
+    },
+    "file:///Users/yinshi/study/pfq/project/HeroClash/assets/src/utils/mutex.ts": {
+      "mTimestamp": {
+        "mtime": 1739618921611.7913,
+        "uuid": "175f4612-6fea-4f24-b0f6-18affcf0f8a8"
+      },
+      "chunkId": "5c99a3234e38be27936124bc8db64849212b6053",
+      "imports": [
+        {
+          "value": "cce:/internal/code-quality/cr.mjs",
+          "resolved": "__unresolved_0"
+        },
+        {
+          "value": "cc"
+        },
+        {
+          "value": "./errors",
+          "resolved": "__unresolved_1",
+          "loc": {
+            "start": {
+              "line": 1,
+              "column": 42
+            },
+            "end": {
+              "line": 1,
+              "column": 52
+            }
+          }
+        }
+      ],
+      "type": "esm",
+      "resolutions": [
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/code-quality/cr.mjs"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///Users/yinshi/study/pfq/project/HeroClash/assets/src/utils/errors.ts"
+          },
+          "messages": []
+        }
+      ]
+    },
+    "file:///Users/yinshi/study/pfq/project/HeroClash/assets/src/utils/storage.ts": {
+      "mTimestamp": {
+        "mtime": 1739611591151.611,
+        "uuid": "d7a5f393-29c1-4352-bc23-62c1a8bc19a0"
+      },
+      "chunkId": "7c73814d90727927e57420cefe600f4498d3e2ed",
+      "imports": [
+        {
+          "value": "cc"
+        }
+      ],
+      "type": "esm",
+      "resolutions": [
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        }
+      ]
+    },
+    "file:///Users/yinshi/study/pfq/project/HeroClash/assets/src/resource/currency/kind.ts": {
+      "mTimestamp": {
+        "mtime": 1739617160253.5583,
+        "uuid": "b7a34d50-17a1-478f-8e74-74c25b0f35e6"
+      },
+      "chunkId": "0dd45e2c603ac2eee032b1cb32e2a924c0d7da02",
+      "imports": [
+        {
+          "value": "cc"
+        }
+      ],
+      "type": "esm",
+      "resolutions": [
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        }
+      ]
+    },
+    "file:///Users/yinshi/study/pfq/project/HeroClash/assets/src/resource/currency/manager.ts": {
+      "mTimestamp": {
+        "mtime": 1739676344760.7498,
+        "uuid": "70b9e018-6102-4f4d-b75f-307b0ab572e1"
+      },
+      "chunkId": "42c20f24dc18acc4a96c9b06ddec5992f5d23068",
+      "imports": [
+        {
+          "value": "cce:/internal/code-quality/cr.mjs",
+          "resolved": "__unresolved_0"
+        },
+        {
+          "value": "cc"
+        },
+        {
+          "value": "../../utils/mutex",
+          "resolved": "__unresolved_1",
+          "loc": {
+            "start": {
+              "line": 4,
+              "column": 22
+            },
+            "end": {
+              "line": 4,
+              "column": 41
+            }
+          }
+        },
+        {
+          "value": "../../utils/errors",
+          "resolved": "__unresolved_2",
+          "loc": {
+            "start": {
+              "line": 5,
+              "column": 42
+            },
+            "end": {
+              "line": 5,
+              "column": 62
+            }
+          }
+        }
+      ],
+      "type": "esm",
+      "resolutions": [
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/code-quality/cr.mjs"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///Users/yinshi/study/pfq/project/HeroClash/assets/src/utils/mutex.ts"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///Users/yinshi/study/pfq/project/HeroClash/assets/src/utils/errors.ts"
+          },
+          "messages": []
+        }
+      ]
+    },
+    "file:///Users/yinshi/study/pfq/project/HeroClash/assets/src/utils/errors.ts": {
+      "mTimestamp": {
+        "mtime": 1739618950714.844,
+        "uuid": "b2ccb57a-2c74-4b90-9171-be02858f18d7"
+      },
+      "chunkId": "1758675bef2de5e0b5bd2480f14516741a06fa18",
+      "imports": [
+        {
+          "value": "cc"
+        }
+      ],
+      "type": "esm",
+      "resolutions": [
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        }
+      ]
+    },
+    "file:///Users/yinshi/study/pfq/project/HeroClash/assets/src/resource/store/store.ts": {
+      "mTimestamp": {
+        "mtime": 1739678330328.2944,
+        "uuid": "6b637b86-e653-4f16-bd42-3eb81da93ef9"
+      },
+      "chunkId": "0af0ce9094f67aa9fa30b18239e348524bb3081f",
+      "imports": [
+        {
+          "value": "cc"
+        },
+        {
+          "value": "cc"
+        },
+        {
+          "value": "cc",
+          "loc": {
+            "start": {
+              "line": 2,
+              "column": 44
+            },
+            "end": {
+              "line": 2,
+              "column": 48
+            }
+          }
+        }
+      ],
+      "type": "esm",
+      "resolutions": [
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        }
+      ]
     }
   }
 }

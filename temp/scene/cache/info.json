@@ -1,0 +1,12 @@
+{
+    "systemInfo": {
+        "arch": "arm64",
+        "cpu": "Apple M2 Pro",
+        "version": "Darwin Kernel Version 23.6.0: Mon Jul 29 21:13:04 PDT 2024; root:xnu-10063.141.2~1/RELEASE_ARM64_T6020"
+    },
+    "sceneListMap": {
+        "1f0ebe06-b91c-4767-abb1-d2ee1d771249": "/Users/yinshi/study/pfq/project/HeroClash/assets/heroClash.scene",
+        "987866f3-c297-4dc3-b156-63564bae3320": "/Users/yinshi/study/pfq/project/HeroClash/assets/store.scene"
+    },
+    "deviceMd5": "b43d947d695b277c5f1f152c1c6ec441"
+}

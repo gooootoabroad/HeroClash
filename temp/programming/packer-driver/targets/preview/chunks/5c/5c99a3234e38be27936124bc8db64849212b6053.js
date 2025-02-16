@@ -1,0 +1,97 @@
+System.register(["__unresolved_0", "cc", "__unresolved_1"], function (_export, _context) {
+  "use strict";
+
+  var _reporterNs, _cclegacy, VisibleError, ERROR_CODES, Mutex, _crd;
+
+  function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+  function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+  function _reportPossibleCrUseOfVisibleError(extras) {
+    _reporterNs.report("VisibleError", "./errors", _context.meta, extras);
+  }
+
+  function _reportPossibleCrUseOfERROR_CODES(extras) {
+    _reporterNs.report("ERROR_CODES", "./errors", _context.meta, extras);
+  }
+
+  _export("Mutex", void 0);
+
+  return {
+    setters: [function (_unresolved_) {
+      _reporterNs = _unresolved_;
+    }, function (_cc) {
+      _cclegacy = _cc.cclegacy;
+    }, function (_unresolved_2) {
+      VisibleError = _unresolved_2.VisibleError;
+      ERROR_CODES = _unresolved_2.ERROR_CODES;
+    }],
+    execute: function () {
+      _crd = true;
+
+      _cclegacy._RF.push({}, "175f4YSb+pPJLD2GK/88Pio", "mutex", undefined);
+
+      // 互斥锁
+      _export("Mutex", Mutex = class Mutex {
+        // 获取互斥锁单例
+        static getInstance() {
+          if (!Mutex.instance) {
+            Mutex.instance = new Mutex();
+          }
+
+          return Mutex.instance;
+        } // 锁函数，使用资源ID进行加锁
+
+
+        lock(resourceId) {
+          return _asyncToGenerator(function* () {
+            return new Promise((resolve, reject) => {
+              // 如果已经加锁，直接报错
+              if (Mutex.locks.get(resourceId)) {
+                // 锁已经被占用，报错
+                reject(new (_crd && VisibleError === void 0 ? (_reportPossibleCrUseOfVisibleError({
+                  error: Error()
+                }), VisibleError) : VisibleError)((_crd && ERROR_CODES === void 0 ? (_reportPossibleCrUseOfERROR_CODES({
+                  error: Error()
+                }), ERROR_CODES) : ERROR_CODES).LOCK_FAILED, "Mutex lock failed: resource " + resourceId + " is already locked"));
+              } // 设置锁并检查是否成功
+
+
+              var wasLocked = Mutex.locks.set(resourceId, true).get(resourceId);
+
+              if (wasLocked) {
+                resolve();
+              } else {
+                reject(new (_crd && VisibleError === void 0 ? (_reportPossibleCrUseOfVisibleError({
+                  error: Error()
+                }), VisibleError) : VisibleError)((_crd && ERROR_CODES === void 0 ? (_reportPossibleCrUseOfERROR_CODES({
+                  error: Error()
+                }), ERROR_CODES) : ERROR_CODES).LOCK_FAILED, "Mutex lock failed: resource " + resourceId + " is already locked"));
+              }
+            });
+          })();
+        } // 解锁函数
+
+
+        unlock(resourceId) {
+          if (!Mutex.locks.has(resourceId)) {
+            return;
+          }
+
+          Mutex.locks.set(resourceId, false);
+        }
+
+      });
+
+      // 互斥锁实例
+      Mutex.instance = void 0;
+      // 锁map
+      Mutex.locks = new Map();
+
+      _cclegacy._RF.pop();
+
+      _crd = false;
+    }
+  };
+});
+//# sourceMappingURL=5c99a3234e38be27936124bc8db64849212b6053.js.map
