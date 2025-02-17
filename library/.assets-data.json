@@ -128,9 +128,12 @@
         "20835ba4-6145-4fbc-a58a-051ce700aa3e@f9941",
         "544e49d6-3f05-4fa8-9a9e-091f98fc2ce8@f9941",
         "951249e0-9f16-456d-8b85-a6ca954da16b@f9941",
-        "581f2dbb-f354-4e25-a821-58f3590b7e64@f9941"
+        "a6c75270-5481-47a6-92ca-a8c09703cca1"
       ],
-      "dependScripts": []
+      "dependScripts": [
+        "6b637b86-e653-4f16-bd42-3eb81da93ef9",
+        "CC3eba29-7abb-723a-f7ab-ae275e2277e8"
+      ]
     },
     "versionCode": 1
   },
@@ -252,6 +255,29 @@
       "depends": [
         "581f2dbb-f354-4e25-a821-58f3590b7e64@6c48a"
       ]
+    },
+    "versionCode": 1
+  },
+  "8c54b95f-47db-4716-becb-f4afb7cbb5cb": {
+    "url": "db://assets/prefabs/Cop.prefab",
+    "value": {},
+    "versionCode": 1
+  },
+  "ca3c61e4-03c2-4a29-9bc0-5387fde70873": {
+    "url": "db://assets/prefabs/store",
+    "value": {},
+    "versionCode": 1
+  },
+  "a6c75270-5481-47a6-92ca-a8c09703cca1": {
+    "url": "db://assets/prefabs/store/FreeCopper.prefab",
+    "value": {
+      "depends": [
+        "20835ba4-6145-4fbc-a58a-051ce700aa3e@f9941",
+        "544e49d6-3f05-4fa8-9a9e-091f98fc2ce8@f9941",
+        "951249e0-9f16-456d-8b85-a6ca954da16b@f9941",
+        "581f2dbb-f354-4e25-a821-58f3590b7e64@f9941"
+      ],
+      "dependScripts": []
     },
     "versionCode": 1
   }

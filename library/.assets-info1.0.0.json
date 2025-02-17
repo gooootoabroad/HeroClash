@@ -5,7 +5,7 @@
       "time": 1739504774415.7922
     },
     "/Users/yinshi/study/pfq/project/HeroClash/assets/heroClash.scene": {
-      "time": 1739708367906.006,
+      "time": 1739757352458.5212,
       "uuid": "1f0ebe06-b91c-4767-abb1-d2ee1d771249"
     },
     "/Users/yinshi/study/pfq/project/HeroClash/assets/animations.meta": {
@@ -19,14 +19,14 @@
       "time": 1739505986088.78
     },
     "/Users/yinshi/study/pfq/project/HeroClash/assets/prefabs": {
-      "time": 1739506446723.4573,
+      "time": 1739760780469.6565,
       "uuid": "0aad8e5d-87eb-4d93-9df0-2bc8b990f40f"
     },
     "/Users/yinshi/study/pfq/project/HeroClash/assets/src.meta": {
       "time": 1739506091982.1826
     },
     "/Users/yinshi/study/pfq/project/HeroClash/assets/src": {
-      "time": 1739616248231.7847,
+      "time": 1739757352462.9827,
       "uuid": "a7fb8f76-37fc-49b6-9b30-d22c67d9aa22"
     },
     "/Users/yinshi/study/pfq/project/HeroClash/assets/materials.meta": {
@@ -37,109 +37,123 @@
       "uuid": "3959e65c-9e73-4e4f-bc7e-e3e55c0408ab"
     },
     "/Users/yinshi/study/pfq/project/HeroClash/assets/src/resource.meta": {
-      "time": 1739517852912.009
+      "time": 1739757352459.2915
     },
     "/Users/yinshi/study/pfq/project/HeroClash/assets/src/resource": {
-      "time": 1739678277672.735,
+      "time": 1739757352461.2466,
       "uuid": "4179743f-7e4e-451e-be49-939f074c0381"
     },
     "/Users/yinshi/study/pfq/project/HeroClash/assets/src/user.ts.meta": {
-      "time": 1739527876017.4087
+      "time": 1739757352462.3364
     },
     "/Users/yinshi/study/pfq/project/HeroClash/assets/src/user.ts": {
-      "time": 1739708312446.0627,
+      "time": 1739757352462,
       "uuid": "42855bec-a86a-46c3-bb1f-d61f56b57d50"
     },
     "/Users/yinshi/study/pfq/project/HeroClash/assets/src/utils.meta": {
-      "time": 1739602401536.2197
+      "time": 1739757352462.9443
     },
     "/Users/yinshi/study/pfq/project/HeroClash/assets/src/utils/mutex.ts.meta": {
-      "time": 1739602401536.8784
+      "time": 1739757352464.473
     },
     "/Users/yinshi/study/pfq/project/HeroClash/assets/src/utils": {
-      "time": 1739619075523.6455,
+      "time": 1739757352464.1545,
       "uuid": "226bb265-d96f-4d32-b289-6f620698439c"
     },
     "/Users/yinshi/study/pfq/project/HeroClash/assets/src/utils/mutex.ts": {
-      "time": 1739618921611.7913,
+      "time": 1739757352464.0933,
       "uuid": "175f4612-6fea-4f24-b0f6-18affcf0f8a8"
     },
     "/Users/yinshi/study/pfq/project/HeroClash/assets/src/resource/currency.meta": {
-      "time": 1739617191156.5803
+      "time": 1739757352460.1685
     },
     "/Users/yinshi/study/pfq/project/HeroClash/assets/src/resource/currency/kind.ts.meta": {
-      "time": 1739617191157.873
+      "time": 1739757352460.5518
     },
     "/Users/yinshi/study/pfq/project/HeroClash/assets/src/resource/currency/manager.ts.meta": {
-      "time": 1739617191158.2373
+      "time": 1739757352461.0696
     },
     "/Users/yinshi/study/pfq/project/HeroClash/assets/src/resource/currency": {
-      "time": 1739617191154.6177,
+      "time": 1739757352460.819,
       "uuid": "ef6f7c5c-0101-4c98-a2af-733938aa015b"
     },
     "/Users/yinshi/study/pfq/project/HeroClash/assets/src/resource/currency/kind.ts": {
-      "time": 1739617160253.5583,
+      "time": 1739757352460.3801,
       "uuid": "b7a34d50-17a1-478f-8e74-74c25b0f35e6"
     },
     "/Users/yinshi/study/pfq/project/HeroClash/assets/src/resource/currency/manager.ts": {
-      "time": 1739676344760.7498,
+      "time": 1739757352460.7761,
       "uuid": "70b9e018-6102-4f4d-b75f-307b0ab572e1"
     },
     "/Users/yinshi/study/pfq/project/HeroClash/assets/src/utils/errors.ts.meta": {
-      "time": 1739619075524.5208
+      "time": 1739757352463.4365
     },
     "/Users/yinshi/study/pfq/project/HeroClash/assets/src/utils/errors.ts": {
-      "time": 1739618950714.844,
+      "time": 1739757352463.2278,
       "uuid": "b2ccb57a-2c74-4b90-9171-be02858f18d7"
     },
     "/Users/yinshi/study/pfq/project/HeroClash/assets/src/resource/store.meta": {
-      "time": 1739678277673.6296
+      "time": 1739757352461.2144
     },
     "/Users/yinshi/study/pfq/project/HeroClash/assets/src/resource/store": {
-      "time": 1739678295670.428,
+      "time": 1739757352461.704,
       "uuid": "1624a758-8e09-4abf-9d0f-9670a34cef36"
     },
     "/Users/yinshi/study/pfq/project/HeroClash/assets/src/resource/store/store.ts.meta": {
-      "time": 1739678295671.9104
+      "time": 1739757352461.8325
     },
     "/Users/yinshi/study/pfq/project/HeroClash/assets/src/resource/store/store.ts": {
-      "time": 1739678330328.2944,
+      "time": 1739760338143.9324,
       "uuid": "6b637b86-e653-4f16-bd42-3eb81da93ef9"
     },
     "/Users/yinshi/study/pfq/project/HeroClash/assets/store.scene.meta": {
-      "time": 1739681119640.3726
+      "time": 1739757352465.266
     },
     "/Users/yinshi/study/pfq/project/HeroClash/assets/store.scene": {
-      "time": 1739708297674.6597,
+      "time": 1739760785795.2256,
       "uuid": "987866f3-c297-4dc3-b156-63564bae3320"
     },
     "/Users/yinshi/study/pfq/project/HeroClash/assets/ui.meta": {
-      "time": 1739681157656.0242
+      "time": 1739757352465.5688
     },
     "/Users/yinshi/study/pfq/project/HeroClash/assets/ui": {
-      "time": 1739682054356.4404,
+      "time": 1739757352466.1436,
       "uuid": "f08c469d-8e55-4bae-8aba-e05ad755477b"
     },
     "/Users/yinshi/study/pfq/project/HeroClash/assets/ui/store.meta": {
-      "time": 1739681165181.985
+      "time": 1739757352466.0896
     },
     "/Users/yinshi/study/pfq/project/HeroClash/assets/ui/store": {
-      "time": 1739707689530.7246,
+      "time": 1739757352467.888,
       "uuid": "bc4d9a16-0be2-4c89-802b-90692b37665a"
     },
     "/Users/yinshi/study/pfq/project/HeroClash/assets/ui/store/background.png.meta": {
-      "time": 1739686807239.0032
+      "time": 1739757352467.998
     },
     "/Users/yinshi/study/pfq/project/HeroClash/assets/ui/store/background.png": {
-      "time": 1739684511003.2097,
+      "time": 1739757352467.834,
       "uuid": "55d07216-63d2-4dbd-8f7f-536601e998b1"
     },
     "/Users/yinshi/study/pfq/project/HeroClash/assets/ui/store/Copper.jpg.meta": {
-      "time": 1739707745640.425
+      "time": 1739757352467.651
     },
     "/Users/yinshi/study/pfq/project/HeroClash/assets/ui/store/Copper.jpg": {
-      "time": 1739707656711.9377,
+      "time": 1739757352467.3074,
       "uuid": "581f2dbb-f354-4e25-a821-58f3590b7e64"
+    },
+    "/Users/yinshi/study/pfq/project/HeroClash/assets/prefabs/store.meta": {
+      "time": 1739760780471.857
+    },
+    "/Users/yinshi/study/pfq/project/HeroClash/assets/prefabs/store": {
+      "time": 1739760783741.9438,
+      "uuid": "ca3c61e4-03c2-4a29-9bc0-5387fde70873"
+    },
+    "/Users/yinshi/study/pfq/project/HeroClash/assets/prefabs/store/FreeCopper.prefab.meta": {
+      "time": 1739760783746.7107
+    },
+    "/Users/yinshi/study/pfq/project/HeroClash/assets/prefabs/store/FreeCopper.prefab": {
+      "time": 1739760783744.3599,
+      "uuid": "a6c75270-5481-47a6-92ca-a8c09703cca1"
     }
   },
   "missing": {
@@ -217,6 +231,11 @@
       "path": "/Users/yinshi/study/pfq/project/HeroClash/assets/background.png",
       "time": 1739684511003.2097,
       "removeTime": 1739686618601
+    },
+    "8c54b95f-47db-4716-becb-f4afb7cbb5cb": {
+      "path": "/Users/yinshi/study/pfq/project/HeroClash/assets/prefabs/Cop.prefab",
+      "time": 1739760627499.5605,
+      "removeTime": 1739760632499
     }
   }
 }
