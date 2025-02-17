@@ -72,10 +72,45 @@ export class CurrencyManager {
         return true;
     }
 
-    // 更新货币资源
-    public async updateResource(currency: Currency): Promise<void> {
+    // 更新指定货币资源，入参为增量资源
+    public updateResourceByKind(kind: CurrencyType, amount: number): void {
         try {
-            await Mutex.getInstance().lock(currencyMutexID);
+            Mutex.getInstance().lock(currencyMutexID);
+            console.info("update currency %s %s", kind, amount);
+            let currentCurrency = this.getCurrencyFromStorage();
+            console.info("current currency %s", JSON.stringify(currentCurrency));
+            let tmp = currentCurrency[kind] + amount;
+            if (tmp < 0) {
+                console.error("Failed to update currency, %s is not enough, current:%d, need: %d",
+                    kind, currentCurrency[kind], Math.abs(amount));
+                throw new Error(`Failed to update currency: Insufficient resources`);
+            }
+
+            currentCurrency[kind] = tmp;
+            // 保存更新后的资源
+            this.saveResources(currentCurrency);
+            // 更新缓存
+            this.currencyCache = currentCurrency;
+            let news = this.getCurrencyFromStorage();
+            console.info("after set is %s", JSON.stringify(news));
+            Mutex.getInstance().unlock(currencyMutexID);
+        } catch (error) {
+            console.error("Failed to update currency, err: %s", error.message);
+            if (error instanceof VisibleError) {
+                // 非加锁失败的错误需要解锁
+                if (error.code != ERROR_CODES.LOCK_FAILED) {
+                    Mutex.getInstance().unlock(currencyMutexID);
+                }
+            }
+
+            throw new Error(`Failed to update currency: ${error.message}`);
+        }
+    }
+
+    // 更新货币资源，入参为增量资源
+    public updateResource(currency: Currency): void {
+        try {
+            Mutex.getInstance().lock(currencyMutexID);
             console.info("update currency %s", JSON.stringify(currency));
             let currentCurrency = this.getCurrencyFromStorage();
             console.info("current currency %s", JSON.stringify(currentCurrency));
@@ -98,11 +133,9 @@ export class CurrencyManager {
             Mutex.getInstance().unlock(currencyMutexID);
         } catch (error) {
             console.error("Failed to update currency, err: %s", error.message);
-            if (error instanceof VisibleError) {
-                // 非加锁失败的错误需要解锁
-                if (error.code != ERROR_CODES.LOCK_FAILED) {
-                    Mutex.getInstance().unlock(currencyMutexID);
-                }
+            // 非加锁失败的错误需要解锁
+            if (!(error instanceof VisibleError) || error.code != ERROR_CODES.LOCK_FAILED) {
+                Mutex.getInstance().unlock(currencyMutexID);
             }
 
             throw new Error(`Failed to update currency: ${error.message}`);

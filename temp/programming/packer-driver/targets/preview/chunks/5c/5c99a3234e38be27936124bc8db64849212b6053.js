@@ -3,10 +3,6 @@ System.register(["__unresolved_0", "cc", "__unresolved_1"], function (_export, _
 
   var _reporterNs, _cclegacy, VisibleError, ERROR_CODES, Mutex, _crd;
 
-  function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-  function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
   function _reportPossibleCrUseOfVisibleError(extras) {
     _reporterNs.report("VisibleError", "./errors", _context.meta, extras);
   }
@@ -44,32 +40,27 @@ System.register(["__unresolved_0", "cc", "__unresolved_1"], function (_export, _
 
 
         lock(resourceId) {
-          return _asyncToGenerator(function* () {
-            return new Promise((resolve, reject) => {
-              // 如果已经加锁，直接报错
-              if (Mutex.locks.get(resourceId)) {
-                // 锁已经被占用，报错
-                reject(new (_crd && VisibleError === void 0 ? (_reportPossibleCrUseOfVisibleError({
-                  error: Error()
-                }), VisibleError) : VisibleError)((_crd && ERROR_CODES === void 0 ? (_reportPossibleCrUseOfERROR_CODES({
-                  error: Error()
-                }), ERROR_CODES) : ERROR_CODES).LOCK_FAILED, "Mutex lock failed: resource " + resourceId + " is already locked"));
-              } // 设置锁并检查是否成功
+          // 如果已经加锁，直接报错
+          if (Mutex.locks.get(resourceId)) {
+            // 锁已经被占用，抛出错误
+            throw new (_crd && VisibleError === void 0 ? (_reportPossibleCrUseOfVisibleError({
+              error: Error()
+            }), VisibleError) : VisibleError)((_crd && ERROR_CODES === void 0 ? (_reportPossibleCrUseOfERROR_CODES({
+              error: Error()
+            }), ERROR_CODES) : ERROR_CODES).LOCK_FAILED, "Mutex lock failed: resource " + resourceId + " is already locked");
+          } // 设置锁
 
 
-              var wasLocked = Mutex.locks.set(resourceId, true).get(resourceId);
+          var wasLocked = Mutex.locks.set(resourceId, true).get(resourceId);
 
-              if (wasLocked) {
-                resolve();
-              } else {
-                reject(new (_crd && VisibleError === void 0 ? (_reportPossibleCrUseOfVisibleError({
-                  error: Error()
-                }), VisibleError) : VisibleError)((_crd && ERROR_CODES === void 0 ? (_reportPossibleCrUseOfERROR_CODES({
-                  error: Error()
-                }), ERROR_CODES) : ERROR_CODES).LOCK_FAILED, "Mutex lock failed: resource " + resourceId + " is already locked"));
-              }
-            });
-          })();
+          if (!wasLocked) {
+            // 如果设置锁失败，抛出错误
+            throw new (_crd && VisibleError === void 0 ? (_reportPossibleCrUseOfVisibleError({
+              error: Error()
+            }), VisibleError) : VisibleError)((_crd && ERROR_CODES === void 0 ? (_reportPossibleCrUseOfERROR_CODES({
+              error: Error()
+            }), ERROR_CODES) : ERROR_CODES).LOCK_FAILED, "Mutex lock failed: resource " + resourceId + " could not be locked");
+          }
         } // 解锁函数
 
 

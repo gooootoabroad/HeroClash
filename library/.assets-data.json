@@ -115,7 +115,7 @@
     "versionCode": 1
   },
   "6b637b86-e653-4f16-bd42-3eb81da93ef9": {
-    "url": "db://assets/src/resource/store/store.ts",
+    "url": "db://assets/src/store/store.ts",
     "value": {},
     "versionCode": 1
   },
@@ -128,11 +128,16 @@
         "20835ba4-6145-4fbc-a58a-051ce700aa3e@f9941",
         "544e49d6-3f05-4fa8-9a9e-091f98fc2ce8@f9941",
         "951249e0-9f16-456d-8b85-a6ca954da16b@f9941",
-        "a6c75270-5481-47a6-92ca-a8c09703cca1"
+        "a6c75270-5481-47a6-92ca-a8c09703cca1",
+        "c46d32c2-0459-4430-8dde-bd98433c9d4d@f9941",
+        "45b85078-8748-453b-8166-1e54931b71ca@f9941",
+        "cdb637a5-a094-4d01-8120-26a6c09910fa@f9941",
+        "dc216efe-9a8c-47c3-b8dc-a04150c06bf1@f9941"
       ],
       "dependScripts": [
         "6b637b86-e653-4f16-bd42-3eb81da93ef9",
-        "CC3eba29-7abb-723a-f7ab-ae275e2277e8"
+        "CC3eba29-7abb-723a-f7ab-ae275e2277e8",
+        "02dd055a-4939-48ac-8d8c-b010e8351134"
       ]
     },
     "versionCode": 1
@@ -269,7 +274,7 @@
     "versionCode": 1
   },
   "a6c75270-5481-47a6-92ca-a8c09703cca1": {
-    "url": "db://assets/prefabs/store/FreeCopper.prefab",
+    "url": "db://assets/prefabs/store/DisplayInterface.prefab",
     "value": {
       "depends": [
         "20835ba4-6145-4fbc-a58a-051ce700aa3e@f9941",
@@ -278,6 +283,116 @@
         "581f2dbb-f354-4e25-a821-58f3590b7e64@f9941"
       ],
       "dependScripts": []
+    },
+    "versionCode": 1
+  },
+  "5c6c6650-9c54-479e-990b-a0e008a4d295": {
+    "url": "db://assets/src/store",
+    "value": {},
+    "versionCode": 1
+  },
+  "02dd055a-4939-48ac-8d8c-b010e8351134": {
+    "url": "db://assets/src/store/resourceStore.ts",
+    "value": {},
+    "versionCode": 1
+  },
+  "c46d32c2-0459-4430-8dde-bd98433c9d4d": {
+    "url": "db://assets/ui/store/HetianJade.png",
+    "value": {
+      "depends": []
+    },
+    "versionCode": 1
+  },
+  "c46d32c2-0459-4430-8dde-bd98433c9d4d@6c48a": {
+    "url": "db://assets/ui/store/HetianJade.png@6c48a",
+    "value": {
+      "depends": [
+        "c46d32c2-0459-4430-8dde-bd98433c9d4d"
+      ]
+    },
+    "versionCode": 1
+  },
+  "c46d32c2-0459-4430-8dde-bd98433c9d4d@f9941": {
+    "url": "db://assets/ui/store/HetianJade.png@f9941",
+    "value": {
+      "depends": [
+        "c46d32c2-0459-4430-8dde-bd98433c9d4d@6c48a"
+      ]
+    },
+    "versionCode": 1
+  },
+  "45b85078-8748-453b-8166-1e54931b71ca": {
+    "url": "db://assets/ui/store/IronOre.png",
+    "value": {
+      "depends": []
+    },
+    "versionCode": 1
+  },
+  "45b85078-8748-453b-8166-1e54931b71ca@6c48a": {
+    "url": "db://assets/ui/store/IronOre.png@6c48a",
+    "value": {
+      "depends": [
+        "45b85078-8748-453b-8166-1e54931b71ca"
+      ]
+    },
+    "versionCode": 1
+  },
+  "45b85078-8748-453b-8166-1e54931b71ca@f9941": {
+    "url": "db://assets/ui/store/IronOre.png@f9941",
+    "value": {
+      "depends": [
+        "45b85078-8748-453b-8166-1e54931b71ca@6c48a"
+      ]
+    },
+    "versionCode": 1
+  },
+  "cdb637a5-a094-4d01-8120-26a6c09910fa": {
+    "url": "db://assets/ui/store/EvolutionStone.png",
+    "value": {
+      "depends": []
+    },
+    "versionCode": 1
+  },
+  "cdb637a5-a094-4d01-8120-26a6c09910fa@6c48a": {
+    "url": "db://assets/ui/store/EvolutionStone.png@6c48a",
+    "value": {
+      "depends": [
+        "cdb637a5-a094-4d01-8120-26a6c09910fa"
+      ]
+    },
+    "versionCode": 1
+  },
+  "cdb637a5-a094-4d01-8120-26a6c09910fa@f9941": {
+    "url": "db://assets/ui/store/EvolutionStone.png@f9941",
+    "value": {
+      "depends": [
+        "cdb637a5-a094-4d01-8120-26a6c09910fa@6c48a"
+      ]
+    },
+    "versionCode": 1
+  },
+  "dc216efe-9a8c-47c3-b8dc-a04150c06bf1": {
+    "url": "db://assets/ui/store/BattleSoulStone.png",
+    "value": {
+      "depends": []
+    },
+    "versionCode": 1
+  },
+  "dc216efe-9a8c-47c3-b8dc-a04150c06bf1@6c48a": {
+    "url": "db://assets/ui/store/BattleSoulStone.png@6c48a",
+    "value": {
+      "depends": [
+        "dc216efe-9a8c-47c3-b8dc-a04150c06bf1"
+      ]
+    },
+    "versionCode": 1
+  },
+  "dc216efe-9a8c-47c3-b8dc-a04150c06bf1@f9941": {
+    "url": "db://assets/ui/store/BattleSoulStone.png@f9941",
+    "value": {
+      "depends": [
+        "dc216efe-9a8c-47c3-b8dc-a04150c06bf1@6c48a"
+      ]
     },
     "versionCode": 1
   }

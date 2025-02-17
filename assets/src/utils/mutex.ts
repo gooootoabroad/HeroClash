@@ -17,22 +17,19 @@ export class Mutex {
     }
 
     // 锁函数，使用资源ID进行加锁
-    public async lock(resourceId: string): Promise<void> {
-        return new Promise((resolve, reject) => {
-            // 如果已经加锁，直接报错
-            if (Mutex.locks.get(resourceId)) {
-                // 锁已经被占用，报错
-                reject(new VisibleError(ERROR_CODES.LOCK_FAILED, `Mutex lock failed: resource ${resourceId} is already locked`));
-            }
+    public lock(resourceId: string): void {
+        // 如果已经加锁，直接报错
+        if (Mutex.locks.get(resourceId)) {
+            // 锁已经被占用，抛出错误
+            throw new VisibleError(ERROR_CODES.LOCK_FAILED, `Mutex lock failed: resource ${resourceId} is already locked`);
+        }
 
-            // 设置锁并检查是否成功
-            const wasLocked = Mutex.locks.set(resourceId, true).get(resourceId);
-            if (wasLocked) {
-                resolve();
-            } else {
-                reject(new VisibleError(ERROR_CODES.LOCK_FAILED, `Mutex lock failed: resource ${resourceId} is already locked`));
-            }
-        });
+        // 设置锁
+        const wasLocked = Mutex.locks.set(resourceId, true).get(resourceId);
+        if (!wasLocked) {
+            // 如果设置锁失败，抛出错误
+            throw new VisibleError(ERROR_CODES.LOCK_FAILED, `Mutex lock failed: resource ${resourceId} could not be locked`);
+        }
     }
 
     // 解锁函数

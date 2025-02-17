@@ -39,31 +39,28 @@ System.register(["__unresolved_0", "cc", "__unresolved_1"], function (_export, _
         } // 锁函数，使用资源ID进行加锁
 
 
-        async lock(resourceId) {
-          return new Promise((resolve, reject) => {
-            // 如果已经加锁，直接报错
-            if (Mutex.locks.get(resourceId)) {
-              // 锁已经被占用，报错
-              reject(new (_crd && VisibleError === void 0 ? (_reportPossibleCrUseOfVisibleError({
-                error: Error()
-              }), VisibleError) : VisibleError)((_crd && ERROR_CODES === void 0 ? (_reportPossibleCrUseOfERROR_CODES({
-                error: Error()
-              }), ERROR_CODES) : ERROR_CODES).LOCK_FAILED, `Mutex lock failed: resource ${resourceId} is already locked`));
-            } // 设置锁并检查是否成功
+        lock(resourceId) {
+          // 如果已经加锁，直接报错
+          if (Mutex.locks.get(resourceId)) {
+            // 锁已经被占用，抛出错误
+            throw new (_crd && VisibleError === void 0 ? (_reportPossibleCrUseOfVisibleError({
+              error: Error()
+            }), VisibleError) : VisibleError)((_crd && ERROR_CODES === void 0 ? (_reportPossibleCrUseOfERROR_CODES({
+              error: Error()
+            }), ERROR_CODES) : ERROR_CODES).LOCK_FAILED, `Mutex lock failed: resource ${resourceId} is already locked`);
+          } // 设置锁
 
 
-            const wasLocked = Mutex.locks.set(resourceId, true).get(resourceId);
+          const wasLocked = Mutex.locks.set(resourceId, true).get(resourceId);
 
-            if (wasLocked) {
-              resolve();
-            } else {
-              reject(new (_crd && VisibleError === void 0 ? (_reportPossibleCrUseOfVisibleError({
-                error: Error()
-              }), VisibleError) : VisibleError)((_crd && ERROR_CODES === void 0 ? (_reportPossibleCrUseOfERROR_CODES({
-                error: Error()
-              }), ERROR_CODES) : ERROR_CODES).LOCK_FAILED, `Mutex lock failed: resource ${resourceId} is already locked`));
-            }
-          });
+          if (!wasLocked) {
+            // 如果设置锁失败，抛出错误
+            throw new (_crd && VisibleError === void 0 ? (_reportPossibleCrUseOfVisibleError({
+              error: Error()
+            }), VisibleError) : VisibleError)((_crd && ERROR_CODES === void 0 ? (_reportPossibleCrUseOfERROR_CODES({
+              error: Error()
+            }), ERROR_CODES) : ERROR_CODES).LOCK_FAILED, `Mutex lock failed: resource ${resourceId} could not be locked`);
+          }
         } // 解锁函数
 
 

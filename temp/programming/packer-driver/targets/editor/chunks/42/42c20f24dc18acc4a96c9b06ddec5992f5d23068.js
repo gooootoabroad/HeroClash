@@ -3,6 +3,10 @@ System.register(["__unresolved_0", "cc", "__unresolved_1", "__unresolved_2"], fu
 
   var _reporterNs, _cclegacy, Mutex, VisibleError, ERROR_CODES, CurrencyManager, _crd, currencyMutexID, storageCurrencyID;
 
+  function _reportPossibleCrUseOfCurrencyType(extras) {
+    _reporterNs.report("CurrencyType", "./kind", _context.meta, extras);
+  }
+
   function _reportPossibleCrUseOfCurrency(extras) {
     _reporterNs.report("Currency", "./kind", _context.meta, extras);
   }
@@ -101,12 +105,58 @@ System.register(["__unresolved_0", "cc", "__unresolved_1", "__unresolved_2"], fu
           }
 
           return true;
-        } // 更新货币资源
+        } // 更新指定货币资源，入参为增量资源
 
 
-        async updateResource(currency) {
+        updateResourceByKind(kind, amount) {
           try {
-            await (_crd && Mutex === void 0 ? (_reportPossibleCrUseOfMutex({
+            (_crd && Mutex === void 0 ? (_reportPossibleCrUseOfMutex({
+              error: Error()
+            }), Mutex) : Mutex).getInstance().lock(currencyMutexID);
+            console.info("update currency %s %s", kind, amount);
+            let currentCurrency = this.getCurrencyFromStorage();
+            console.info("current currency %s", JSON.stringify(currentCurrency));
+            let tmp = currentCurrency[kind] + amount;
+
+            if (tmp < 0) {
+              console.error("Failed to update currency, %s is not enough, current:%d, need: %d", kind, currentCurrency[kind], Math.abs(amount));
+              throw new Error(`Failed to update currency: Insufficient resources`);
+            }
+
+            currentCurrency[kind] = tmp; // 保存更新后的资源
+
+            this.saveResources(currentCurrency); // 更新缓存
+
+            this.currencyCache = currentCurrency;
+            let news = this.getCurrencyFromStorage();
+            console.info("after set is %s", JSON.stringify(news));
+            (_crd && Mutex === void 0 ? (_reportPossibleCrUseOfMutex({
+              error: Error()
+            }), Mutex) : Mutex).getInstance().unlock(currencyMutexID);
+          } catch (error) {
+            console.error("Failed to update currency, err: %s", error.message);
+
+            if (error instanceof (_crd && VisibleError === void 0 ? (_reportPossibleCrUseOfVisibleError({
+              error: Error()
+            }), VisibleError) : VisibleError)) {
+              // 非加锁失败的错误需要解锁
+              if (error.code != (_crd && ERROR_CODES === void 0 ? (_reportPossibleCrUseOfERROR_CODES({
+                error: Error()
+              }), ERROR_CODES) : ERROR_CODES).LOCK_FAILED) {
+                (_crd && Mutex === void 0 ? (_reportPossibleCrUseOfMutex({
+                  error: Error()
+                }), Mutex) : Mutex).getInstance().unlock(currencyMutexID);
+              }
+            }
+
+            throw new Error(`Failed to update currency: ${error.message}`);
+          }
+        } // 更新货币资源，入参为增量资源
+
+
+        updateResource(currency) {
+          try {
+            (_crd && Mutex === void 0 ? (_reportPossibleCrUseOfMutex({
               error: Error()
             }), Mutex) : Mutex).getInstance().lock(currencyMutexID);
             console.info("update currency %s", JSON.stringify(currency));
@@ -134,19 +184,16 @@ System.register(["__unresolved_0", "cc", "__unresolved_1", "__unresolved_2"], fu
               error: Error()
             }), Mutex) : Mutex).getInstance().unlock(currencyMutexID);
           } catch (error) {
-            console.error("Failed to update currency, err: %s", error.message);
+            console.error("Failed to update currency, err: %s", error.message); // 非加锁失败的错误需要解锁
 
-            if (error instanceof (_crd && VisibleError === void 0 ? (_reportPossibleCrUseOfVisibleError({
+            if (!(error instanceof (_crd && VisibleError === void 0 ? (_reportPossibleCrUseOfVisibleError({
               error: Error()
-            }), VisibleError) : VisibleError)) {
-              // 非加锁失败的错误需要解锁
-              if (error.code != (_crd && ERROR_CODES === void 0 ? (_reportPossibleCrUseOfERROR_CODES({
+            }), VisibleError) : VisibleError)) || error.code != (_crd && ERROR_CODES === void 0 ? (_reportPossibleCrUseOfERROR_CODES({
+              error: Error()
+            }), ERROR_CODES) : ERROR_CODES).LOCK_FAILED) {
+              (_crd && Mutex === void 0 ? (_reportPossibleCrUseOfMutex({
                 error: Error()
-              }), ERROR_CODES) : ERROR_CODES).LOCK_FAILED) {
-                (_crd && Mutex === void 0 ? (_reportPossibleCrUseOfMutex({
-                  error: Error()
-                }), Mutex) : Mutex).getInstance().unlock(currencyMutexID);
-              }
+              }), Mutex) : Mutex).getInstance().unlock(currencyMutexID);
             }
 
             throw new Error(`Failed to update currency: ${error.message}`);

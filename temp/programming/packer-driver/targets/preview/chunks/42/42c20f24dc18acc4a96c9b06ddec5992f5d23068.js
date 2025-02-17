@@ -3,9 +3,9 @@ System.register(["__unresolved_0", "cc", "__unresolved_1", "__unresolved_2"], fu
 
   var _reporterNs, _cclegacy, Mutex, VisibleError, ERROR_CODES, CurrencyManager, _crd, currencyMutexID, storageCurrencyID;
 
-  function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-  function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+  function _reportPossibleCrUseOfCurrencyType(extras) {
+    _reporterNs.report("CurrencyType", "./kind", _context.meta, extras);
+  }
 
   function _reportPossibleCrUseOfCurrency(extras) {
     _reporterNs.report("Currency", "./kind", _context.meta, extras);
@@ -105,65 +105,99 @@ System.register(["__unresolved_0", "cc", "__unresolved_1", "__unresolved_2"], fu
           }
 
           return true;
-        } // 更新货币资源
+        } // 更新指定货币资源，入参为增量资源
+
+
+        updateResourceByKind(kind, amount) {
+          try {
+            (_crd && Mutex === void 0 ? (_reportPossibleCrUseOfMutex({
+              error: Error()
+            }), Mutex) : Mutex).getInstance().lock(currencyMutexID);
+            console.info("update currency %s %s", kind, amount);
+            var currentCurrency = this.getCurrencyFromStorage();
+            console.info("current currency %s", JSON.stringify(currentCurrency));
+            var tmp = currentCurrency[kind] + amount;
+
+            if (tmp < 0) {
+              console.error("Failed to update currency, %s is not enough, current:%d, need: %d", kind, currentCurrency[kind], Math.abs(amount));
+              throw new Error("Failed to update currency: Insufficient resources");
+            }
+
+            currentCurrency[kind] = tmp; // 保存更新后的资源
+
+            this.saveResources(currentCurrency); // 更新缓存
+
+            this.currencyCache = currentCurrency;
+            var news = this.getCurrencyFromStorage();
+            console.info("after set is %s", JSON.stringify(news));
+            (_crd && Mutex === void 0 ? (_reportPossibleCrUseOfMutex({
+              error: Error()
+            }), Mutex) : Mutex).getInstance().unlock(currencyMutexID);
+          } catch (error) {
+            console.error("Failed to update currency, err: %s", error.message);
+
+            if (error instanceof (_crd && VisibleError === void 0 ? (_reportPossibleCrUseOfVisibleError({
+              error: Error()
+            }), VisibleError) : VisibleError)) {
+              // 非加锁失败的错误需要解锁
+              if (error.code != (_crd && ERROR_CODES === void 0 ? (_reportPossibleCrUseOfERROR_CODES({
+                error: Error()
+              }), ERROR_CODES) : ERROR_CODES).LOCK_FAILED) {
+                (_crd && Mutex === void 0 ? (_reportPossibleCrUseOfMutex({
+                  error: Error()
+                }), Mutex) : Mutex).getInstance().unlock(currencyMutexID);
+              }
+            }
+
+            throw new Error("Failed to update currency: " + error.message);
+          }
+        } // 更新货币资源，入参为增量资源
 
 
         updateResource(currency) {
-          var _this = this;
+          try {
+            (_crd && Mutex === void 0 ? (_reportPossibleCrUseOfMutex({
+              error: Error()
+            }), Mutex) : Mutex).getInstance().lock(currencyMutexID);
+            console.info("update currency %s", JSON.stringify(currency));
+            var currentCurrency = this.getCurrencyFromStorage();
+            console.info("current currency %s", JSON.stringify(currentCurrency));
 
-          return _asyncToGenerator(function* () {
-            try {
-              yield (_crd && Mutex === void 0 ? (_reportPossibleCrUseOfMutex({
-                error: Error()
-              }), Mutex) : Mutex).getInstance().lock(currencyMutexID);
-              console.info("update currency %s", JSON.stringify(currency));
+            for (var key of Object.keys(currency)) {
+              var tmp = currentCurrency[key] + currency[key];
 
-              var currentCurrency = _this.getCurrencyFromStorage();
+              if (tmp < 0) {
+                console.error("Failed to update currency, %s is not enough, current:%d, need: %d", key, currentCurrency[key], Math.abs(currency[key]));
+                throw new Error("Failed to update currency: Insufficient resources");
+              }
 
-              console.info("current currency %s", JSON.stringify(currentCurrency));
-
-              for (var key of Object.keys(currency)) {
-                var tmp = currentCurrency[key] + currency[key];
-
-                if (tmp < 0) {
-                  console.error("Failed to update currency, %s is not enough, current:%d, need: %d", key, currentCurrency[key], Math.abs(currency[key]));
-                  throw new Error("Failed to update currency: Insufficient resources");
-                }
-
-                currentCurrency[key] = tmp;
-              } // 保存更新后的资源
+              currentCurrency[key] = tmp;
+            } // 保存更新后的资源
 
 
-              _this.saveResources(currentCurrency); // 更新缓存
+            this.saveResources(currentCurrency); // 更新缓存
 
+            this.currencyCache = currentCurrency;
+            var news = this.getCurrencyFromStorage();
+            console.info("after set is %s", JSON.stringify(news));
+            (_crd && Mutex === void 0 ? (_reportPossibleCrUseOfMutex({
+              error: Error()
+            }), Mutex) : Mutex).getInstance().unlock(currencyMutexID);
+          } catch (error) {
+            console.error("Failed to update currency, err: %s", error.message); // 非加锁失败的错误需要解锁
 
-              _this.currencyCache = currentCurrency;
-
-              var news = _this.getCurrencyFromStorage();
-
-              console.info("after set is %s", JSON.stringify(news));
+            if (!(error instanceof (_crd && VisibleError === void 0 ? (_reportPossibleCrUseOfVisibleError({
+              error: Error()
+            }), VisibleError) : VisibleError)) || error.code != (_crd && ERROR_CODES === void 0 ? (_reportPossibleCrUseOfERROR_CODES({
+              error: Error()
+            }), ERROR_CODES) : ERROR_CODES).LOCK_FAILED) {
               (_crd && Mutex === void 0 ? (_reportPossibleCrUseOfMutex({
                 error: Error()
               }), Mutex) : Mutex).getInstance().unlock(currencyMutexID);
-            } catch (error) {
-              console.error("Failed to update currency, err: %s", error.message);
-
-              if (error instanceof (_crd && VisibleError === void 0 ? (_reportPossibleCrUseOfVisibleError({
-                error: Error()
-              }), VisibleError) : VisibleError)) {
-                // 非加锁失败的错误需要解锁
-                if (error.code != (_crd && ERROR_CODES === void 0 ? (_reportPossibleCrUseOfERROR_CODES({
-                  error: Error()
-                }), ERROR_CODES) : ERROR_CODES).LOCK_FAILED) {
-                  (_crd && Mutex === void 0 ? (_reportPossibleCrUseOfMutex({
-                    error: Error()
-                  }), Mutex) : Mutex).getInstance().unlock(currencyMutexID);
-                }
-              }
-
-              throw new Error("Failed to update currency: " + error.message);
             }
-          })();
+
+            throw new Error("Failed to update currency: " + error.message);
+          }
         } // 保存资源到本地存储
 
 
