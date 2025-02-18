@@ -1,0 +1,11 @@
+{
+    "systemInfo": {
+        "arch": "x64",
+        "cpu": "Intel(R) Core(TM) i5-10210U CPU @ 1.60GHz",
+        "version": "Windows 10 Home China"
+    },
+    "sceneListMap": {
+        "f59afae4-e79a-4a35-9b64-a7627d572c56": "E:\\GitHub\\HeroClash\\assets\\heroAttributePanel.scene"
+    },
+    "deviceMd5": "ce37728639dbb4c262e52f3dae0d82b0"
+}

@@ -1,0 +1,90 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "IronOre",
+    "atlas": "",
+    "rect": {
+      "x": 0,
+      "y": 0,
+      "width": 618,
+      "height": 664
+    },
+    "offset": {
+      "x": 0,
+      "y": 0
+    },
+    "originalSize": {
+      "width": 618,
+      "height": 664
+    },
+    "rotated": false,
+    "capInsets": [
+      48,
+      21,
+      72,
+      28
+    ],
+    "vertices": {
+      "rawPosition": [
+        -309,
+        -332,
+        0,
+        309,
+        -332,
+        0,
+        -309,
+        332,
+        0,
+        309,
+        332,
+        0
+      ],
+      "indexes": [
+        0,
+        1,
+        2,
+        2,
+        1,
+        3
+      ],
+      "uv": [
+        0,
+        664,
+        618,
+        664,
+        0,
+        0,
+        618,
+        0
+      ],
+      "nuv": [
+        0,
+        0,
+        1,
+        0,
+        0,
+        1,
+        1,
+        1
+      ],
+      "minPos": {
+        "x": -309,
+        "y": -332,
+        "z": 0
+      },
+      "maxPos": {
+        "x": 309,
+        "y": 332,
+        "z": 0
+      }
+    },
+    "texture": "45b85078-8748-453b-8166-1e54931b71ca@6c48a",
+    "packable": true,
+    "pixelsToUnit": 100,
+    "pivot": {
+      "x": 0.5,
+      "y": 0.5
+    },
+    "meshType": 0
+  }
+}

@@ -1,0 +1,146 @@
+2025-2-18 13:36:04 - log: Load engine in D:\CocosEditor\Creator\3.8.5\resources\resources\3d\engine
+2025-2-18 13:36:04 - log: Register native engine in D:\CocosEditor\Creator\3.8.5\resources\resources\3d\engine\native
+2025-2-18 13:36:06 - log: Request namespace: device-list
+2025-2-18 13:36:39 - warn: [Assets] The uuid is already pointing to another resource.
+[
+  "E:\\GitHub\\HeroClash\\assets\\heroBaseAttribute.scene",
+  "E:\\GitHub\\HeroClash\\assets\\heroAttribute.scene"
+]
+The file uuid has been updated: E:\GitHub\HeroClash\assets\heroBaseAttribute.scene
+    f59afae4-e79a-4a35-9b64-a7627d572c56 -> a22c7842-40fd-4da9-8840-5af5cb789971Warn: [Assets] The uuid is already pointing to another resource.
+[
+  "E:\\GitHub\\HeroClash\\assets\\heroBaseAttribute.scene",
+  "E:\\GitHub\\HeroClash\\assets\\heroAttribute.scene"
+]
+The file uuid has been updated: E:\GitHub\HeroClash\assets\heroBaseAttribute.scene
+    at NewConsole.<anonymous> (D:\CocosEditor\Creator\3.8.5\resources\app.asar\node_modules\@base\electron-logger\lib\renderer.ccc:1:1260)
+    at console.warn (D:\CocosEditor\Creator\3.8.5\resources\app.asar\node_modules\@sentry\src\instrument\console.ts:40:20)
+    at CustomConsole.warn (D:\CocosEditor\Creator\3.8.5\resources\app.asar\builtin\asset-db\dist\worker\console.ccc:1:1510)
+    at AssetDB._replaceUUID (D:\CocosEditor\Creator\3.8.5\resources\app.asar\node_modules\@editor\asset-db\libs\asset-db.ccc:1:9318)
+    at AssetDB._checkAssetsStatSync (D:\CocosEditor\Creator\3.8.5\resources\app.asar\node_modules\@editor\asset-db\libs\asset-db.ccc:1:10409)
+    at AssetDB.refresh (D:\CocosEditor\Creator\3.8.5\resources\app.asar\node_modules\@editor\asset-db\libs\asset-db.ccc:1:8357)
+    at AssetDB.start (D:\CocosEditor\Creator\3.8.5\resources\app.asar\node_modules\@editor\asset-db\libs\asset-db.ccc:1:4638)
+2025-2-18 13:36:40 - log: [Scene] meshopt wasm decoder initialized
+2025-2-18 13:36:40 - log: [Scene] [box2d]:box2d wasm lib loaded.
+2025-2-18 13:36:40 - log: [Scene] [bullet]:bullet wasm lib loaded.
+2025-2-18 13:36:40 - log: [Scene] [PHYSICS]: using builtin.
+2025-2-18 13:36:40 - log: [Scene] Cocos Creator v3.8.5
+2025-2-18 13:36:40 - log: [Scene] Using custom pipeline: Builtin
+2025-2-18 13:36:40 - log: [Scene] [PHYSICS]: switch from builtin to bullet.
+2025-2-18 13:36:40 - log: [Scene] [PHYSICS2D]: switch from box2d-wasm to box2d.
+2025-2-18 14:53:15 - warn: [Scene] You are trying to destroy a object twice or more.Error: [Scene] You are trying to destroy a object twice or more.
+    at console.warn (D:\CocosEditor\Creator\3.8.5\resources\app.asar\node_modules\@sentry\src\instrument\console.ts:40:20)
+    at warn (D:\CocosEditor\Creator\3.8.5\resources\resources\3d\engine\bin\.cache\dev\editor\bundled\index.js:160148:12)
+    at warnID (D:\CocosEditor\Creator\3.8.5\resources\resources\3d\engine\bin\.cache\dev\editor\bundled\index.js:160336:5)
+    at Node.destroy (D:\CocosEditor\Creator\3.8.5\resources\resources\3d\engine\bin\.cache\dev\editor\bundled\index.js:142560:13)
+    at Node.destroy (D:\CocosEditor\Creator\3.8.5\resources\resources\3d\engine\bin\.cache\dev\editor\bundled\index.js:46692:21)
+    at MiniPreview.clearByComponent (D:\CocosEditor\Creator\3.8.5\resources\app.asar\builtin\scene\dist\script\3d\manager\mini-preview\index.ccc:1:3572)
+    at MiniPreview.createPreviewNode (D:\CocosEditor\Creator\3.8.5\resources\app.asar\builtin\scene\dist\script\3d\manager\mini-preview\index.ccc:1:3923)
+    at MiniPreview.handleSelect (D:\CocosEditor\Creator\3.8.5\resources\app.asar\builtin\scene\dist\script\3d\manager\mini-preview\index.ccc:1:3164)
+    at PreviewManager.callPreviewFunction (D:\CocosEditor\Creator\3.8.5\resources\app.asar\builtin\scene\dist\script\3d\manager\preview\index.ccc:1:3277)
+    at SceneFacadeManager.callPreviewFunction (D:\CocosEditor\Creator\3.8.5\resources\app.asar\builtin\scene\dist\script\3d\facade\scene-facade-manager.ccc:1:28088)
+    at step (D:\CocosEditor\Creator\3.8.5\resources\app.asar\builtin\scene\dist\script\3d\manager\ipc\web\ipc.ccc:1:732)
+    at D:\CocosEditor\Creator\3.8.5\resources\app.asar\builtin\scene\dist\script\3d\manager\ipc\web\ipc.ccc:2:401
+    at new Promise (<anonymous>)
+    at D:\CocosEditor\Creator\3.8.5\resources\app.asar\builtin\scene\dist\script\3d\manager\ipc\web\ipc.ccc:2:338
+    at IpcRenderer.<anonymous> (D:\CocosEditor\Creator\3.8.5\resources\app.asar\builtin\scene\dist\script\3d\manager\ipc\web\webview.ccc:1:1004)
+    at IpcRenderer.emit (node:events:519:28)
+    at Object.onMessage (node:electron/js2c/renderer_init:2:8837)
+2025-2-18 15:24:41 - error: [Scene] Can't add component 'cc.Sprite' because HeroBackground already contains the same component.Error: Can't add component 'cc.Sprite' because HeroBackground already contains the same component.
+    at Node._checkMultipleComp (D:\CocosEditor\Creator\3.8.5\resources\resources\3d\engine\bin\.cache\dev\editor\bundled\index.js:44037:19)
+    at Node.addComponent (D:\CocosEditor\Creator\3.8.5\resources\resources\3d\engine\bin\.cache\dev\editor\bundled\index.js:46425:18)
+    at NodeManager.createComponent (D:\CocosEditor\Creator\3.8.5\resources\app.asar\builtin\scene\dist\script\3d\manager\node\index.ccc:1:12195)
+    at GeneralSceneFacade.createComponent (D:\CocosEditor\Creator\3.8.5\resources\app.asar\builtin\scene\dist\script\3d\facade\general-scene-facade.ccc:1:11455)
+    at SceneFacadeManager.createComponent (D:\CocosEditor\Creator\3.8.5\resources\app.asar\builtin\scene\dist\script\3d\facade\scene-facade-manager.ccc:1:14006)
+    at step (D:\CocosEditor\Creator\3.8.5\resources\app.asar\builtin\scene\dist\script\3d\manager\ipc\web\ipc.ccc:1:732)
+    at D:\CocosEditor\Creator\3.8.5\resources\app.asar\builtin\scene\dist\script\3d\manager\ipc\web\ipc.ccc:2:401
+    at new Promise (<anonymous>)
+    at D:\CocosEditor\Creator\3.8.5\resources\app.asar\builtin\scene\dist\script\3d\manager\ipc\web\ipc.ccc:2:338
+    at IpcRenderer.<anonymous> (D:\CocosEditor\Creator\3.8.5\resources\app.asar\builtin\scene\dist\script\3d\manager\ipc\web\webview.ccc:1:1004)
+    at IpcRenderer.emit (node:events:519:28)
+    at Object.onMessage (node:electron/js2c/renderer_init:2:8837)
+2025-2-18 15:31:45 - error: [Scene] Can't add component 'cc.Sprite' to HeroMessage because it conflicts with the existing 'cc.Graphics' derived component.Error: Can't add component 'cc.Sprite' to HeroMessage because it conflicts with the existing 'cc.Graphics' derived component.
+    at Node._checkMultipleComp (D:\CocosEditor\Creator\3.8.5\resources\resources\3d\engine\bin\.cache\dev\editor\bundled\index.js:44039:19)
+    at Node.addComponent (D:\CocosEditor\Creator\3.8.5\resources\resources\3d\engine\bin\.cache\dev\editor\bundled\index.js:46425:18)
+    at NodeManager.createComponent (D:\CocosEditor\Creator\3.8.5\resources\app.asar\builtin\scene\dist\script\3d\manager\node\index.ccc:1:12195)
+    at GeneralSceneFacade.createComponent (D:\CocosEditor\Creator\3.8.5\resources\app.asar\builtin\scene\dist\script\3d\facade\general-scene-facade.ccc:1:11455)
+    at SceneFacadeManager.createComponent (D:\CocosEditor\Creator\3.8.5\resources\app.asar\builtin\scene\dist\script\3d\facade\scene-facade-manager.ccc:1:14006)
+    at step (D:\CocosEditor\Creator\3.8.5\resources\app.asar\builtin\scene\dist\script\3d\manager\ipc\web\ipc.ccc:1:732)
+    at D:\CocosEditor\Creator\3.8.5\resources\app.asar\builtin\scene\dist\script\3d\manager\ipc\web\ipc.ccc:2:401
+    at new Promise (<anonymous>)
+    at D:\CocosEditor\Creator\3.8.5\resources\app.asar\builtin\scene\dist\script\3d\manager\ipc\web\ipc.ccc:2:338
+    at IpcRenderer.<anonymous> (D:\CocosEditor\Creator\3.8.5\resources\app.asar\builtin\scene\dist\script\3d\manager\ipc\web\webview.ccc:1:1004)
+    at IpcRenderer.emit (node:events:519:28)
+    at Object.onMessage (node:electron/js2c/renderer_init:2:8837)
+2025-2-18 15:46:00 - warn: [Scene] Can not find environment map, disable IBL lightingError: [Scene] Can not find environment map, disable IBL lighting
+    at console.warn (D:\CocosEditor\Creator\3.8.5\resources\app.asar\node_modules\@sentry\src\instrument\console.ts:40:20)
+    at warn (D:\CocosEditor\Creator\3.8.5\resources\resources\3d\engine\bin\.cache\dev\editor\bundled\index.js:160148:12)
+    at warnID (D:\CocosEditor\Creator\3.8.5\resources\resources\3d\engine\bin\.cache\dev\editor\bundled\index.js:160336:5)
+    at SkyboxInfo.set envmap (D:\CocosEditor\Creator\3.8.5\resources\resources\3d\engine\bin\.cache\dev\editor\bundled\index.js:49802:13)
+    at SkyboxInfo.<anonymous> (D:\CocosEditor\Creator\3.8.5\resources\app.asar\builtin\scene\dist\script\3d\manager\asset\asset-watcher.ccc:1:1091)
+    at AssetDump.decode (D:\CocosEditor\Creator\3.8.5\resources\app.asar\builtin\scene\dist\script\export\dump\types\asset-dump.ccc:1:946)
+    at _decodeByType (D:\CocosEditor\Creator\3.8.5\resources\app.asar\builtin\scene\dist\script\export\dump\decode.ccc:1:4617)
+    at decodePatch (D:\CocosEditor\Creator\3.8.5\resources\app.asar\builtin\scene\dist\script\export\dump\decode.ccc:1:6313)
+    at decodePatch (D:\CocosEditor\Creator\3.8.5\resources\app.asar\builtin\scene\dist\script\export\dump\decode.ccc:1:6952)
+    at decodeScene (D:\CocosEditor\Creator\3.8.5\resources\app.asar\builtin\scene\dist\script\export\dump\decode.ccc:1:3735)
+    at SceneUndoCommand.applyData (D:\CocosEditor\Creator\3.8.5\resources\app.asar\builtin\scene\dist\script\export\undo\scene.ccc:1:722)
+    at SceneUndoCommand.undo (D:\CocosEditor\Creator\3.8.5\resources\app.asar\builtin\scene\dist\script\export\undo\scene.ccc:1:616)
+    at SceneUndoCommand.perform (D:\CocosEditor\Creator\3.8.5\resources\app.asar\builtin\scene\dist\script\export\undo\base.ccc:1:209)
+    at SceneUndoManager.undo (D:\CocosEditor\Creator\3.8.5\resources\app.asar\builtin\scene\dist\script\export\undo\base.ccc:1:752)
+    at SceneUndoManager.undo (D:\CocosEditor\Creator\3.8.5\resources\app.asar\builtin\scene\dist\script\export\undo\scene.ccc:1:3833)
+    at GeneralSceneFacade.undo (D:\CocosEditor\Creator\3.8.5\resources\app.asar\builtin\scene\dist\script\3d\facade\general-scene-facade.ccc:1:12889)
+    at SceneFacadeManager.undo (D:\CocosEditor\Creator\3.8.5\resources\app.asar\builtin\scene\dist\script\3d\facade\scene-facade-manager.ccc:1:15384)
+2025-2-18 15:46:00 - warn: [Scene] Can not find environment map, disable IBL lightingError: [Scene] Can not find environment map, disable IBL lighting
+    at console.warn (D:\CocosEditor\Creator\3.8.5\resources\app.asar\node_modules\@sentry\src\instrument\console.ts:40:20)
+    at warn (D:\CocosEditor\Creator\3.8.5\resources\resources\3d\engine\bin\.cache\dev\editor\bundled\index.js:160148:12)
+    at warnID (D:\CocosEditor\Creator\3.8.5\resources\resources\3d\engine\bin\.cache\dev\editor\bundled\index.js:160336:5)
+    at SkyboxInfo.set envmap (D:\CocosEditor\Creator\3.8.5\resources\resources\3d\engine\bin\.cache\dev\editor\bundled\index.js:49802:13)
+    at SkyboxInfo.<anonymous> (D:\CocosEditor\Creator\3.8.5\resources\app.asar\builtin\scene\dist\script\3d\manager\asset\asset-watcher.ccc:1:1091)
+    at AssetDump.decode (D:\CocosEditor\Creator\3.8.5\resources\app.asar\builtin\scene\dist\script\export\dump\types\asset-dump.ccc:1:946)
+    at _decodeByType (D:\CocosEditor\Creator\3.8.5\resources\app.asar\builtin\scene\dist\script\export\dump\decode.ccc:1:4617)
+    at decodePatch (D:\CocosEditor\Creator\3.8.5\resources\app.asar\builtin\scene\dist\script\export\dump\decode.ccc:1:6313)
+    at decodePatch (D:\CocosEditor\Creator\3.8.5\resources\app.asar\builtin\scene\dist\script\export\dump\decode.ccc:1:6952)
+    at decodeScene (D:\CocosEditor\Creator\3.8.5\resources\app.asar\builtin\scene\dist\script\export\dump\decode.ccc:1:3735)
+    at SceneUndoCommand.applyData (D:\CocosEditor\Creator\3.8.5\resources\app.asar\builtin\scene\dist\script\export\undo\scene.ccc:1:722)
+    at SceneUndoCommand.undo (D:\CocosEditor\Creator\3.8.5\resources\app.asar\builtin\scene\dist\script\export\undo\scene.ccc:1:616)
+    at SceneUndoCommand.perform (D:\CocosEditor\Creator\3.8.5\resources\app.asar\builtin\scene\dist\script\export\undo\base.ccc:1:209)
+    at SceneUndoManager.undo (D:\CocosEditor\Creator\3.8.5\resources\app.asar\builtin\scene\dist\script\export\undo\base.ccc:1:752)
+    at SceneUndoManager.undo (D:\CocosEditor\Creator\3.8.5\resources\app.asar\builtin\scene\dist\script\export\undo\scene.ccc:1:3833)
+    at GeneralSceneFacade.undo (D:\CocosEditor\Creator\3.8.5\resources\app.asar\builtin\scene\dist\script\3d\facade\general-scene-facade.ccc:1:12889)
+    at SceneFacadeManager.undo (D:\CocosEditor\Creator\3.8.5\resources\app.asar\builtin\scene\dist\script\3d\facade\scene-facade-manager.ccc:1:15384)
+2025-2-18 15:53:28 - info: [PreviewInEditor] 预览环境初始化完毕
+2025-2-18 15:53:28 - log: [PreviewInEditor] meshopt wasm decoder initialized
+2025-2-18 15:53:28 - log: [PreviewInEditor] [bullet]:bullet wasm lib loaded.
+2025-2-18 15:53:28 - log: [PreviewInEditor] [box2d]:box2d wasm lib loaded.
+2025-2-18 15:53:28 - log: [PreviewInEditor] [PHYSICS]: using builtin.
+2025-2-18 15:53:28 - log: [PreviewInEditor] Cocos Creator v3.8.5
+2025-2-18 15:53:28 - log: [PreviewInEditor] Using custom pipeline: Builtin
+2025-2-18 15:53:28 - log: [PreviewInEditor] [PHYSICS]: switch from builtin to bullet.
+2025-2-18 15:53:28 - log: [PreviewInEditor] [PHYSICS2D]: switch from box2d-wasm to box2d.
+2025-2-18 15:53:39 - info: [PreviewInEditor] 预览环境初始化完毕
+2025-2-18 15:58:19 - error: [Scene] Can't add component 'cc.Label' to HeroInfo because it conflicts with the existing 'cc.Sprite' derived component.Error: Can't add component 'cc.Label' to HeroInfo because it conflicts with the existing 'cc.Sprite' derived component.
+    at Node._checkMultipleComp (D:\CocosEditor\Creator\3.8.5\resources\resources\3d\engine\bin\.cache\dev\editor\bundled\index.js:44039:19)
+    at Node.addComponent (D:\CocosEditor\Creator\3.8.5\resources\resources\3d\engine\bin\.cache\dev\editor\bundled\index.js:46425:18)
+    at NodeManager.createComponent (D:\CocosEditor\Creator\3.8.5\resources\app.asar\builtin\scene\dist\script\3d\manager\node\index.ccc:1:12195)
+    at GeneralSceneFacade.createComponent (D:\CocosEditor\Creator\3.8.5\resources\app.asar\builtin\scene\dist\script\3d\facade\general-scene-facade.ccc:1:11455)
+    at SceneFacadeManager.createComponent (D:\CocosEditor\Creator\3.8.5\resources\app.asar\builtin\scene\dist\script\3d\facade\scene-facade-manager.ccc:1:14006)
+    at step (D:\CocosEditor\Creator\3.8.5\resources\app.asar\builtin\scene\dist\script\3d\manager\ipc\web\ipc.ccc:1:732)
+    at D:\CocosEditor\Creator\3.8.5\resources\app.asar\builtin\scene\dist\script\3d\manager\ipc\web\ipc.ccc:2:401
+    at new Promise (<anonymous>)
+    at D:\CocosEditor\Creator\3.8.5\resources\app.asar\builtin\scene\dist\script\3d\manager\ipc\web\ipc.ccc:2:338
+    at IpcRenderer.<anonymous> (D:\CocosEditor\Creator\3.8.5\resources\app.asar\builtin\scene\dist\script\3d\manager\ipc\web\webview.ccc:1:1004)
+    at IpcRenderer.emit (node:events:519:28)
+    at Object.onMessage (node:electron/js2c/renderer_init:2:8837)
+2025-2-18 15:58:30 - error: [Scene] Can't add component 'cc.Label' to HeroInfo because it conflicts with the existing 'cc.Sprite' derived component.Error: Can't add component 'cc.Label' to HeroInfo because it conflicts with the existing 'cc.Sprite' derived component.
+    at Node._checkMultipleComp (D:\CocosEditor\Creator\3.8.5\resources\resources\3d\engine\bin\.cache\dev\editor\bundled\index.js:44039:19)
+    at Node.addComponent (D:\CocosEditor\Creator\3.8.5\resources\resources\3d\engine\bin\.cache\dev\editor\bundled\index.js:46425:18)
+    at NodeManager.createComponent (D:\CocosEditor\Creator\3.8.5\resources\app.asar\builtin\scene\dist\script\3d\manager\node\index.ccc:1:12195)
+    at GeneralSceneFacade.createComponent (D:\CocosEditor\Creator\3.8.5\resources\app.asar\builtin\scene\dist\script\3d\facade\general-scene-facade.ccc:1:11455)
+    at SceneFacadeManager.createComponent (D:\CocosEditor\Creator\3.8.5\resources\app.asar\builtin\scene\dist\script\3d\facade\scene-facade-manager.ccc:1:14006)
+    at step (D:\CocosEditor\Creator\3.8.5\resources\app.asar\builtin\scene\dist\script\3d\manager\ipc\web\ipc.ccc:1:732)
+    at D:\CocosEditor\Creator\3.8.5\resources\app.asar\builtin\scene\dist\script\3d\manager\ipc\web\ipc.ccc:2:401
+    at new Promise (<anonymous>)
+    at D:\CocosEditor\Creator\3.8.5\resources\app.asar\builtin\scene\dist\script\3d\manager\ipc\web\ipc.ccc:2:338
+    at IpcRenderer.<anonymous> (D:\CocosEditor\Creator\3.8.5\resources\app.asar\builtin\scene\dist\script\3d\manager\ipc\web\webview.ccc:1:1004)
+    at IpcRenderer.emit (node:events:519:28)
+    at Object.onMessage (node:electron/js2c/renderer_init:2:8837)
