@@ -96,11 +96,8 @@ export class CurrencyManager {
             Mutex.getInstance().unlock(currencyMutexID);
         } catch (error) {
             console.error("Failed to update currency, err: %s", error.message);
-            if (error instanceof VisibleError) {
-                // 非加锁失败的错误需要解锁
-                if (error.code != ERROR_CODES.LOCK_FAILED) {
-                    Mutex.getInstance().unlock(currencyMutexID);
-                }
+            if (!(error instanceof VisibleError) || error.code != ERROR_CODES.LOCK_FAILED) {
+                Mutex.getInstance().unlock(currencyMutexID);
             }
 
             throw new Error(`Failed to update currency: ${error.message}`);

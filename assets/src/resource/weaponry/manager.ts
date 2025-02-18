@@ -5,6 +5,7 @@ import { WeaponryKind } from "./enum";
 import { Mutex } from "../../utils/mutex";
 import { getWeaponryBySerialNumber } from "./weaponry";
 import { generateUUID } from "../../utils/uuid";
+import { VisibleError, ERROR_CODES } from "../../utils/errors";
 
 // 装备互斥锁ID
 const weaponryMutexID = "weaponry";
@@ -75,6 +76,7 @@ export class UserWeaponryManager {
             switch (weaponryInfo.kind) {
                 case WeaponryKind.Weapon:
                     if (currentWeaponry.weapons.has(weaponryInfo.weaponryID)) {
+                        console.error("serial number %s have duplicate id %s", serialNumber, weaponryInfo.weaponryID);
                         // 存在相同的uuid武器了
                         throw new Error(`Failed to create weaponry: Duplicate weaponryID ${weaponryInfo.weaponryID}`);
                     }
@@ -85,79 +87,79 @@ export class UserWeaponryManager {
 
             this.saveWeaponry(currentWeaponry);
             this.weaponryCache = currentWeaponry;
+            Mutex.getInstance().unlock(weaponryMutexID);
         } catch (error) {
-
+            if (!(error instanceof VisibleError) || error.code != ERROR_CODES.LOCK_FAILED) {
+                Mutex.getInstance().unlock(weaponryMutexID);
+            }
+            throw new Error(`Failed to create weaponry: ${error.message}`);
         }
     }
-    // // 更新指定货币资源，入参为增量资源
-    // public updateResourceByKind(kind: CurrencyType, amount: number): void {
-    //     try {
-    //         Mutex.getInstance().lock(weaponryMutexID);
-    //         console.info("update currency %s %s", kind, amount);
-    //         let currentCurrency = this.getCurrencyFromStorage();
-    //         console.info("current currency %s", JSON.stringify(currentCurrency));
-    //         let tmp = currentCurrency[kind] + amount;
-    //         if (tmp < 0) {
-    //             console.error("Failed to update currency, %s is not enough, current:%d, need: %d",
-    //                 kind, currentCurrency[kind], Math.abs(amount));
-    //             throw new Error(`Failed to update currency: Insufficient resources`);
-    //         }
 
-    //         currentCurrency[kind] = tmp;
-    //         // 保存更新后的资源
-    //         this.saveResources(currentCurrency);
-    //         // 更新缓存
-    //         this.currencyCache = currentCurrency;
-    //         let news = this.getCurrencyFromStorage();
-    //         console.info("after set is %s", JSON.stringify(news));
-    //         Mutex.getInstance().unlock(currencyMutexID);
-    //     } catch (error) {
-    //         console.error("Failed to update currency, err: %s", error.message);
-    //         if (error instanceof VisibleError) {
-    //             // 非加锁失败的错误需要解锁
-    //             if (error.code != ERROR_CODES.LOCK_FAILED) {
-    //                 Mutex.getInstance().unlock(currencyMutexID);
-    //             }
-    //         }
+    // 更新指定装备
+    public updateWeaponry(weaponry: UserWeaponryAttribute): void {
+        try {
+            Mutex.getInstance().lock(weaponryMutexID);
+            console.info("update weaponry kind: %s, attribute: %s", weaponry.kind, JSON.stringify(weaponry));
+            let currentWeaponry = this.getWeaponryFromStorage();
+            console.info("current weaponry %s", JSON.stringify(currentWeaponry));
+            switch (weaponry.kind) {
+                case WeaponryKind.Weapon:
+                    if (!currentWeaponry.weapons.has(weaponry.weaponryID)) {
+                        // 武器不存在，报错
+                        console.error("weapon: %s not exist", JSON.stringify(weaponry));
+                        throw new Error(`Weapon not exist`);
+                    }
 
-    //         throw new Error(`Failed to update currency: ${error.message}`);
-    //     }
-    // }
+                    currentWeaponry.weapons[weaponry.weaponryID] = weaponry;
+                    break;
+            }
 
-    // // 更新货币资源，入参为增量资源
-    // public updateResource(currency: Currency): void {
-    //     try {
-    //         Mutex.getInstance().lock(currencyMutexID);
-    //         console.info("update currency %s", JSON.stringify(currency));
-    //         let currentCurrency = this.getCurrencyFromStorage();
-    //         console.info("current currency %s", JSON.stringify(currentCurrency));
-    //         for (const key of Object.keys(currency) as (keyof Currency)[]) {
-    //             let tmp = currentCurrency[key] + currency[key];
-    //             if (tmp < 0) {
-    //                 console.error("Failed to update currency, %s is not enough, current:%d, need: %d",
-    //                     key, currentCurrency[key], Math.abs(currency[key]));
-    //                 throw new Error(`Failed to update currency: Insufficient resources`);
-    //             }
+            // 保存更新后的资源
+            this.saveWeaponry(currentWeaponry);
+            // 更新缓存
+            this.weaponryCache = currentWeaponry;
+            Mutex.getInstance().unlock(weaponryMutexID);
+        } catch (error) {
+            if (!(error instanceof VisibleError) || error.code != ERROR_CODES.LOCK_FAILED) {
+                Mutex.getInstance().unlock(weaponryMutexID);
+            }
 
-    //             currentCurrency[key] = tmp;
-    //         }
-    //         // 保存更新后的资源
-    //         this.saveResources(currentCurrency);
-    //         // 更新缓存
-    //         this.currencyCache = currentCurrency;
-    //         let news = this.getCurrencyFromStorage();
-    //         console.info("after set is %s", JSON.stringify(news));
-    //         Mutex.getInstance().unlock(currencyMutexID);
-    //     } catch (error) {
-    //         console.error("Failed to update currency, err: %s", error.message);
-    //         // 非加锁失败的错误需要解锁
-    //         if (!(error instanceof VisibleError) || error.code != ERROR_CODES.LOCK_FAILED) {
-    //             Mutex.getInstance().unlock(currencyMutexID);
-    //         }
+            throw new Error(`Failed to update weaponry: ${error.message}`);
+        }
+    }
 
-    //         throw new Error(`Failed to update currency: ${error.message}`);
-    //     }
-    // }
+    // 删除装备
+    public deleteWeaponry(weaponry: UserWeaponryAttribute): void {
+        try {
+            Mutex.getInstance().lock(weaponryMutexID);
+            console.info("delete weaponry kind: %s, attribute: %s", weaponry.kind, JSON.stringify(weaponry));
+            let currentWeaponry = this.getWeaponryFromStorage();
+            switch (weaponry.kind) {
+                case WeaponryKind.Weapon:
+                    if (!currentWeaponry.weapons.has(weaponry.weaponryID)) {
+                        // 武器不存在，直接退出
+                        console.warn("weapon: %s not exist", JSON.stringify(weaponry));
+                        return;
+                    }
+
+                    currentWeaponry.weapons.delete(weaponry.weaponryID);
+                    break;
+            }
+
+            // 保存更新后的资源
+            this.saveWeaponry(currentWeaponry);
+            // 更新缓存
+            this.weaponryCache = currentWeaponry;
+            Mutex.getInstance().unlock(weaponryMutexID);
+        } catch (error) {
+            if (!(error instanceof VisibleError) || error.code != ERROR_CODES.LOCK_FAILED) {
+                Mutex.getInstance().unlock(weaponryMutexID);
+            }
+
+            throw new Error(`Failed to delete weaponry: ${error.message}`);
+        }
+    }
 
     // 保存资源到本地存储
     private saveWeaponry(weaponry: UserWeaponry) {
