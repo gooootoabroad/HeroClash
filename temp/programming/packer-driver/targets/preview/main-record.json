@@ -1,0 +1,2065 @@
+{
+  "modules": {
+    "cce:/internal/x/cc": {
+      "mTimestamp": 27040.3228,
+      "chunkId": "93ba276ea7b26ffcdc433fab14afc1ed6f05647b",
+      "imports": [
+        {
+          "value": "cce:/internal/x/cc-fu/2d",
+          "resolved": "__unresolved_0",
+          "loc": {
+            "start": {
+              "line": 1,
+              "column": 14
+            },
+            "end": {
+              "line": 1,
+              "column": 40
+            }
+          }
+        },
+        {
+          "value": "cce:/internal/x/cc-fu/sorting",
+          "resolved": "__unresolved_1",
+          "loc": {
+            "start": {
+              "line": 2,
+              "column": 14
+            },
+            "end": {
+              "line": 2,
+              "column": 45
+            }
+          }
+        },
+        {
+          "value": "cce:/internal/x/cc-fu/3d",
+          "resolved": "__unresolved_2",
+          "loc": {
+            "start": {
+              "line": 3,
+              "column": 14
+            },
+            "end": {
+              "line": 3,
+              "column": 40
+            }
+          }
+        },
+        {
+          "value": "cce:/internal/x/cc-fu/animation",
+          "resolved": "__unresolved_3",
+          "loc": {
+            "start": {
+              "line": 4,
+              "column": 14
+            },
+            "end": {
+              "line": 4,
+              "column": 47
+            }
+          }
+        },
+        {
+          "value": "cce:/internal/x/cc-fu/audio",
+          "resolved": "__unresolved_4",
+          "loc": {
+            "start": {
+              "line": 5,
+              "column": 14
+            },
+            "end": {
+              "line": 5,
+              "column": 43
+            }
+          }
+        },
+        {
+          "value": "cce:/internal/x/cc-fu/base",
+          "resolved": "__unresolved_5",
+          "loc": {
+            "start": {
+              "line": 6,
+              "column": 14
+            },
+            "end": {
+              "line": 6,
+              "column": 42
+            }
+          }
+        },
+        {
+          "value": "cce:/internal/x/cc-fu/custom-pipeline",
+          "resolved": "__unresolved_6",
+          "loc": {
+            "start": {
+              "line": 7,
+              "column": 14
+            },
+            "end": {
+              "line": 7,
+              "column": 53
+            }
+          }
+        },
+        {
+          "value": "cce:/internal/x/cc-fu/dragon-bones",
+          "resolved": "__unresolved_7",
+          "loc": {
+            "start": {
+              "line": 8,
+              "column": 14
+            },
+            "end": {
+              "line": 8,
+              "column": 50
+            }
+          }
+        },
+        {
+          "value": "cce:/internal/x/cc-fu/gfx-webgl",
+          "resolved": "__unresolved_8",
+          "loc": {
+            "start": {
+              "line": 9,
+              "column": 14
+            },
+            "end": {
+              "line": 9,
+              "column": 47
+            }
+          }
+        },
+        {
+          "value": "cce:/internal/x/cc-fu/intersection-2d",
+          "resolved": "__unresolved_9",
+          "loc": {
+            "start": {
+              "line": 10,
+              "column": 14
+            },
+            "end": {
+              "line": 10,
+              "column": 53
+            }
+          }
+        },
+        {
+          "value": "cce:/internal/x/cc-fu/light-probe",
+          "resolved": "__unresolved_10",
+          "loc": {
+            "start": {
+              "line": 11,
+              "column": 14
+            },
+            "end": {
+              "line": 11,
+              "column": 49
+            }
+          }
+        },
+        {
+          "value": "cce:/internal/x/cc-fu/particle",
+          "resolved": "__unresolved_11",
+          "loc": {
+            "start": {
+              "line": 12,
+              "column": 14
+            },
+            "end": {
+              "line": 12,
+              "column": 46
+            }
+          }
+        },
+        {
+          "value": "cce:/internal/x/cc-fu/particle-2d",
+          "resolved": "__unresolved_12",
+          "loc": {
+            "start": {
+              "line": 13,
+              "column": 14
+            },
+            "end": {
+              "line": 13,
+              "column": 49
+            }
+          }
+        },
+        {
+          "value": "cce:/internal/x/cc-fu/physics-2d-box2d",
+          "resolved": "__unresolved_13",
+          "loc": {
+            "start": {
+              "line": 14,
+              "column": 14
+            },
+            "end": {
+              "line": 14,
+              "column": 54
+            }
+          }
+        },
+        {
+          "value": "cce:/internal/x/cc-fu/physics-2d-framework",
+          "resolved": "__unresolved_14",
+          "loc": {
+            "start": {
+              "line": 15,
+              "column": 14
+            },
+            "end": {
+              "line": 15,
+              "column": 58
+            }
+          }
+        },
+        {
+          "value": "cce:/internal/x/cc-fu/physics-ammo",
+          "resolved": "__unresolved_15",
+          "loc": {
+            "start": {
+              "line": 16,
+              "column": 14
+            },
+            "end": {
+              "line": 16,
+              "column": 50
+            }
+          }
+        },
+        {
+          "value": "cce:/internal/x/cc-fu/physics-framework",
+          "resolved": "__unresolved_16",
+          "loc": {
+            "start": {
+              "line": 17,
+              "column": 14
+            },
+            "end": {
+              "line": 17,
+              "column": 55
+            }
+          }
+        },
+        {
+          "value": "cce:/internal/x/cc-fu/primitive",
+          "resolved": "__unresolved_17",
+          "loc": {
+            "start": {
+              "line": 18,
+              "column": 14
+            },
+            "end": {
+              "line": 18,
+              "column": 47
+            }
+          }
+        },
+        {
+          "value": "cce:/internal/x/cc-fu/profiler",
+          "resolved": "__unresolved_18",
+          "loc": {
+            "start": {
+              "line": 19,
+              "column": 14
+            },
+            "end": {
+              "line": 19,
+              "column": 46
+            }
+          }
+        },
+        {
+          "value": "cce:/internal/x/cc-fu/skeletal-animation",
+          "resolved": "__unresolved_19",
+          "loc": {
+            "start": {
+              "line": 20,
+              "column": 14
+            },
+            "end": {
+              "line": 20,
+              "column": 56
+            }
+          }
+        },
+        {
+          "value": "cce:/internal/x/cc-fu/spine",
+          "resolved": "__unresolved_20",
+          "loc": {
+            "start": {
+              "line": 21,
+              "column": 14
+            },
+            "end": {
+              "line": 21,
+              "column": 43
+            }
+          }
+        },
+        {
+          "value": "cce:/internal/x/cc-fu/terrain",
+          "resolved": "__unresolved_21",
+          "loc": {
+            "start": {
+              "line": 22,
+              "column": 14
+            },
+            "end": {
+              "line": 22,
+              "column": 45
+            }
+          }
+        },
+        {
+          "value": "cce:/internal/x/cc-fu/tiled-map",
+          "resolved": "__unresolved_22",
+          "loc": {
+            "start": {
+              "line": 23,
+              "column": 14
+            },
+            "end": {
+              "line": 23,
+              "column": 47
+            }
+          }
+        },
+        {
+          "value": "cce:/internal/x/cc-fu/tween",
+          "resolved": "__unresolved_23",
+          "loc": {
+            "start": {
+              "line": 24,
+              "column": 14
+            },
+            "end": {
+              "line": 24,
+              "column": 43
+            }
+          }
+        },
+        {
+          "value": "cce:/internal/x/cc-fu/ui",
+          "resolved": "__unresolved_24",
+          "loc": {
+            "start": {
+              "line": 25,
+              "column": 14
+            },
+            "end": {
+              "line": 25,
+              "column": 40
+            }
+          }
+        },
+        {
+          "value": "cce:/internal/x/cc-fu/video",
+          "resolved": "__unresolved_25",
+          "loc": {
+            "start": {
+              "line": 26,
+              "column": 14
+            },
+            "end": {
+              "line": 26,
+              "column": 43
+            }
+          }
+        },
+        {
+          "value": "cce:/internal/x/cc-fu/webview",
+          "resolved": "__unresolved_26",
+          "loc": {
+            "start": {
+              "line": 27,
+              "column": 14
+            },
+            "end": {
+              "line": 27,
+              "column": 45
+            }
+          }
+        }
+      ],
+      "type": "esm",
+      "resolutions": [
+        {
+          "resolved": {
+            "type": "external",
+            "specifierOrURL": "cce:/internal/x/cc-fu/2d"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "external",
+            "specifierOrURL": "cce:/internal/x/cc-fu/sorting"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "external",
+            "specifierOrURL": "cce:/internal/x/cc-fu/3d"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "external",
+            "specifierOrURL": "cce:/internal/x/cc-fu/animation"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "external",
+            "specifierOrURL": "cce:/internal/x/cc-fu/audio"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "external",
+            "specifierOrURL": "cce:/internal/x/cc-fu/base"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "external",
+            "specifierOrURL": "cce:/internal/x/cc-fu/custom-pipeline"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "external",
+            "specifierOrURL": "cce:/internal/x/cc-fu/dragon-bones"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "external",
+            "specifierOrURL": "cce:/internal/x/cc-fu/gfx-webgl"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "external",
+            "specifierOrURL": "cce:/internal/x/cc-fu/intersection-2d"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "external",
+            "specifierOrURL": "cce:/internal/x/cc-fu/light-probe"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "external",
+            "specifierOrURL": "cce:/internal/x/cc-fu/particle"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "external",
+            "specifierOrURL": "cce:/internal/x/cc-fu/particle-2d"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "external",
+            "specifierOrURL": "cce:/internal/x/cc-fu/physics-2d-box2d"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "external",
+            "specifierOrURL": "cce:/internal/x/cc-fu/physics-2d-framework"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "external",
+            "specifierOrURL": "cce:/internal/x/cc-fu/physics-ammo"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "external",
+            "specifierOrURL": "cce:/internal/x/cc-fu/physics-framework"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "external",
+            "specifierOrURL": "cce:/internal/x/cc-fu/primitive"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "external",
+            "specifierOrURL": "cce:/internal/x/cc-fu/profiler"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "external",
+            "specifierOrURL": "cce:/internal/x/cc-fu/skeletal-animation"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "external",
+            "specifierOrURL": "cce:/internal/x/cc-fu/spine"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "external",
+            "specifierOrURL": "cce:/internal/x/cc-fu/terrain"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "external",
+            "specifierOrURL": "cce:/internal/x/cc-fu/tiled-map"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "external",
+            "specifierOrURL": "cce:/internal/x/cc-fu/tween"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "external",
+            "specifierOrURL": "cce:/internal/x/cc-fu/ui"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "external",
+            "specifierOrURL": "cce:/internal/x/cc-fu/video"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "external",
+            "specifierOrURL": "cce:/internal/x/cc-fu/webview"
+          },
+          "messages": []
+        }
+      ]
+    },
+    "cce:/internal/x/prerequisite-imports": {
+      "mTimestamp": 11981992.6941,
+      "chunkId": "6d8fd2b0177941b032ddc0733af48a561fb60657",
+      "imports": [
+        {
+          "value": "file:///D:/CocosEditor/Creator/3.8.5/resources/resources/3d/engine/editor/assets/default_renderpipeline/builtin-dof-pass.ts",
+          "resolved": "__unresolved_0",
+          "loc": {
+            "start": {
+              "line": 4,
+              "column": 7
+            },
+            "end": {
+              "line": 4,
+              "column": 132
+            }
+          }
+        },
+        {
+          "value": "file:///D:/CocosEditor/Creator/3.8.5/resources/resources/3d/engine/editor/assets/default_renderpipeline/builtin-pipeline-pass.ts",
+          "resolved": "__unresolved_1",
+          "loc": {
+            "start": {
+              "line": 5,
+              "column": 7
+            },
+            "end": {
+              "line": 5,
+              "column": 137
+            }
+          }
+        },
+        {
+          "value": "file:///D:/CocosEditor/Creator/3.8.5/resources/resources/3d/engine/editor/assets/default_renderpipeline/builtin-pipeline-settings.ts",
+          "resolved": "__unresolved_2",
+          "loc": {
+            "start": {
+              "line": 6,
+              "column": 7
+            },
+            "end": {
+              "line": 6,
+              "column": 141
+            }
+          }
+        },
+        {
+          "value": "file:///D:/CocosEditor/Creator/3.8.5/resources/resources/3d/engine/editor/assets/default_renderpipeline/builtin-pipeline-types.ts",
+          "resolved": "__unresolved_3",
+          "loc": {
+            "start": {
+              "line": 7,
+              "column": 7
+            },
+            "end": {
+              "line": 7,
+              "column": 138
+            }
+          }
+        },
+        {
+          "value": "file:///D:/CocosEditor/Creator/3.8.5/resources/resources/3d/engine/editor/assets/default_renderpipeline/builtin-pipeline.ts",
+          "resolved": "__unresolved_4",
+          "loc": {
+            "start": {
+              "line": 8,
+              "column": 7
+            },
+            "end": {
+              "line": 8,
+              "column": 132
+            }
+          }
+        },
+        {
+          "value": "file:///D:/CocosEditor/Creator/3.8.5/resources/resources/3d/engine/editor/assets/tools/debug-view-runtime-control.ts",
+          "resolved": "__unresolved_5",
+          "loc": {
+            "start": {
+              "line": 9,
+              "column": 7
+            },
+            "end": {
+              "line": 9,
+              "column": 125
+            }
+          }
+        },
+        {
+          "value": "file:///E:/GitHub/HeroClash/assets/src/mask/fullScreenMask.ts",
+          "resolved": "__unresolved_6",
+          "loc": {
+            "start": {
+              "line": 10,
+              "column": 7
+            },
+            "end": {
+              "line": 10,
+              "column": 70
+            }
+          }
+        },
+        {
+          "value": "file:///E:/GitHub/HeroClash/assets/src/resource/currency/kind.ts",
+          "resolved": "__unresolved_7",
+          "loc": {
+            "start": {
+              "line": 11,
+              "column": 7
+            },
+            "end": {
+              "line": 11,
+              "column": 73
+            }
+          }
+        },
+        {
+          "value": "file:///E:/GitHub/HeroClash/assets/src/resource/currency/manager.ts",
+          "resolved": "__unresolved_8",
+          "loc": {
+            "start": {
+              "line": 12,
+              "column": 7
+            },
+            "end": {
+              "line": 12,
+              "column": 76
+            }
+          }
+        },
+        {
+          "value": "file:///E:/GitHub/HeroClash/assets/src/resource/hero/attribute.ts",
+          "resolved": "__unresolved_9",
+          "loc": {
+            "start": {
+              "line": 13,
+              "column": 7
+            },
+            "end": {
+              "line": 13,
+              "column": 74
+            }
+          }
+        },
+        {
+          "value": "file:///E:/GitHub/HeroClash/assets/src/resource/hero/heroBase.ts",
+          "resolved": "__unresolved_10",
+          "loc": {
+            "start": {
+              "line": 14,
+              "column": 7
+            },
+            "end": {
+              "line": 14,
+              "column": 73
+            }
+          }
+        },
+        {
+          "value": "file:///E:/GitHub/HeroClash/assets/src/store/resourceStore.ts",
+          "resolved": "__unresolved_11",
+          "loc": {
+            "start": {
+              "line": 15,
+              "column": 7
+            },
+            "end": {
+              "line": 15,
+              "column": 70
+            }
+          }
+        },
+        {
+          "value": "file:///E:/GitHub/HeroClash/assets/src/store/store.ts",
+          "resolved": "__unresolved_12",
+          "loc": {
+            "start": {
+              "line": 16,
+              "column": 7
+            },
+            "end": {
+              "line": 16,
+              "column": 62
+            }
+          }
+        },
+        {
+          "value": "file:///E:/GitHub/HeroClash/assets/src/user.ts",
+          "resolved": "__unresolved_13",
+          "loc": {
+            "start": {
+              "line": 17,
+              "column": 7
+            },
+            "end": {
+              "line": 17,
+              "column": 55
+            }
+          }
+        },
+        {
+          "value": "file:///E:/GitHub/HeroClash/assets/src/utils/errors.ts",
+          "resolved": "__unresolved_14",
+          "loc": {
+            "start": {
+              "line": 18,
+              "column": 7
+            },
+            "end": {
+              "line": 18,
+              "column": 63
+            }
+          }
+        },
+        {
+          "value": "file:///E:/GitHub/HeroClash/assets/src/utils/mutex.ts",
+          "resolved": "__unresolved_15",
+          "loc": {
+            "start": {
+              "line": 19,
+              "column": 7
+            },
+            "end": {
+              "line": 19,
+              "column": 62
+            }
+          }
+        }
+      ],
+      "type": "esm",
+      "resolutions": [
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///D:/CocosEditor/Creator/3.8.5/resources/resources/3d/engine/editor/assets/default_renderpipeline/builtin-dof-pass.ts"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///D:/CocosEditor/Creator/3.8.5/resources/resources/3d/engine/editor/assets/default_renderpipeline/builtin-pipeline-pass.ts"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///D:/CocosEditor/Creator/3.8.5/resources/resources/3d/engine/editor/assets/default_renderpipeline/builtin-pipeline-settings.ts"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///D:/CocosEditor/Creator/3.8.5/resources/resources/3d/engine/editor/assets/default_renderpipeline/builtin-pipeline-types.ts"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///D:/CocosEditor/Creator/3.8.5/resources/resources/3d/engine/editor/assets/default_renderpipeline/builtin-pipeline.ts"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///D:/CocosEditor/Creator/3.8.5/resources/resources/3d/engine/editor/assets/tools/debug-view-runtime-control.ts"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///E:/GitHub/HeroClash/assets/src/mask/fullScreenMask.ts"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///E:/GitHub/HeroClash/assets/src/resource/currency/kind.ts"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///E:/GitHub/HeroClash/assets/src/resource/currency/manager.ts"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///E:/GitHub/HeroClash/assets/src/resource/hero/attribute.ts"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///E:/GitHub/HeroClash/assets/src/resource/hero/heroBase.ts"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///E:/GitHub/HeroClash/assets/src/store/resourceStore.ts"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///E:/GitHub/HeroClash/assets/src/store/store.ts"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///E:/GitHub/HeroClash/assets/src/user.ts"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///E:/GitHub/HeroClash/assets/src/utils/errors.ts"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///E:/GitHub/HeroClash/assets/src/utils/mutex.ts"
+          },
+          "messages": []
+        }
+      ]
+    },
+    "file:///D:/CocosEditor/Creator/3.8.5/resources/resources/3d/engine/editor/assets/default_renderpipeline/builtin-dof-pass.ts": {
+      "mTimestamp": {
+        "mtime": 1739157951784.6204,
+        "uuid": "11f3130e-c08c-47bb-a209-71d114594e6d"
+      },
+      "chunkId": "6be6ef2f876534955e2308115b6d6b1e64c4ba31",
+      "imports": [
+        {
+          "value": "cce:/internal/code-quality/cr.mjs",
+          "resolved": "__unresolved_0"
+        },
+        {
+          "value": "cc"
+        },
+        {
+          "value": "cc"
+        },
+        {
+          "value": "cc",
+          "loc": {
+            "start": {
+              "line": 28,
+              "column": 7
+            },
+            "end": {
+              "line": 28,
+              "column": 11
+            }
+          }
+        },
+        {
+          "value": "cc/env",
+          "loc": {
+            "start": {
+              "line": 30,
+              "column": 23
+            },
+            "end": {
+              "line": 30,
+              "column": 31
+            }
+          }
+        },
+        {
+          "value": "./builtin-pipeline-settings",
+          "resolved": "__unresolved_1",
+          "loc": {
+            "start": {
+              "line": 34,
+              "column": 7
+            },
+            "end": {
+              "line": 34,
+              "column": 36
+            }
+          }
+        },
+        {
+          "value": "./builtin-pipeline-pass",
+          "resolved": "__unresolved_2",
+          "loc": {
+            "start": {
+              "line": 38,
+              "column": 7
+            },
+            "end": {
+              "line": 38,
+              "column": 32
+            }
+          }
+        },
+        {
+          "value": "./builtin-pipeline",
+          "resolved": "__unresolved_3",
+          "loc": {
+            "start": {
+              "line": 45,
+              "column": 7
+            },
+            "end": {
+              "line": 45,
+              "column": 27
+            }
+          }
+        }
+      ],
+      "type": "esm",
+      "resolutions": [
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/code-quality/cr.mjs"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "external",
+            "specifierOrURL": "cc/env"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///D:/CocosEditor/Creator/3.8.5/resources/resources/3d/engine/editor/assets/default_renderpipeline/builtin-pipeline-settings.ts"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///D:/CocosEditor/Creator/3.8.5/resources/resources/3d/engine/editor/assets/default_renderpipeline/builtin-pipeline-pass.ts"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///D:/CocosEditor/Creator/3.8.5/resources/resources/3d/engine/editor/assets/default_renderpipeline/builtin-pipeline.ts"
+          },
+          "messages": []
+        }
+      ]
+    },
+    "file:///D:/CocosEditor/Creator/3.8.5/resources/resources/3d/engine/editor/assets/default_renderpipeline/builtin-pipeline-pass.ts": {
+      "mTimestamp": {
+        "mtime": 1739157951788.6096,
+        "uuid": "6f94083c-fc92-438b-a15b-a20ec61666c7"
+      },
+      "chunkId": "f36b56925f5a4047a15873d249ee93b91ce51574",
+      "imports": [
+        {
+          "value": "cce:/internal/code-quality/cr.mjs",
+          "resolved": "__unresolved_0"
+        },
+        {
+          "value": "cc"
+        },
+        {
+          "value": "cc"
+        },
+        {
+          "value": "cc",
+          "loc": {
+            "start": {
+              "line": 30,
+              "column": 7
+            },
+            "end": {
+              "line": 30,
+              "column": 11
+            }
+          }
+        },
+        {
+          "value": "./builtin-pipeline-settings",
+          "resolved": "__unresolved_1",
+          "loc": {
+            "start": {
+              "line": 32,
+              "column": 40
+            },
+            "end": {
+              "line": 32,
+              "column": 69
+            }
+          }
+        },
+        {
+          "value": "cc/env",
+          "loc": {
+            "start": {
+              "line": 34,
+              "column": 23
+            },
+            "end": {
+              "line": 34,
+              "column": 31
+            }
+          }
+        }
+      ],
+      "type": "esm",
+      "resolutions": [
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/code-quality/cr.mjs"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///D:/CocosEditor/Creator/3.8.5/resources/resources/3d/engine/editor/assets/default_renderpipeline/builtin-pipeline-settings.ts"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "external",
+            "specifierOrURL": "cc/env"
+          },
+          "messages": []
+        }
+      ]
+    },
+    "file:///D:/CocosEditor/Creator/3.8.5/resources/resources/3d/engine/editor/assets/default_renderpipeline/builtin-pipeline-settings.ts": {
+      "mTimestamp": {
+        "mtime": 1739157951789.6064,
+        "uuid": "de1c2107-70c8-4021-8459-6399f24d01c6"
+      },
+      "chunkId": "fc30c16fbbae12923dc147338aa0918f1e782e94",
+      "imports": [
+        {
+          "value": "cce:/internal/code-quality/cr.mjs",
+          "resolved": "__unresolved_0"
+        },
+        {
+          "value": "cc"
+        },
+        {
+          "value": "cc"
+        },
+        {
+          "value": "cc",
+          "loc": {
+            "start": {
+              "line": 28,
+              "column": 7
+            },
+            "end": {
+              "line": 28,
+              "column": 11
+            }
+          }
+        },
+        {
+          "value": "cc/env",
+          "loc": {
+            "start": {
+              "line": 30,
+              "column": 23
+            },
+            "end": {
+              "line": 30,
+              "column": 31
+            }
+          }
+        },
+        {
+          "value": "./builtin-pipeline-types",
+          "resolved": "__unresolved_1",
+          "loc": {
+            "start": {
+              "line": 34,
+              "column": 7
+            },
+            "end": {
+              "line": 34,
+              "column": 33
+            }
+          }
+        }
+      ],
+      "type": "esm",
+      "resolutions": [
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/code-quality/cr.mjs"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "external",
+            "specifierOrURL": "cc/env"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///D:/CocosEditor/Creator/3.8.5/resources/resources/3d/engine/editor/assets/default_renderpipeline/builtin-pipeline-types.ts"
+          },
+          "messages": []
+        }
+      ]
+    },
+    "file:///D:/CocosEditor/Creator/3.8.5/resources/resources/3d/engine/editor/assets/default_renderpipeline/builtin-pipeline-types.ts": {
+      "mTimestamp": {
+        "mtime": 1739157951790.6042,
+        "uuid": "cbf30902-517f-40dc-af90-a550bac27cf1"
+      },
+      "chunkId": "8eee3958eff6180815c7f145a314d93397362b3f",
+      "imports": [
+        {
+          "value": "cc"
+        },
+        {
+          "value": "cc"
+        },
+        {
+          "value": "cc",
+          "loc": {
+            "start": {
+              "line": 31,
+              "column": 41
+            },
+            "end": {
+              "line": 31,
+              "column": 45
+            }
+          }
+        }
+      ],
+      "type": "esm",
+      "resolutions": [
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        }
+      ]
+    },
+    "file:///D:/CocosEditor/Creator/3.8.5/resources/resources/3d/engine/editor/assets/default_renderpipeline/builtin-pipeline.ts": {
+      "mTimestamp": {
+        "mtime": 1739157951791.6016,
+        "uuid": "ff9b0199-ce04-4cfe-86cc-6c719f08d6e4"
+      },
+      "chunkId": "61b71188ef38ea2c44b1be17500588242c9b2711",
+      "imports": [
+        {
+          "value": "cce:/internal/code-quality/cr.mjs",
+          "resolved": "__unresolved_0"
+        },
+        {
+          "value": "cc"
+        },
+        {
+          "value": "cc"
+        },
+        {
+          "value": "cc",
+          "loc": {
+            "start": {
+              "line": 29,
+              "column": 7
+            },
+            "end": {
+              "line": 29,
+              "column": 11
+            }
+          }
+        },
+        {
+          "value": "cc/env",
+          "loc": {
+            "start": {
+              "line": 31,
+              "column": 30
+            },
+            "end": {
+              "line": 31,
+              "column": 38
+            }
+          }
+        },
+        {
+          "value": "./builtin-pipeline-types",
+          "resolved": "__unresolved_1",
+          "loc": {
+            "start": {
+              "line": 36,
+              "column": 7
+            },
+            "end": {
+              "line": 36,
+              "column": 33
+            }
+          }
+        }
+      ],
+      "type": "esm",
+      "resolutions": [
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/code-quality/cr.mjs"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "external",
+            "specifierOrURL": "cc/env"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///D:/CocosEditor/Creator/3.8.5/resources/resources/3d/engine/editor/assets/default_renderpipeline/builtin-pipeline-types.ts"
+          },
+          "messages": []
+        }
+      ]
+    },
+    "file:///D:/CocosEditor/Creator/3.8.5/resources/resources/3d/engine/editor/assets/tools/debug-view-runtime-control.ts": {
+      "mTimestamp": {
+        "mtime": 1739157952015.0125,
+        "uuid": "b2bd1fa7-8d7c-49c5-a158-df29a6d3a594"
+      },
+      "chunkId": "c62df9b1df9ba76917cd30641bce8fdbbbf094fd",
+      "imports": [
+        {
+          "value": "cc"
+        },
+        {
+          "value": "cc"
+        },
+        {
+          "value": "cc",
+          "loc": {
+            "start": {
+              "line": 1,
+              "column": 220
+            },
+            "end": {
+              "line": 1,
+              "column": 224
+            }
+          }
+        }
+      ],
+      "type": "esm",
+      "resolutions": [
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        }
+      ]
+    },
+    "file:///E:/GitHub/HeroClash/assets/src/background/fullScreenMask.ts": {
+      "mTimestamp": {
+        "mtime": 1739852576004.5093,
+        "uuid": "5a6d12ef-841b-4fcb-9e19-557456ac7d08"
+      },
+      "chunkId": "063ec14f4ed56a94a95569153c9a8d268524cee6",
+      "imports": [
+        {
+          "value": "cc"
+        },
+        {
+          "value": "cc"
+        },
+        {
+          "value": "cc",
+          "loc": {
+            "start": {
+              "line": 2,
+              "column": 54
+            },
+            "end": {
+              "line": 2,
+              "column": 58
+            }
+          }
+        }
+      ],
+      "type": "esm",
+      "resolutions": [
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        }
+      ]
+    },
+    "file:///E:/GitHub/HeroClash/assets/src/resource/currency/kind.ts": {
+      "mTimestamp": {
+        "mtime": 1739852576005.7097,
+        "uuid": "b7a34d50-17a1-478f-8e74-74c25b0f35e6"
+      },
+      "chunkId": "9ecfab4b592cdf1de055db6d9ccc7599efd78003",
+      "imports": [
+        {
+          "value": "cc"
+        }
+      ],
+      "type": "esm",
+      "resolutions": [
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        }
+      ]
+    },
+    "file:///E:/GitHub/HeroClash/assets/src/resource/currency/manager.ts": {
+      "mTimestamp": {
+        "mtime": 1739852576006.7424,
+        "uuid": "70b9e018-6102-4f4d-b75f-307b0ab572e1"
+      },
+      "chunkId": "958818c6cf9d407cc170c66730b1d8f4de4d1b42",
+      "imports": [
+        {
+          "value": "cce:/internal/code-quality/cr.mjs",
+          "resolved": "__unresolved_0"
+        },
+        {
+          "value": "cc"
+        },
+        {
+          "value": "../../utils/mutex",
+          "resolved": "__unresolved_1",
+          "loc": {
+            "start": {
+              "line": 4,
+              "column": 22
+            },
+            "end": {
+              "line": 4,
+              "column": 41
+            }
+          }
+        },
+        {
+          "value": "../../utils/errors",
+          "resolved": "__unresolved_2",
+          "loc": {
+            "start": {
+              "line": 5,
+              "column": 42
+            },
+            "end": {
+              "line": 5,
+              "column": 62
+            }
+          }
+        }
+      ],
+      "type": "esm",
+      "resolutions": [
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/code-quality/cr.mjs"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///E:/GitHub/HeroClash/assets/src/utils/mutex.ts"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///E:/GitHub/HeroClash/assets/src/utils/errors.ts"
+          },
+          "messages": []
+        }
+      ]
+    },
+    "file:///E:/GitHub/HeroClash/assets/src/resource/hero/attribute.ts": {
+      "mTimestamp": {
+        "mtime": 1739868942557.2727,
+        "uuid": "00f75326-b075-44cd-b09c-281975566776"
+      },
+      "chunkId": "93851fcff7a5c57d2269ab8bed84fc12107808f9",
+      "imports": [
+        {
+          "value": "cc"
+        }
+      ],
+      "type": "esm",
+      "resolutions": [
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        }
+      ]
+    },
+    "file:///E:/GitHub/HeroClash/assets/src/resource/hero/heroBase.ts": {
+      "mTimestamp": {
+        "mtime": 1739852576006.7424,
+        "uuid": "1f5f8afb-78af-407b-8d2d-e2d9766ec23c"
+      },
+      "chunkId": "482ace5d74cf391b4fc8e33c4f506d328d5cd5e2",
+      "imports": [
+        {
+          "value": "cce:/internal/code-quality/cr.mjs",
+          "resolved": "__unresolved_0"
+        },
+        {
+          "value": "cc"
+        },
+        {
+          "value": "cc"
+        },
+        {
+          "value": "cc",
+          "loc": {
+            "start": {
+              "line": 3,
+              "column": 44
+            },
+            "end": {
+              "line": 3,
+              "column": 48
+            }
+          }
+        }
+      ],
+      "type": "esm",
+      "resolutions": [
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/code-quality/cr.mjs"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        }
+      ]
+    },
+    "file:///E:/GitHub/HeroClash/assets/src/store/resourceStore.ts": {
+      "mTimestamp": {
+        "mtime": 1739852576006.7424,
+        "uuid": "02dd055a-4939-48ac-8d8c-b010e8351134"
+      },
+      "chunkId": "3ce01ea3363fc4b3c2bbb18f349f4f6d635a643f",
+      "imports": [
+        {
+          "value": "cce:/internal/code-quality/cr.mjs",
+          "resolved": "__unresolved_0"
+        },
+        {
+          "value": "cc"
+        },
+        {
+          "value": "cc"
+        },
+        {
+          "value": "cc",
+          "loc": {
+            "start": {
+              "line": 2,
+              "column": 66
+            },
+            "end": {
+              "line": 2,
+              "column": 70
+            }
+          }
+        },
+        {
+          "value": "../resource/currency/kind",
+          "resolved": "__unresolved_1",
+          "loc": {
+            "start": {
+              "line": 3,
+              "column": 39
+            },
+            "end": {
+              "line": 3,
+              "column": 66
+            }
+          }
+        },
+        {
+          "value": "../resource/currency/manager",
+          "resolved": "__unresolved_2",
+          "loc": {
+            "start": {
+              "line": 4,
+              "column": 32
+            },
+            "end": {
+              "line": 4,
+              "column": 62
+            }
+          }
+        }
+      ],
+      "type": "esm",
+      "resolutions": [
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/code-quality/cr.mjs"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///E:/GitHub/HeroClash/assets/src/resource/currency/kind.ts"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///E:/GitHub/HeroClash/assets/src/resource/currency/manager.ts"
+          },
+          "messages": []
+        }
+      ]
+    },
+    "file:///E:/GitHub/HeroClash/assets/src/store/store.ts": {
+      "mTimestamp": {
+        "mtime": 1739852576006.7424,
+        "uuid": "6b637b86-e653-4f16-bd42-3eb81da93ef9"
+      },
+      "chunkId": "0aab88221a90b7fc9bb9813af61817dbf8cb855c",
+      "imports": [
+        {
+          "value": "cc"
+        },
+        {
+          "value": "cc"
+        },
+        {
+          "value": "cc",
+          "loc": {
+            "start": {
+              "line": 2,
+              "column": 52
+            },
+            "end": {
+              "line": 2,
+              "column": 56
+            }
+          }
+        }
+      ],
+      "type": "esm",
+      "resolutions": [
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        }
+      ]
+    },
+    "file:///E:/GitHub/HeroClash/assets/src/user.ts": {
+      "mTimestamp": {
+        "mtime": 1739852576006.7424,
+        "uuid": "42855bec-a86a-46c3-bb1f-d61f56b57d50"
+      },
+      "chunkId": "8aeec5988f48d821f6edd5f739925bb76bcaa3f0",
+      "imports": [
+        {
+          "value": "cc"
+        },
+        {
+          "value": "cc"
+        },
+        {
+          "value": "cc",
+          "loc": {
+            "start": {
+              "line": 2,
+              "column": 51
+            },
+            "end": {
+              "line": 2,
+              "column": 55
+            }
+          }
+        }
+      ],
+      "type": "esm",
+      "resolutions": [
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        }
+      ]
+    },
+    "file:///E:/GitHub/HeroClash/assets/src/utils/errors.ts": {
+      "mTimestamp": {
+        "mtime": 1739852576006.7424,
+        "uuid": "b2ccb57a-2c74-4b90-9171-be02858f18d7"
+      },
+      "chunkId": "e2f50d2c80d5e70fa8a06b08249118f43177d0ca",
+      "imports": [
+        {
+          "value": "cc"
+        }
+      ],
+      "type": "esm",
+      "resolutions": [
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        }
+      ]
+    },
+    "file:///E:/GitHub/HeroClash/assets/src/utils/mutex.ts": {
+      "mTimestamp": {
+        "mtime": 1739852576010.8677,
+        "uuid": "175f4612-6fea-4f24-b0f6-18affcf0f8a8"
+      },
+      "chunkId": "7421a72737797b255736171083851f11d14a4cd0",
+      "imports": [
+        {
+          "value": "cce:/internal/code-quality/cr.mjs",
+          "resolved": "__unresolved_0"
+        },
+        {
+          "value": "cc"
+        },
+        {
+          "value": "./errors",
+          "resolved": "__unresolved_1",
+          "loc": {
+            "start": {
+              "line": 1,
+              "column": 42
+            },
+            "end": {
+              "line": 1,
+              "column": 52
+            }
+          }
+        }
+      ],
+      "type": "esm",
+      "resolutions": [
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/code-quality/cr.mjs"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "file:///E:/GitHub/HeroClash/assets/src/utils/errors.ts"
+          },
+          "messages": []
+        }
+      ]
+    },
+    "cce:/internal/code-quality/cr.mjs": {
+      "mTimestamp": 1739856966247,
+      "chunkId": "6a5019a719a9014c047e67aa1cf34453ab8392ce",
+      "imports": [],
+      "type": "esm",
+      "resolutions": []
+    },
+    "file:///E:/GitHub/HeroClash/assets/src/mask/fullScreenMask.ts": {
+      "mTimestamp": {
+        "mtime": 1739852576004.5093,
+        "uuid": "5a6d12ef-841b-4fcb-9e19-557456ac7d08"
+      },
+      "chunkId": "3fc6efa63eb1dea759970ac42eff45d4f1c132d6",
+      "imports": [
+        {
+          "value": "cc"
+        },
+        {
+          "value": "cc"
+        },
+        {
+          "value": "cc",
+          "loc": {
+            "start": {
+              "line": 2,
+              "column": 54
+            },
+            "end": {
+              "line": 2,
+              "column": 58
+            }
+          }
+        }
+      ],
+      "type": "esm",
+      "resolutions": [
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        },
+        {
+          "resolved": {
+            "type": "module",
+            "url": "cce:/internal/x/cc"
+          },
+          "messages": []
+        }
+      ]
+    }
+  }
+}
