@@ -24,14 +24,16 @@ export enum HeroSkillType {
 
 // 英雄属性
 export interface HeroAttribute {
+    serialNumber: string            // 英雄序号
     id: string;                     // 英雄ID
     name: string;                   // 英雄名称
     profession: HeroProfessionType; // 职业
     rarity: HeroRarityType;         // 稀有度
     leval: number;                  // 等级
+    introduction: string;           // 人物列传
 
     basicAttack: number;            // 基础攻击力
-    basicdefense: number;           // 基础防御力
+    basicDefense: number;           // 基础防御力
     basicHealth: number;            // 基础生命值
     basicAttackSpeed: number;       // 基础攻击速度
     basicCriticalStrikeRate: number; // 基础暴击率
