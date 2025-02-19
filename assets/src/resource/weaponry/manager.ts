@@ -32,6 +32,8 @@ export class UserWeaponryManager {
     private weaponryCache: UserWeaponry;
 
     private constructor() {
+        // 后续删掉，不清理本地缓存
+        localStorage.removeItem(storageWeaponryID);
         // 初始化缓存
         this.weaponryCache = this.getWeaponryFromStorage();
     }
@@ -54,35 +56,44 @@ export class UserWeaponryManager {
     public getWeaponryFromStorage(): UserWeaponry {
         const storedData = localStorage.getItem(storageWeaponryID);
         if (storedData) {
-            return JSON.parse(storedData);
+            const parsedData = JSON.parse(storedData);
+            const weaponsMap = new Map<string, UserWeaponryAttribute>(parsedData.weapons);
+            return { weapons: weaponsMap };
         }
 
         console.log("not init weaponry resource, return null");
-        return null;
+        return {
+            // 初始化为空的 Map
+            weapons: new Map<string, UserWeaponryAttribute>()
+        };
     }
 
     // 创建基础装备
-    public createWeaponry(serialNumber: string): void {
+    public createWeaponry(serialNumberList: string[]): void {
         try {
             Mutex.getInstance().lock(weaponryMutexID);
-            console.info("create weaponry: %s", serialNumber);
-            let basicWeaponry = getWeaponryBySerialNumber(serialNumber);
-            // 构造装备信息
-            let weaponryInfo: UserWeaponryAttribute = {
-                ...basicWeaponry,
-                weaponryID: generateUUID()
-            }
             let currentWeaponry = this.getWeaponryFromStorage();
-            switch (weaponryInfo.kind) {
-                case WeaponryKind.Weapon:
-                    if (currentWeaponry.weapons.has(weaponryInfo.weaponryID)) {
-                        console.error("serial number %s have duplicate id %s", serialNumber, weaponryInfo.weaponryID);
-                        // 存在相同的uuid武器了
-                        throw new Error(`Failed to create weaponry: Duplicate weaponryID ${weaponryInfo.weaponryID}`);
-                    }
+            for (let serialNumber of serialNumberList) {
+                console.info("create weaponry serial number %s", serialNumber);
+                let basicWeaponry = getWeaponryBySerialNumber(serialNumber);
+                // 构造装备信息
+                let weaponryInfo: UserWeaponryAttribute = {
+                    ...basicWeaponry,
+                    weaponryID: generateUUID()
+                }
 
-                    currentWeaponry.weapons.set(weaponryInfo.weaponryID, weaponryInfo);
-                    break;
+                console.info("basic weaponry %s", JSON.stringify(weaponryInfo));
+                switch (weaponryInfo.kind) {
+                    case WeaponryKind.Weapon:
+                        if (currentWeaponry.weapons.has(weaponryInfo.weaponryID)) {
+                            console.error("serial number %s have duplicate id %s", serialNumber, weaponryInfo.weaponryID);
+                            // 存在相同的uuid武器了
+                            throw new Error(`Failed to create weaponry: Duplicate weaponryID ${weaponryInfo.weaponryID}`);
+                        }
+
+                        currentWeaponry.weapons.set(weaponryInfo.weaponryID, weaponryInfo);
+                        break;
+                }
             }
 
             this.saveWeaponry(currentWeaponry);
@@ -164,8 +175,8 @@ export class UserWeaponryManager {
     // 保存资源到本地存储
     private saveWeaponry(weaponry: UserWeaponry) {
         try {
-            console.info("save weaponry %s ", JSON.stringify(weaponry));
-            localStorage.setItem(storageWeaponryID, JSON.stringify(weaponry));
+            const weaponsArray = Array.from(weaponry.weapons.entries());
+            localStorage.setItem(storageWeaponryID, JSON.stringify({ weapons: weaponsArray }));
         } catch (error) {
             console.error("save %s failed, error: %s", storageWeaponryID, error.message);
             throw new Error(`Failed to save weaponry: ${error.message}`);

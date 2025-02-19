@@ -21,6 +21,8 @@ export class CurrencyManager {
     private currencyCache: Currency;
 
     private constructor() {
+        // 先清掉本地缓存，后续删除
+        localStorage.removeItem(storageCurrencyID);
         // 初始化缓存
         this.currencyCache = this.getCurrencyFromStorage();
     }
@@ -53,11 +55,11 @@ export class CurrencyManager {
     // 获取默认的资源数据
     private getDefaultCurrency(): Currency {
         return {
-            copper: 0,
-            evolutionStone: 0,
-            ironOre: 0,
-            battleSoulStone: 0,
-            hetianJade: 0,
+            copper: 1000,
+            evolutionStone: 1000,
+            ironOre: 1000,
+            battleSoulStone: 1000,
+            hetianJade: 1000,
         };
     }
 
