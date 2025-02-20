@@ -46,7 +46,9 @@ export enum NationType {
     weiguo = "魏国",
     shuguo = "蜀国",
     wuguo = "吴国",
+    qunxiong = "群雄",
 }
+
 // 人物技能定义 TODO：待补充
 export enum HeroSkillType {
     S1 = "S1",
