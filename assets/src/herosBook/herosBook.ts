@@ -1,4 +1,4 @@
-import { _decorator, Button, Component, Label, Layout, Material, math, Node, Sprite, SpriteAtlas, SpriteFrame, UITransform } from 'cc';
+import { _decorator, Button, Component, HorizontalTextAlignment, Label, Layout, Material, math, Node, resources, Sprite, SpriteAtlas, SpriteFrame, UITransform, VerticalTextAlignment } from 'cc';
 import { BasicHeroAttribute, NationType } from "../resource/character/attribute";
 import { getHeroMap } from "../resource/character/heroList";
 const { ccclass, property } = _decorator;
@@ -15,6 +15,10 @@ export class herosBook extends Component {
     start() {
         this.gContentNode = this.node.getChildByName("HerosScrollView").getChildByName("view").getChildByName("content");
         this.gHerosMap = getHeroMap();
+
+        // TODO：资源预加载，提升后续load图片效率，这个后续得调到游戏开始界面
+        this.preloadHerosImage();
+
         // 注册Button事件
         let allHerosButton = this.node.getChildByName("HerosAllButton").getComponent(Button);
         allHerosButton.node.on(Button.EventType.CLICK, this.onAllHerosButtonClick, this);
@@ -35,6 +39,13 @@ export class herosBook extends Component {
 
         // 加载所有英雄
         this.loadAllHeros();
+    }
+
+    // 预加载英雄图片
+    private preloadHerosImage() {
+        for (let [_, heroAttribute] of this.gHerosMap) {
+            resources.preload("heros/" + heroAttribute.basicAttribute.imageName + "/spriteFrame", SpriteFrame);
+        };
     }
 
     private onAllHerosButtonClick(button: Button) {
@@ -115,24 +126,24 @@ export class herosBook extends Component {
         // 调整按钮大小
         let transform = parentNode.addComponent(UITransform);
         let size = new math.Size;
-        size.set(50, 50);
+        size.set(150, 150);
         transform.setContentSize(size);
-        transform.enabled = true;
         // 调整按钮颜色
-        // let sprite = parentNode.addComponent(Sprite);
+        let sprite = parentNode.addComponent(Sprite);
         // sprite.customMaterial = new Material;
-        // let color = new math.Color;
-        // color.set(255, 255, 255);
-        // sprite.color = color;
-        // sprite.spriteAtlas = new SpriteAtlas;
-        // let img = new  SpriteFrame;
-        // sprite.spriteFrame = new SpriteFrame();
+        sprite.sizeMode = Sprite.SizeMode.CUSTOM;
+        let imagePath: string = "heros/" + heroAttribute.basicAttribute.imageName + "/spriteFrame";
+        resources.load(imagePath, SpriteFrame, (err, spriteFrame) => {
+            sprite.spriteFrame = spriteFrame;
+        });
 
         let heroButton = parentNode.addComponent(Button);
 
         // 添加个Label节点
         let labelNode = new Node("LabelNode");
-
+        // 设置label节点大小
+        let LabelTransform = labelNode.addComponent(UITransform);
+        LabelTransform.setContentSize(size);
         let label = labelNode.addComponent(Label);
         // 设置颜色，黑色
         let nameColor = new math.Color;
@@ -140,7 +151,11 @@ export class herosBook extends Component {
         label.color = nameColor;
         // 设置名称
         label.string = `${heroAttribute.basicAttribute.name}`;
-
+        // 设置大小
+        label.fontSize = 10;
+        // 设置位置
+        label.horizontalAlign = HorizontalTextAlignment.LEFT;
+        label.verticalAlign = VerticalTextAlignment.TOP;
         parentNode.addChild(labelNode);
         return parentNode;
     }

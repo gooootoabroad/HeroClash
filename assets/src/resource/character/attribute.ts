@@ -6,6 +6,7 @@ export interface CharacterAttribute {
     name: string;                   // 人物名称
     role: RoleType;                 // 职业
     leval: number;                  // 等级
+    imageName: string;              // 图像名称
 
     basicHealth: number;            // 基础生命值
     basicAttack: number;            // 基础攻击力

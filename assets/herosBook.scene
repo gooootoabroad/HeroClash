@@ -1551,7 +1551,7 @@
     "__prefab": null,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 600,
+      "width": 700,
       "height": 20
     },
     "_anchorPoint": {
@@ -1579,12 +1579,12 @@
       "height": 40
     },
     "_startAxis": 0,
-    "_paddingLeft": 10,
+    "_paddingLeft": 25,
     "_paddingRight": 10,
     "_paddingTop": 10,
     "_paddingBottom": 10,
-    "_spacingX": 140,
-    "_spacingY": 200,
+    "_spacingX": 20,
+    "_spacingY": 30,
     "_verticalDirection": 1,
     "_horizontalDirection": 0,
     "_constraint": 2,
