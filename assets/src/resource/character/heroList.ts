@@ -523,4 +523,112 @@ const heroMap: Map<string, BasicHeroAttribute> = new Map([
             introduction: "待补充",
         }
     ],
+    ["19",
+        {
+            basicAttribute: {
+                serialNumber: "19",
+                name: "吕布",
+                role: RoleType.warrior,
+                leval: 1,
+                basicAttack: 60,
+                basicDefense: 10,
+                basicHealth: 100,
+                basicAttackSpeed: 5,
+                basicCriticalStrikeRate: 1,
+                basicCriticalStrike: 150,
+
+                skills: [
+                    HeroSkillType.S1,
+                    HeroSkillType.S2,
+                    HeroSkillType.S3,
+                    HeroSkillType.S4
+                ],
+                scores: 80,
+            },
+            rarity: HeroRarityType.legend,
+            nation: NationType.qunxiong,
+            introduction: "待补充",
+        }
+    ],
+    ["20",
+        {
+            basicAttribute: {
+                serialNumber: "20",
+                name: "貂蝉",
+                role: RoleType.mage,
+                leval: 1,
+                basicAttack: 60,
+                basicDefense: 10,
+                basicHealth: 100,
+                basicAttackSpeed: 5,
+                basicCriticalStrikeRate: 1,
+                basicCriticalStrike: 150,
+
+                skills: [
+                    HeroSkillType.S1,
+                    HeroSkillType.S2,
+                    HeroSkillType.S3,
+                    HeroSkillType.S4
+                ],
+                scores: 80,
+            },
+            rarity: HeroRarityType.epic,
+            nation: NationType.qunxiong,
+            introduction: "待补充",
+        }
+    ],
+    ["21",
+        {
+            basicAttribute: {
+                serialNumber: "21",
+                name: "潘凤",
+                role: RoleType.warrior,
+                leval: 1,
+                basicAttack: 60,
+                basicDefense: 10,
+                basicHealth: 100,
+                basicAttackSpeed: 5,
+                basicCriticalStrikeRate: 1,
+                basicCriticalStrike: 150,
+
+                skills: [
+                    HeroSkillType.S1,
+                    HeroSkillType.S2,
+                    HeroSkillType.S3,
+                    HeroSkillType.S4
+                ],
+                scores: 80,
+            },
+            rarity: HeroRarityType.well,
+            nation: NationType.qunxiong,
+            introduction: "待补充",
+        }
+    ],
+    ["22",
+        {
+            basicAttribute: {
+                serialNumber: "22",
+                name: "潘璋",
+                role: RoleType.crossbowman,
+                leval: 1,
+                basicAttack: 60,
+                basicDefense: 10,
+                basicHealth: 100,
+                basicAttackSpeed: 5,
+                basicCriticalStrikeRate: 1,
+                basicCriticalStrike: 150,
+
+                skills: [
+                    HeroSkillType.S1,
+                    HeroSkillType.S2,
+                    HeroSkillType.S3,
+                    HeroSkillType.S4
+                ],
+                scores: 80,
+            },
+            rarity: HeroRarityType.normal,
+            nation: NationType.qunxiong,
+            introduction: "待补充",
+        }
+    ],
 ]);
