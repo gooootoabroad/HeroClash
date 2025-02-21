@@ -2,16 +2,16 @@
   "ver": "1.0.27",
   "importer": "image",
   "imported": true,
-  "uuid": "dc216efe-9a8c-47c3-b8dc-a04150c06bf1",
+  "uuid": "91a1b509-d3cb-47e8-89e8-e570bb92cc3d",
   "files": [
-    ".json",
-    ".png"
+    ".jpg",
+    ".json"
   ],
   "subMetas": {
     "6c48a": {
       "importer": "texture",
-      "uuid": "dc216efe-9a8c-47c3-b8dc-a04150c06bf1@6c48a",
-      "displayName": "BattleSoulStone",
+      "uuid": "91a1b509-d3cb-47e8-89e8-e570bb92cc3d@6c48a",
+      "displayName": "Purple",
       "id": "6c48a",
       "name": "texture",
       "userData": {
@@ -22,7 +22,7 @@
         "mipfilter": "none",
         "anisotropy": 0,
         "isUuid": true,
-        "imageUuidOrDatabaseUri": "dc216efe-9a8c-47c3-b8dc-a04150c06bf1",
+        "imageUuidOrDatabaseUri": "91a1b509-d3cb-47e8-89e8-e570bb92cc3d",
         "visible": false
       },
       "ver": "1.0.22",
@@ -34,8 +34,8 @@
     },
     "f9941": {
       "importer": "sprite-frame",
-      "uuid": "dc216efe-9a8c-47c3-b8dc-a04150c06bf1@f9941",
-      "displayName": "BattleSoulStone",
+      "uuid": "91a1b509-d3cb-47e8-89e8-e570bb92cc3d@f9941",
+      "displayName": "Purple",
       "id": "f9941",
       "name": "spriteFrame",
       "userData": {
@@ -46,14 +46,14 @@
         "offsetY": 0,
         "trimX": 0,
         "trimY": 0,
-        "width": 1168,
-        "height": 1174,
-        "rawWidth": 1168,
-        "rawHeight": 1174,
-        "borderTop": 5,
-        "borderBottom": 0,
-        "borderLeft": 17,
-        "borderRight": 0,
+        "width": 1170,
+        "height": 1942,
+        "rawWidth": 1170,
+        "rawHeight": 1942,
+        "borderTop": 35,
+        "borderBottom": 1515,
+        "borderLeft": 112,
+        "borderRight": 583,
         "packable": true,
         "pixelsToUnit": 100,
         "pivotX": 0.5,
@@ -61,17 +61,17 @@
         "meshType": 0,
         "vertices": {
           "rawPosition": [
-            -584,
-            -587,
+            -585,
+            -971,
             0,
-            584,
-            -587,
+            585,
+            -971,
             0,
-            -584,
-            587,
+            -585,
+            971,
             0,
-            584,
-            587,
+            585,
+            971,
             0
           ],
           "indexes": [
@@ -84,12 +84,12 @@
           ],
           "uv": [
             0,
-            1174,
-            1168,
-            1174,
+            1942,
+            1170,
+            1942,
             0,
             0,
-            1168,
+            1170,
             0
           ],
           "nuv": [
@@ -103,18 +103,18 @@
             1
           ],
           "minPos": [
-            -584,
-            -587,
+            -585,
+            -971,
             0
           ],
           "maxPos": [
-            584,
-            587,
+            585,
+            971,
             0
           ]
         },
         "isUuid": true,
-        "imageUuidOrDatabaseUri": "dc216efe-9a8c-47c3-b8dc-a04150c06bf1@6c48a",
+        "imageUuidOrDatabaseUri": "91a1b509-d3cb-47e8-89e8-e570bb92cc3d@6c48a",
         "atlasUuid": ""
       },
       "ver": "1.0.12",
@@ -126,9 +126,9 @@
     }
   },
   "userData": {
-    "hasAlpha": true,
+    "hasAlpha": false,
     "type": "sprite-frame",
     "fixAlphaTransparencyArtifacts": false,
-    "redirect": "dc216efe-9a8c-47c3-b8dc-a04150c06bf1@6c48a"
+    "redirect": "91a1b509-d3cb-47e8-89e8-e570bb92cc3d@6c48a"
   }
 }

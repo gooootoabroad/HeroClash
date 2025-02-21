@@ -62,6 +62,9 @@ export class store extends Component {
         this.storeMap.forEach((storeItem, key) => {
             if (key !== store) {
                 storeItem.button.interactable = true;
+                let imageNode = storeItem.button.node.getChildByName("Image");
+                imageNode.getChildByName("NoClick").active = true;
+                imageNode.getChildByName("Clicked").active = false;
                 storeItem.canvas.active = false;
             }
         });
@@ -70,6 +73,9 @@ export class store extends Component {
         const currentStoreItem = this.storeMap.get(store);
         if (currentStoreItem) {
             currentStoreItem.button.interactable = false;
+            let imageNode = currentStoreItem.button.node.getChildByName("Image");
+            imageNode.getChildByName("NoClick").active = false;
+            imageNode.getChildByName("Clicked").active = true;
             currentStoreItem.canvas.active = true;
         }
     }
