@@ -57,16 +57,16 @@ export class resourceStore extends Component {
     // 初始化资源限制
     protected onLoad(): void {
         this.currencyManager = CurrencyManager.getInstance();
-        // 每日免费铜钱，每次10，只能购买3次
+        // 每日免费铜钱，每次100，只能购买3次
         this.storeMap.set(this.freeCopper, {
             kind: CurrencyType.Copper,
-            purchaseQuantity: 10,
+            purchaseQuantity: 100,
             purchasesRemaining: 3
         });
-        // 每日看广告免费铜钱，每次100，只能购买3次
+        // 每日看广告免费铜钱，每次1000，只能购买3次
         this.storeMap.set(this.adsCopper, {
             kind: CurrencyType.Copper,
-            purchaseQuantity: 100,
+            purchaseQuantity: 1000,
             purchasesRemaining: 3
         });
         // 每日免费和田玉，每次10，只能购买1次
@@ -81,14 +81,14 @@ export class resourceStore extends Component {
             purchaseQuantity: 100,
             purchasesRemaining: 3
         });
-        // 每日打折进阶石，每次100，只能购买3次
+        // 每日打折进阶石，每次10，只能购买3次
         this.storeMap.set(this.discountEvolutionStone, {
             kind: CurrencyType.EvolutionStone,
-            purchaseQuantity: 100,
+            purchaseQuantity: 10,
             purchasesRemaining: 3,
             purchaseCost: {
                 kind: CurrencyType.Copper,
-                cost: 199
+                cost: 599
             }
         });
         // 每日打折铁矿，每次100，只能购买3次
@@ -104,11 +104,11 @@ export class resourceStore extends Component {
         // 每日打折战魂石，每次100，只能购买3次
         this.storeMap.set(this.discountBattleSoulStone, {
             kind: CurrencyType.BattleSoulStone,
-            purchaseQuantity: 100,
+            purchaseQuantity: 1,
             purchasesRemaining: 3,
             purchaseCost: {
                 kind: CurrencyType.HetianJade,
-                cost: 99
+                cost: 10
             }
         });
     }

@@ -32,7 +32,7 @@ export class UserWeaponryManager {
     private weaponryCache: UserWeaponry;
 
     private constructor() {
-        // 后续删掉，不清理本地缓存
+        // TODO 后续删掉，不清理本地缓存
         localStorage.removeItem(storageWeaponryID);
         // 初始化缓存
         this.weaponryCache = this.getWeaponryFromStorage();
