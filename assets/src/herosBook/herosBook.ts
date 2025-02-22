@@ -1,166 +1,115 @@
-import { _decorator, Button, Component, HorizontalTextAlignment, Label, Layout, Material, math, Node, resources, Sprite, SpriteAtlas, SpriteFrame, UITransform, VerticalTextAlignment } from 'cc';
+// 英雄图鉴
+
+import { _decorator, Button, Canvas, Component, director, HorizontalTextAlignment, Label, Layout, Material, math, Node, resources, Script, Sprite, SpriteAtlas, SpriteFrame, UITransform, VerticalTextAlignment } from 'cc';
 import { BasicHeroAttribute, NationType } from "../resource/character/attribute";
-import { getHeroMap } from "../resource/character/heroList";
+import { herosNodesInit } from './herosNodes';
 const { ccclass, property } = _decorator;
+
+enum HerosButtonType {
+    All,
+    Wei,
+    Shu,
+    Wu,
+    Qun,
+}
+
+// 英雄画布-按钮
+interface HerosCanvasType {
+    button: Button;
+    canvas: Node;
+}
 
 @ccclass('herosBook')
 export class herosBook extends Component {
+    // 画布列表
+    private canvasMap: Map<HerosButtonType, HerosCanvasType> = null;
 
-    // 滚动列表内容
-    private gContentNode: Node = null;
+    // 按钮列表
+    @property(Button)
+    public allHerosButton: Button = null;
+    @property(Button)
+    public weiGuoHerosButton: Button = null;
+    @property(Button)
+    public shuGuoHerosButton: Button = null;
+    @property(Button)
+    public wuGuoHerosButton: Button = null;
+    @property(Button)
+    public qunHerosButton: Button = null;
 
-    // 英雄列表
-    private gHerosMap: Map<string, BasicHeroAttribute> = null
+    // 画布列表
+    @property(Node)
+    public allHerosCanvas: Node = null;
+    @property(Node)
+    public weiHerosCanvas: Node = null;
+    @property(Node)
+    public shuHerosCanvas: Node = null;
+    @property(Node)
+    public wuHerosCanvas: Node = null;
+    @property(Node)
+    public qunHerosCanvas: Node = null;
+
+    protected onLoad(): void {
+        // TODO: 后续放游戏加载时初始化
+        herosNodesInit();
+
+        this.canvasMap = new Map<HerosButtonType, HerosCanvasType>();
+        this.canvasMap.set(HerosButtonType.All, { button: this.allHerosButton, canvas: this.allHerosCanvas });
+        this.canvasMap.set(HerosButtonType.Wei, { button: this.allHerosButton, canvas: this.allHerosCanvas });
+        this.canvasMap.set(HerosButtonType.Shu, { button: this.allHerosButton, canvas: this.allHerosCanvas });
+        this.canvasMap.set(HerosButtonType.Wu, { button: this.allHerosButton, canvas: this.allHerosCanvas });
+        this.canvasMap.set(HerosButtonType.Qun, { button: this.allHerosButton, canvas: this.allHerosCanvas });
+    }
 
     start() {
-        this.gContentNode = this.node.getChildByName("HerosScrollView").getChildByName("view").getChildByName("content");
-        this.gHerosMap = getHeroMap();
+        this.canvasMap.forEach((canvasItem, keyButtonType) => {
 
-        // TODO：资源预加载，提升后续load图片效率，这个后续得调到游戏开始界面
-        this.preloadHerosImage();
+            canvasItem.button.interactable = true;
+            canvasItem.canvas.active = false;
 
-        // 注册Button事件
-        let allHerosButton = this.node.getChildByName("HerosAllButton").getComponent(Button);
-        allHerosButton.node.on(Button.EventType.CLICK, this.onAllHerosButtonClick, this);
-
-        let weiGuoHerosButton = this.node.getChildByName("HerosWeiButton").getComponent(Button);
-        weiGuoHerosButton.node.on(Button.EventType.CLICK, this.onWeiHerosButtonClick, this);
-
-        let shuGuoHerosButton = this.node.getChildByName("HerosShuButton").getComponent(Button);
-        shuGuoHerosButton.node.on(Button.EventType.CLICK, this.onShuHerosButtonClick, this);
-
-        let wuGuoHerosButton = this.node.getChildByName("HerosWuButton").getComponent(Button);
-        wuGuoHerosButton.node.on(Button.EventType.CLICK, this.onWuHerosButtonClick, this);
-
-        let qunHerosButton = this.node.getChildByName("HerosQunButton").getComponent(Button);
-        qunHerosButton.node.on(Button.EventType.CLICK, this.onQunHerosButtonClick, this);
-
-        // 聚焦“全”英雄按钮
-
-        // 加载所有英雄
-        this.loadAllHeros();
-    }
-
-    // 预加载英雄图片
-    private preloadHerosImage() {
-        for (let [_, heroAttribute] of this.gHerosMap) {
-            resources.preload("heros/" + heroAttribute.basicAttribute.imageName + "/spriteFrame", SpriteFrame);
-        };
-    }
-
-    private onAllHerosButtonClick(button: Button) {
-        // 先删除挂载在父节点的其他英雄节点信息
-        this.gContentNode.destroyAllChildren();
-        // 加载英雄信息
-        this.loadAllHeros();
-    }
-
-    private onWeiHerosButtonClick(button: Button) {
-        // 先删除挂载在父节点的其他英雄节点信息
-        this.gContentNode.destroyAllChildren();
-        // 加载英雄信息
-        this.loadWeiHeros();
-    }
-    private onShuHerosButtonClick(button: Button) {
-        // 先删除挂载在父节点的其他英雄节点信息
-        this.gContentNode.destroyAllChildren();
-        // 加载英雄信息
-        this.loadShuHeros();
-    }
-    private onWuHerosButtonClick(button: Button) {
-        // 先删除挂载在父节点的其他英雄节点信息
-        this.gContentNode.destroyAllChildren();
-        // 加载英雄信息
-        this.loadWuHeros();
-    }
-    private onQunHerosButtonClick(button: Button) {
-        // 先删除挂载在父节点的其他英雄节点信息
-        this.gContentNode.destroyAllChildren();
-        // 加载英雄信息
-        this.loadQunHeros();
-    }
-    // 加载所有英雄
-    private loadAllHeros() {
-        for (let [_, heroAttribute] of this.gHerosMap) {
-            let heroNode = this.loadOneHero(heroAttribute);
-            this.gContentNode.addChild(heroNode);
-        };
-    }
-
-    // 加载魏国英雄
-    private loadWeiHeros() {
-        for (let [_, heroAttribute] of this.gHerosMap) {
-            if (heroAttribute.nation !== NationType.weiguo) continue;
-            let heroNode = this.loadOneHero(heroAttribute);
-            this.gContentNode.addChild(heroNode);
-        };
-    }
-    // 加载蜀国英雄
-    private loadShuHeros() {
-        for (let [_, heroAttribute] of this.gHerosMap) {
-            if (heroAttribute.nation !== NationType.shuguo) continue;
-            let heroNode = this.loadOneHero(heroAttribute);
-            this.gContentNode.addChild(heroNode);
-        };
-    }
-    // 加载吴国英雄
-    private loadWuHeros() {
-        for (let [_, heroAttribute] of this.gHerosMap) {
-            if (heroAttribute.nation !== NationType.wuguo) continue;
-            let heroNode = this.loadOneHero(heroAttribute);
-            this.gContentNode.addChild(heroNode);
-        };
-    }
-    // 加载群雄英雄
-    private loadQunHeros() {
-        for (let [_, heroAttribute] of this.gHerosMap) {
-            if (heroAttribute.nation !== NationType.qunxiong) continue;
-            let heroNode = this.loadOneHero(heroAttribute);
-            this.gContentNode.addChild(heroNode);
-        };
-    }
-
-    // 加载一个英雄
-    private loadOneHero(heroAttribute: BasicHeroAttribute): Node {
-        let parentNode = new Node("HeroButtonNode");
-        // 调整按钮大小
-        let transform = parentNode.addComponent(UITransform);
-        let size = new math.Size;
-        size.set(150, 150);
-        transform.setContentSize(size);
-        // 调整按钮颜色
-        let sprite = parentNode.addComponent(Sprite);
-        // sprite.customMaterial = new Material;
-        sprite.sizeMode = Sprite.SizeMode.CUSTOM;
-        let imagePath: string = "heros/" + heroAttribute.basicAttribute.imageName + "/spriteFrame";
-        resources.load(imagePath, SpriteFrame, (err, spriteFrame) => {
-            sprite.spriteFrame = spriteFrame;
         });
-
-        let heroButton = parentNode.addComponent(Button);
-
-        // 添加个Label节点
-        let labelNode = new Node("LabelNode");
-        // 设置label节点大小
-        let LabelTransform = labelNode.addComponent(UITransform);
-        LabelTransform.setContentSize(size);
-        let label = labelNode.addComponent(Label);
-        // 设置颜色，黑色
-        let nameColor = new math.Color;
-        nameColor.set(0, 0, 0);
-        label.color = nameColor;
-        // 设置名称
-        label.string = `${heroAttribute.basicAttribute.name}`;
-        // 设置大小
-        label.fontSize = 10;
-        // 设置位置
-        label.horizontalAlign = HorizontalTextAlignment.LEFT;
-        label.verticalAlign = VerticalTextAlignment.TOP;
-        parentNode.addChild(labelNode);
-        return parentNode;
+        this.change2AllHerosCanvas();
     }
+
+
     update(deltaTime: number) {
 
+    }
+
+    public change2AllHerosCanvas() {
+        this.changeCanvas(HerosButtonType.All);
+    }
+
+    public change2WeiHerosCanvas() {
+        this.changeCanvas(HerosButtonType.Wei);
+    }
+
+    public change2ShuHerosCanvas() {
+        this.changeCanvas(HerosButtonType.Shu);
+    }
+
+    public change2WuHerosCanvas() {
+        this.changeCanvas(HerosButtonType.Wu);
+    }
+
+    public change2QunHerosCanvas() {
+        this.changeCanvas(HerosButtonType.Qun);
+    }
+
+    private changeCanvas(buttonType: HerosButtonType) {
+        // 先启用其他按钮并隐藏对应的画布
+        this.canvasMap.forEach((canvasItem, keyButtonType) => {
+            if (keyButtonType !== buttonType) {
+                canvasItem.button.interactable = true;
+                canvasItem.canvas.active = false;
+            }
+        });
+
+        // 禁用当前按钮并打开画布
+        const currentStoreItem = this.canvasMap.get(buttonType);
+        if (currentStoreItem) {
+            currentStoreItem.button.interactable = false;
+            currentStoreItem.canvas.active = true;
+        }
     }
 }
 
