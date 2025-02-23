@@ -665,7 +665,7 @@
     "_contentSize": {
       "__type__": "cc.Size",
       "width": 700,
-      "height": 0
+      "height": 20
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -700,8 +700,8 @@
     "_startAxis": 0,
     "_paddingLeft": 15,
     "_paddingRight": 10,
-    "_paddingTop": 0,
-    "_paddingBottom": 0,
+    "_paddingTop": 10,
+    "_paddingBottom": 10,
     "_spacingX": 25,
     "_spacingY": 40,
     "_verticalDirection": 1,
@@ -824,6 +824,7 @@
       "__id__": 0
     },
     "fileId": "94SPP6wJFFCJ36rMoBYjSx",
+    "instance": null,
     "targetOverrides": null
   }
 ]

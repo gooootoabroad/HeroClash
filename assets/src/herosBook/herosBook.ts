@@ -1,6 +1,6 @@
 // 英雄图鉴
 
-import { _decorator, Button, Canvas, Component, director, HorizontalTextAlignment, Label, Layout, Material, math, Node, resources, Script, Sprite, SpriteAtlas, SpriteFrame, UITransform, VerticalTextAlignment } from 'cc';
+import { _decorator, Button, Canvas, Component, director, EventTouch, HorizontalTextAlignment, Label, Layout, Material, math, Node, resources, Script, Sprite, SpriteAtlas, SpriteFrame, UITransform, VerticalTextAlignment } from 'cc';
 import { BasicHeroAttribute, NationType } from "../resource/character/attribute";
 import { herosNodesInit } from './herosNodes';
 const { ccclass, property } = _decorator;
@@ -109,7 +109,6 @@ export class herosBook extends Component {
         const currentStoreItem = this.canvasMap.get(buttonType);
         if (currentStoreItem) {
             currentStoreItem.button.interactable = false;
-            console.log("buttonType: %s", buttonType);
             currentStoreItem.canvas.active = true;
         }
     }
