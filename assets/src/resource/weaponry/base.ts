@@ -15,4 +15,6 @@ export interface WeaponryAttribute {
     basicCriticalStrikeRate: number; // 基础暴击率
     basicCriticalStrike: number; // 基础暴击伤害
     scores: number; // 分值，用于计算战力
+    description: string // 描述
+    imageName: string; // 图像名称
 }
