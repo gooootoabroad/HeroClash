@@ -54,10 +54,10 @@ export class herosBook extends Component {
 
         this.canvasMap = new Map<HerosButtonType, HerosCanvasType>();
         this.canvasMap.set(HerosButtonType.All, { button: this.allHerosButton, canvas: this.allHerosCanvas });
-        this.canvasMap.set(HerosButtonType.Wei, { button: this.allHerosButton, canvas: this.allHerosCanvas });
-        this.canvasMap.set(HerosButtonType.Shu, { button: this.allHerosButton, canvas: this.allHerosCanvas });
-        this.canvasMap.set(HerosButtonType.Wu, { button: this.allHerosButton, canvas: this.allHerosCanvas });
-        this.canvasMap.set(HerosButtonType.Qun, { button: this.allHerosButton, canvas: this.allHerosCanvas });
+        this.canvasMap.set(HerosButtonType.Wei, { button: this.weiGuoHerosButton, canvas: this.weiHerosCanvas });
+        this.canvasMap.set(HerosButtonType.Shu, { button: this.shuGuoHerosButton, canvas: this.shuHerosCanvas });
+        this.canvasMap.set(HerosButtonType.Wu, { button: this.wuGuoHerosButton, canvas: this.wuHerosCanvas });
+        this.canvasMap.set(HerosButtonType.Qun, { button: this.qunHerosButton, canvas: this.qunHerosCanvas });
     }
 
     start() {
@@ -104,10 +104,12 @@ export class herosBook extends Component {
             }
         });
 
+
         // 禁用当前按钮并打开画布
         const currentStoreItem = this.canvasMap.get(buttonType);
         if (currentStoreItem) {
             currentStoreItem.button.interactable = false;
+            console.log("buttonType: %s", buttonType);
             currentStoreItem.canvas.active = true;
         }
     }

@@ -16,7 +16,6 @@ export class herosWu extends Component {
 
         this.gContentNode = this.node.getChildByName("HerosScrollView").getChildByName("view").getChildByName("content");
         this.loadHeros();
-        this.node.active = false;
     }
     
     update(deltaTime: number) {
