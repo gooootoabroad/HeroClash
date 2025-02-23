@@ -1,5 +1,6 @@
-import { _decorator, Component, Node } from 'cc';
+import { _decorator, Component, EventTouch, Node } from 'cc';
 import { GQunHeroNodesMap, HeroNodesMap } from "./herosNodes";
+import { GEventTarget, GEventUpdateHeroBasicAttributeCanvas } from '../utils/event';
 const { ccclass, property } = _decorator;
 
 
@@ -17,16 +18,31 @@ export class herosQun extends Component {
         this.gContentNode = this.node.getChildByName("HerosScrollView").getChildByName("view").getChildByName("content");
         this.loadHeros();
     }
-    
+
+    protected onDestroy(): void {
+        for (let [_, heroNode] of this.herosNodesMap) {
+            heroNode.off(Node.EventType.TOUCH_START, this.onTouch, heroNode);
+        }
+    }
+
     update(deltaTime: number) {
 
     }
 
     // 加载英雄
-    loadHeros() {
-        for (let [_, heroNode] of this.herosNodesMap) {
+    private loadHeros() {
+        for (let [serialNumber, heroNode] of this.herosNodesMap) {
+            heroNode.on(Node.EventType.TOUCH_START,
+                function (event) {
+                    GEventTarget.emit(GEventUpdateHeroBasicAttributeCanvas, serialNumber);
+                }
+                , heroNode);
             this.gContentNode.addChild(heroNode);
         }
+    }
+
+    private onTouch(event: EventTouch) {
+        console.log("%s,%s", event.getUILocation().x, event.getUILocation().y);
     }
 }
 
