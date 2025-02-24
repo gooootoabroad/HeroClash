@@ -32,6 +32,11 @@ export class BasicHero {
         return this.gHeroAttribute.basicAttribute.name;
     }
 
+    // 获取图片名称
+    public getImageName(): string {
+        return this.gHeroAttribute.basicAttribute.imageName;
+    }
+
     // 获取等级
     public getLeval(): number {
         return this.gHeroAttribute.basicAttribute.leval;
