@@ -1,7 +1,8 @@
 // 抽武器卡界面滚动展示武器
-import { _decorator, Component, EventTouch, Node, UITransform, Vec3, resources, SpriteFrame, Sprite, Label } from 'cc';
+import { _decorator, Component, EventTouch, Node, UITransform, Vec3, resources, SpriteFrame, Sprite, Label, AudioSource } from 'cc';
 import { WeaponryAttribute } from '../resource/weaponry/base';
 import { getRecruitShowWeapons } from '../resource/weaponry/weaponry';
+import { GEventRecruitWeaponAnimationEnd, GEventRecruitWeaponAnimationStart, GEventShowRecruitPrizeEnd, GEventTarget } from '../utils/event';
 const { ccclass, property } = _decorator;
 
 // 图片节点与武器信息结构体
@@ -21,8 +22,11 @@ export class ShowWeaponsAnimation extends Component {
     // 展示武器的UI
     @property(Node)
     private weaponUI: Node = null;
+    // 播放抽奖的音效
+    private recruitAudio: AudioSource = null;
 
     protected onLoad(): void {
+        this.recruitAudio = this.node.getComponent(AudioSource);
         // 本次展示武器的信息
         let showWeaponsList = getRecruitShowWeapons();
         this.preloadWeaponsImage(showWeaponsList);
@@ -31,6 +35,13 @@ export class ShowWeaponsAnimation extends Component {
         this.initImageNode(showWeaponsList);
         // 先隐藏展示武器UI界面
         this.weaponUI.active = false;
+        // 监听抽卡事件
+        GEventTarget.on(GEventRecruitWeaponAnimationStart, (data: any) => {
+            this.showRecruitAnimation(data);
+        }, this);
+        GEventTarget.on(GEventShowRecruitPrizeEnd, () => {
+            this.endRecruit();
+        }, this);
     }
 
     // 预加载武器图片
@@ -53,7 +64,6 @@ export class ShowWeaponsAnimation extends Component {
             sprite.sizeMode = Sprite.SizeMode.CUSTOM;
             sprite.type = Sprite.Type.SIMPLE;
             let imagePath: string = "weapons/" + showWeaponsList[j].imageName + "/spriteFrame";
-            console.log("image path %s", imagePath);
             resources.load(imagePath, SpriteFrame, (err, spriteFrame) => {
                 if (err) {
                     console.error('load weapon image failed, err: %s', err);
@@ -67,8 +77,14 @@ export class ShowWeaponsAnimation extends Component {
 
     // 是否滚动图标。用户按下后需要停止滚动
     private isRollingImages = true;
+    // 是否在抽卡中，在的话不响应触摸显示武器信息
+    private isRecruiting = false;
     // 用户点击滚动装备图片获取详细信息
     private onTouch(event: EventTouch) {
+        if (this.isRecruiting) {
+            return;
+        }
+
         this.isRollingImages = false;
         // 计算出点的是那个图标。绑定的是节点事件，所以只需要获取x坐标进行计算就行
         let xPosition = event.getUILocation().x;
@@ -140,10 +156,49 @@ export class ShowWeaponsAnimation extends Component {
         this.weaponUI.active = true;
     }
 
-
-
     // 每秒移动速度
     private speed = 50;
+    // 展示抽卡画面
+    private showRecruitAnimation(data: any) {
+        this.isRecruiting = true;
+        // 播放音效
+        this.recruitAudio.play();
+        // 武器滚动
+        this.isRollingImages = true;
+        // 禁掉展示武器的UI
+        this.weaponUI.active = false;
+        // 设置移动速度，先快后慢 1000 -> 2100 -> 1500 -> 50
+        this.speed = 1000
+        let count = 0;
+        const interval = setInterval(() => {
+            if (count < 5) {
+                // 增加速度 1.25s
+                this.speed += 250;
+            } else if (count < 10) {
+                // 减少速度
+                this.speed -= 150;
+            } else if (count < 15) {
+                // 大幅减少速度
+                this.speed -= 290;
+            } else {
+                // 清除定时器
+                clearInterval(interval);
+                console.log("Final speed:", this.speed);
+                // 保险起见，给速度设置成50
+                this.speed = 50;
+                // 发送动画播放完成事件
+                GEventTarget.emit(GEventRecruitWeaponAnimationEnd, data);
+            }
+            count++;
+            console.log(`Speed at step ${count}:`, this.speed);
+        }, 250);
+    }
+
+    // 结束抽卡，恢复触摸事件
+    private endRecruit() {
+        this.isRecruiting = false;
+    }
+
     // 指定移动图片距离
     private moveImage(distance: number) {
         for (const nodeInfo of this.imageNodeList) {
@@ -180,6 +235,12 @@ export class ShowWeaponsAnimation extends Component {
         this.node.off(Node.EventType.TOUCH_START, this.onTouch, this);
         this.node.off(Node.EventType.TOUCH_END, this.endTouch, this);
         this.node.off(Node.EventType.TOUCH_CANCEL, this.endTouch, this);
+        GEventTarget.off(GEventRecruitWeaponAnimationStart, (data: any) => {
+            this.showRecruitAnimation(data);
+        }, this);
+        GEventTarget.off(GEventShowRecruitPrizeEnd, () => {
+            this.endRecruit();
+        }, this);
     }
 }
 
