@@ -3,6 +3,7 @@
 import { _decorator, Button, Component, EventTarget, EventTouch, Label, Node, NodeEventType, resources, Sprite, SpriteFrame } from 'cc';
 import { BasicHero } from "../resource/character/basicHero";
 import { GEventTarget, GEventUpdateHeroBasicAttributeCanvas } from '../utils/event';
+import { NationType } from '../resource/character/attribute';
 const { ccclass, property } = _decorator;
 
 @ccclass('heroAttribute')
@@ -16,8 +17,10 @@ export class heroAttribute extends Component {
     private heroImageSprite: Sprite = null;
     // 英雄等级
     private heroLevalLabel: Label = null;
+    // 英雄所属国家
+    private heroNationSprite: Sprite = null;
     // 稀有度
-    private heroRarityLabel: Label = null;
+    private heroRaritySprite: Sprite = null;
     // 职业
     private heroRoleSprite: Sprite = null;
     // 人物列传
@@ -35,7 +38,7 @@ export class heroAttribute extends Component {
     private heroBasicCriticalStrikeRateLabel: Label = null;
     // 基础暴击伤害
     private heroBasicCriticalStrikeLabel: Label = null;
-    
+
     // 第一个技能
     private heroFirstSkillLabel: Label = null;
     // 第二个技能
@@ -50,26 +53,27 @@ export class heroAttribute extends Component {
         this.node.active = false;
 
         // 初始化各个组件
-        this.heroNameLabel = this.node.getChildByName("Attribute").getChildByName("HeroBody").getChildByName("Name").getComponent(Label);
+        this.heroNameLabel = this.node.getChildByName("Attribute").getChildByName("HeroBody").getChildByName("Name").getComponentInChildren(Label);
         this.heroImageSprite = this.node.getChildByName("Attribute").getChildByName("HeroBody").getChildByName("HeroImage").getComponent(Sprite);
         this.heroLevalLabel = this.node.getChildByName("Attribute").getChildByName("HeroBody").getChildByName("Leval").getComponentInChildren(Label);
-        this.heroRarityLabel = this.node.getChildByName("Attribute").getChildByName("HeroBody").getChildByName("Rarity").getComponentInChildren(Label);
+        this.heroRaritySprite = this.node.getChildByName("Attribute").getChildByName("HeroBody").getChildByName("Rarity").getComponent(Sprite);
         this.heroRoleSprite = this.node.getChildByName("Attribute").getChildByName("HeroBody").getChildByName("Role").getComponent(Sprite);
-        
+        this.heroNationSprite = this.node.getChildByName("Attribute").getChildByName("HeroBody").getChildByName("Nation").getComponent(Sprite);
+
         this.heroIntroductionLabel = this.node.getChildByName("Attribute").getChildByName("Introduction").getComponentInChildren(Label);
-       
+
         this.heroBasicHealthLabel = this.node.getChildByName("Attribute").getChildByName("BasicAttribute").getChildByName("BasicHealth").getComponentInChildren(Label);
         this.heroBasicAttackLabel = this.node.getChildByName("Attribute").getChildByName("BasicAttribute").getChildByName("BasicAttack").getComponentInChildren(Label);
         this.heroBasicDefenseLabel = this.node.getChildByName("Attribute").getChildByName("BasicAttribute").getChildByName("BasicDefense").getComponentInChildren(Label);
         this.heroBasicAttackSpeedLabel = this.node.getChildByName("Attribute").getChildByName("BasicAttribute").getChildByName("BasicAttackSpeed").getComponentInChildren(Label);
         this.heroBasicCriticalStrikeRateLabel = this.node.getChildByName("Attribute").getChildByName("BasicAttribute").getChildByName("BasicCriticalStrikeRate").getComponentInChildren(Label);
         this.heroBasicCriticalStrikeLabel = this.node.getChildByName("Attribute").getChildByName("BasicAttribute").getChildByName("BasicCriticalStrike").getComponentInChildren(Label);
-        
+
         this.heroFirstSkillLabel = this.node.getChildByName("Attribute").getChildByName("Skill").getChildByName("Skill1").getComponentInChildren(Label);
         this.heroSecondSkillLabel = this.node.getChildByName("Attribute").getChildByName("Skill").getChildByName("Skill2").getComponentInChildren(Label);
         this.heroThridSkillLabel = this.node.getChildByName("Attribute").getChildByName("Skill").getChildByName("Skill3").getComponentInChildren(Label);
         this.heroFourthSkillLabel = this.node.getChildByName("Attribute").getChildByName("Skill").getChildByName("Skill4").getComponentInChildren(Label);
-        
+
         // 监听事件，并初始化数值
         GEventTarget.on(GEventUpdateHeroBasicAttributeCanvas, (serialNumber) => {
             this.viewHeroAttribute(serialNumber);
@@ -94,10 +98,12 @@ export class heroAttribute extends Component {
         this.gHero = new BasicHero(serialNumber);
         console.log("new a hero: ", this.gHero);
 
+        this.loadName();
         this.loadImage();
         this.loadLeval();
         this.loadRarity();
         this.loadRole();
+        this.loadNation();
         this.loadIntroduction();
         this.loadBasicHealth();
         this.loadBasicAttack();
@@ -120,6 +126,10 @@ export class heroAttribute extends Component {
     private loadImage() {
         let imagePath: string = "heros/" + this.gHero.getImageName() + "/spriteFrame";
         resources.load(imagePath, SpriteFrame, (err, spriteFrame) => {
+            if (err) {
+                console.warn(err);
+                return;
+            }
             this.heroImageSprite.spriteFrame = spriteFrame;
         });
     }
@@ -131,18 +141,45 @@ export class heroAttribute extends Component {
 
     // 加载稀有度
     private loadRarity() {
-        this.heroRarityLabel.string = `${this.gHero.getRarity()}`;
+        let imagePath: string = "words/" + this.gHero.getRarity() + "/spriteFrame";
+        resources.load(imagePath, SpriteFrame, (err, spriteFrame) => {
+            if (err) {
+                console.warn(err);
+                return;
+            }
+            this.heroRaritySprite.spriteFrame = spriteFrame;
+            
+        });
     }
 
     // 加载职业
     private loadRole() {
-        // todo 职业用图标表示
-        // this.heroRoleSprite
+        let imagePath: string = "roles/" + this.gHero.getRole() + "/spriteFrame";
+        resources.load(imagePath, SpriteFrame, (err, spriteFrame) => {
+            if (err) {
+                console.warn(err);
+                return;
+            }
+            this.heroRoleSprite.spriteFrame = spriteFrame;
+            
+        });
     }
 
+    // 加载人物所属国家
+    private loadNation() {
+        let imagePath: string = "nations/" + this.gHero.getNation() + "/spriteFrame";
+        resources.load(imagePath, SpriteFrame, (err, spriteFrame) => {
+            if (err) {
+                console.warn(err);
+                return;
+            }
+            this.heroNationSprite.spriteFrame = spriteFrame;
+            
+        });
+    }
     // 加载人物列传
     private loadIntroduction() {
-        this.heroIntroductionLabel.string = `人物列传：${this.gHero.getIntroduction()}`;
+        this.heroIntroductionLabel.string = `${this.gHero.getIntroduction()}`;
     }
 
     // 加载生命值

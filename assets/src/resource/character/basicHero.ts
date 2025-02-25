@@ -47,6 +47,11 @@ export class BasicHero {
         return this.gHeroAttribute.basicAttribute.role;
     }
 
+    // 获取英雄所属国家
+    public getNation(): string {
+        return this.gHeroAttribute.nation;
+    }
+
     // 获取基础生命值
     public getBasicHealth(): number {
         return this.gHeroAttribute.basicAttribute.basicHealth;

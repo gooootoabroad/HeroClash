@@ -28,26 +28,27 @@ export interface BasicHeroAttribute {
 
 // 英雄稀有度定义
 export enum HeroRarityType {
-    normal = "普通",
-    well = "良好",
-    excellent = "精良",
-    epic = "史诗",
-    legend = "传说",
+    normal = "normal",  // 普通
+    well = "well",      // 良好
+    excellent = "excellent", // 精良
+    epic = "epic",      // 史诗
+    legend = "legend",      // 传说
 }
 
 // 人物职业定义
 export enum RoleType {
-    warrior = "战士",
-    mage = "法师",
-    crossbowman = "弓弩手",
+    warrior = "warrior",            // 战士
+    mage = "mage",                  // 法师
+    crossbowman = "crossbowman",    // 射手
+    auxiliary = "auxiliary",        // 辅助
 }
 
 // 国家定义
 export enum NationType {
-    weiguo = "魏国",
-    shuguo = "蜀国",
-    wuguo = "吴国",
-    qunxiong = "群雄",
+    weiguo = "wei", // 魏国
+    shuguo = "shu", // 蜀国
+    wuguo = "wu",   // 吴国
+    qunxiong = "qun",   //群雄
 }
 
 // 人物技能定义 TODO：待补充

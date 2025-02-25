@@ -43,7 +43,7 @@ const heroMap: Map<string, BasicHeroAttribute> = new Map([
             basicAttribute: {
                 serialNumber: "1",
                 name: "刘备",
-                role: RoleType.warrior,
+                role: RoleType.auxiliary,
                 leval: 1,
                 imageName: "liubei",
                 basicAttack: 85,
@@ -63,7 +63,7 @@ const heroMap: Map<string, BasicHeroAttribute> = new Map([
             },
             rarity: HeroRarityType.legend,
             nation: NationType.shuguo,
-            introduction: "待补充",
+            introduction: "刘备，三国时期蜀汉开国皇帝，字玄德，具有远见卓识、勇敢坚韧、仁德宽厚的英雄人物，他的事迹在中国历史上留下了深刻的印记，是一位具有传奇色彩的英雄人物‌。",
         }
     ],
     ["2",
@@ -91,7 +91,7 @@ const heroMap: Map<string, BasicHeroAttribute> = new Map([
             },
             rarity: HeroRarityType.legend,
             nation: NationType.shuguo,
-            introduction: "待补充",
+            introduction: "关羽，字云长（本字长生），河东郡解县（今山西省运城市附近）人，是刘备的结拜兄弟和蜀汉著名将领‌。在《三国演义》等文学作品中，关羽被描绘为“武圣”，形象高大威猛，英勇无畏，深受民间百姓的爱戴和崇拜。",
         }
     ],
     ["3",
@@ -119,7 +119,7 @@ const heroMap: Map<string, BasicHeroAttribute> = new Map([
             },
             rarity: HeroRarityType.legend,
             nation: NationType.shuguo,
-            introduction: "待补充",
+            introduction: "张飞，字益德（也作“翼德”），幽州涿郡（今河北省保定市涿州市）人，三国时期蜀汉名将，性格豪放刚烈，对刘备忠诚无比。他与关羽情同手足，共同守护刘备的事业，三人的深厚情谊被传为佳话。",
         }
     ],
     ["4",
@@ -127,7 +127,7 @@ const heroMap: Map<string, BasicHeroAttribute> = new Map([
             basicAttribute: {
                 serialNumber: "4",
                 name: "孙乾",
-                role: RoleType.mage,
+                role: RoleType.auxiliary,
                 leval: 1,
                 imageName: "sunqian",
                 basicAttack: 95,
@@ -147,7 +147,7 @@ const heroMap: Map<string, BasicHeroAttribute> = new Map([
             },
             rarity: HeroRarityType.excellent,
             nation: NationType.shuguo,
-            introduction: "待补充",
+            introduction: "孙乾，字公祐，是东汉末年及三国时期蜀汉的著名幕僚和使臣，出生于北海郡（治今山东昌乐西）。自徐州起，孙乾便追随刘备，多次作为刘备的使臣，为刘蜀政权的创建立下了汗马功劳‌。",
         }
     ],
     ["5",
@@ -175,7 +175,7 @@ const heroMap: Map<string, BasicHeroAttribute> = new Map([
             },
             rarity: HeroRarityType.well,
             nation: NationType.shuguo,
-            introduction: "待补充",
+            introduction: "‌刘封，东汉末年将领，蜀汉昭烈帝刘备的养子，有武艺，性格刚猛，但最终因多种原因被刘备赐死‌。虽然战功赫赫，但因性格缺陷和人际关系处理不当，最终落得个自尽的下场，令人唏嘘不已。",
         }
     ],
     ["6",
@@ -203,7 +203,7 @@ const heroMap: Map<string, BasicHeroAttribute> = new Map([
             },
             rarity: HeroRarityType.normal,
             nation: NationType.shuguo,
-            introduction: "待补充",
+            introduction: "‌黄月英，三国时期荆州沔南白水人，沔阳名士黄承彦之女，蜀汉丞相诸葛亮的妻子‌。她发明了水车，帮助人们解决了从低处往高处运水的难题。此外，她还发明了帮助做饭的小人，启发了诸葛亮在行军中做出木牛流马。",
         }
     ],
     ["7",
@@ -231,7 +231,7 @@ const heroMap: Map<string, BasicHeroAttribute> = new Map([
             },
             rarity: HeroRarityType.epic,
             nation: NationType.weiguo,
-            introduction: "待补充",
+            introduction: "‌曹操，字孟德，东汉末年杰出的政治家、军事家、文学家、书法家，曹魏政权的奠基者‌‌。他自幼聪明过人，性格果敢，少年时便任侠放荡，但很有才华，足智多谋，随机应变‌。其子曹丕称帝后，追尊他为武皇帝，庙号太祖‌。",
         }
     ],
     ["8",
@@ -259,7 +259,7 @@ const heroMap: Map<string, BasicHeroAttribute> = new Map([
             },
             rarity: HeroRarityType.legend,
             nation: NationType.weiguo,
-            introduction: "待补充",
+            introduction: "‌典韦，东汉末年曹操部将，以勇猛善战著称，被誉为“古之恶来”。在宛城之战中，张绣背叛曹操，典韦为保护曹操而率十余人挡叛军，击杀多人，但最终因寡不敌众而战死。",
         }
     ],
     ["9",
@@ -287,38 +287,10 @@ const heroMap: Map<string, BasicHeroAttribute> = new Map([
             },
             rarity: HeroRarityType.legend,
             nation: NationType.weiguo,
-            introduction: "待补充",
+            introduction: "‌司马懿，字仲达，河内郡温县孝敬里（今河南省焦作市温县）人，是三国时期曹魏的政治家、军事家、战略家，西晋王朝的奠基人‌。司马懿善谋奇策，多次征伐有功，曾率军擒斩孟达，两次率大军成功抵御诸葛亮北伐。",
         }
     ],
     ["10",
-        {
-            basicAttribute: {
-                serialNumber: "10",
-                name: "曹豹",
-                role: RoleType.crossbowman,
-                leval: 1,
-                imageName: "caobao",
-                basicAttack: 60,
-                basicDefense: 10,
-                basicHealth: 100,
-                basicAttackSpeed: 5,
-                basicCriticalStrikeRate: 1,
-                basicCriticalStrike: 150,
-
-                skills: [
-                    HeroSkillType.S1,
-                    HeroSkillType.S2,
-                    HeroSkillType.S3,
-                    HeroSkillType.S4
-                ],
-                scores: 80,
-            },
-            rarity: HeroRarityType.well,
-            nation: NationType.weiguo,
-            introduction: "待补充",
-        }
-    ],
-    ["11",
         {
             basicAttribute: {
                 serialNumber: "11",
@@ -346,7 +318,7 @@ const heroMap: Map<string, BasicHeroAttribute> = new Map([
             introduction: "待补充",
         }
     ],
-    ["12",
+    ["11",
         {
             basicAttribute: {
                 serialNumber: "12",
@@ -374,7 +346,7 @@ const heroMap: Map<string, BasicHeroAttribute> = new Map([
             introduction: "待补充",
         }
     ],
-    ["13",
+    ["12",
         {
             basicAttribute: {
                 serialNumber: "13",
@@ -402,7 +374,7 @@ const heroMap: Map<string, BasicHeroAttribute> = new Map([
             introduction: "待补充",
         }
     ],
-    ["14",
+    ["13",
         {
             basicAttribute: {
                 serialNumber: "14",
@@ -430,7 +402,7 @@ const heroMap: Map<string, BasicHeroAttribute> = new Map([
             introduction: "待补充",
         }
     ],
-    ["15",
+    ["14",
         {
             basicAttribute: {
                 serialNumber: "15",
@@ -458,7 +430,7 @@ const heroMap: Map<string, BasicHeroAttribute> = new Map([
             introduction: "待补充",
         }
     ],
-    ["16",
+    ["15",
         {
             basicAttribute: {
                 serialNumber: "16",
@@ -486,7 +458,7 @@ const heroMap: Map<string, BasicHeroAttribute> = new Map([
             introduction: "待补充",
         }
     ],
-    ["17",
+    ["16",
         {
             basicAttribute: {
                 serialNumber: "17",
@@ -514,7 +486,7 @@ const heroMap: Map<string, BasicHeroAttribute> = new Map([
             introduction: "待补充",
         }
     ],
-    ["18",
+    ["17",
         {
             basicAttribute: {
                 serialNumber: "18",
@@ -542,7 +514,7 @@ const heroMap: Map<string, BasicHeroAttribute> = new Map([
             introduction: "待补充",
         }
     ],
-    ["19",
+    ["18",
         {
             basicAttribute: {
                 serialNumber: "19",
@@ -570,7 +542,7 @@ const heroMap: Map<string, BasicHeroAttribute> = new Map([
             introduction: "待补充",
         }
     ],
-    ["20",
+    ["19",
         {
             basicAttribute: {
                 serialNumber: "20",
@@ -598,7 +570,7 @@ const heroMap: Map<string, BasicHeroAttribute> = new Map([
             introduction: "待补充",
         }
     ],
-    ["21",
+    ["20",
         {
             basicAttribute: {
                 serialNumber: "21",
@@ -626,7 +598,7 @@ const heroMap: Map<string, BasicHeroAttribute> = new Map([
             introduction: "待补充",
         }
     ],
-    ["22",
+    ["21",
         {
             basicAttribute: {
                 serialNumber: "22",
