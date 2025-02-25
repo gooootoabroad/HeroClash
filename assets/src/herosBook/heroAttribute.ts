@@ -1,6 +1,6 @@
 /*英雄属性信息 */
 
-import { _decorator, Button, Component, EventTarget, Label, Node } from 'cc';
+import { _decorator, Button, Component, EventTarget, EventTouch, Label, Node, NodeEventType, resources, Sprite, SpriteFrame } from 'cc';
 import { BasicHero } from "../resource/character/basicHero";
 import { GEventTarget, GEventUpdateHeroBasicAttributeCanvas } from '../utils/event';
 const { ccclass, property } = _decorator;
@@ -9,9 +9,67 @@ const { ccclass, property } = _decorator;
 export class heroAttribute extends Component {
     // 英雄
     private gHero: BasicHero;
+
+    // 英雄名称
+    private heroNameLabel: Label = null;
+    // 人物图片
+    private heroImageSprite: Sprite = null;
+    // 英雄等级
+    private heroLevalLabel: Label = null;
+    // 稀有度
+    private heroRarityLabel: Label = null;
+    // 职业
+    private heroRoleSprite: Sprite = null;
+    // 人物列传
+    private heroIntroductionLabel: Label = null;
+
+    // 基础生命值
+    private heroBasicHealthLabel: Label = null;
+    // 基础攻击力
+    private heroBasicAttackLabel: Label = null;
+    // 基础防御力
+    private heroBasicDefenseLabel: Label = null;
+    // 基础攻击速度
+    private heroBasicAttackSpeedLabel: Label = null;
+    // 基础暴击率
+    private heroBasicCriticalStrikeRateLabel: Label = null;
+    // 基础暴击伤害
+    private heroBasicCriticalStrikeLabel: Label = null;
+    
+    // 第一个技能
+    private heroFirstSkillLabel: Label = null;
+    // 第二个技能
+    private heroSecondSkillLabel: Label = null;
+    // 第三个技能
+    private heroThridSkillLabel: Label = null;
+    // 第四个技能
+    private heroFourthSkillLabel: Label = null;
+
     start() {
         // 刚开始隐藏画布
         this.node.active = false;
+
+        // 初始化各个组件
+        this.heroNameLabel = this.node.getChildByName("Attribute").getChildByName("HeroBody").getChildByName("Name").getComponent(Label);
+        this.heroImageSprite = this.node.getChildByName("Attribute").getChildByName("HeroBody").getChildByName("HeroImage").getComponent(Sprite);
+        this.heroLevalLabel = this.node.getChildByName("Attribute").getChildByName("HeroBody").getChildByName("Leval").getComponentInChildren(Label);
+        this.heroRarityLabel = this.node.getChildByName("Attribute").getChildByName("HeroBody").getChildByName("Rarity").getComponentInChildren(Label);
+        this.heroRoleSprite = this.node.getChildByName("Attribute").getChildByName("HeroBody").getChildByName("Role").getComponent(Sprite);
+        
+        this.heroIntroductionLabel = this.node.getChildByName("Attribute").getChildByName("Introduction").getComponentInChildren(Label);
+       
+        this.heroBasicHealthLabel = this.node.getChildByName("Attribute").getChildByName("BasicAttribute").getChildByName("BasicHealth").getComponentInChildren(Label);
+        this.heroBasicAttackLabel = this.node.getChildByName("Attribute").getChildByName("BasicAttribute").getChildByName("BasicAttack").getComponentInChildren(Label);
+        this.heroBasicDefenseLabel = this.node.getChildByName("Attribute").getChildByName("BasicAttribute").getChildByName("BasicDefense").getComponentInChildren(Label);
+        this.heroBasicAttackSpeedLabel = this.node.getChildByName("Attribute").getChildByName("BasicAttribute").getChildByName("BasicAttackSpeed").getComponentInChildren(Label);
+        this.heroBasicCriticalStrikeRateLabel = this.node.getChildByName("Attribute").getChildByName("BasicAttribute").getChildByName("BasicCriticalStrikeRate").getComponentInChildren(Label);
+        this.heroBasicCriticalStrikeLabel = this.node.getChildByName("Attribute").getChildByName("BasicAttribute").getChildByName("BasicCriticalStrike").getComponentInChildren(Label);
+        
+        this.heroFirstSkillLabel = this.node.getChildByName("Attribute").getChildByName("Skill").getChildByName("Skill1").getComponentInChildren(Label);
+        this.heroSecondSkillLabel = this.node.getChildByName("Attribute").getChildByName("Skill").getChildByName("Skill2").getComponentInChildren(Label);
+        this.heroThridSkillLabel = this.node.getChildByName("Attribute").getChildByName("Skill").getChildByName("Skill3").getComponentInChildren(Label);
+        this.heroFourthSkillLabel = this.node.getChildByName("Attribute").getChildByName("Skill").getChildByName("Skill4").getComponentInChildren(Label);
+        
         // 监听事件，并初始化数值
         GEventTarget.on(GEventUpdateHeroBasicAttributeCanvas, (serialNumber) => {
             this.viewHeroAttribute(serialNumber);
@@ -19,8 +77,13 @@ export class heroAttribute extends Component {
         },
             this
         );
+
+        this.node.on(NodeEventType.TOUCH_END, this.onFullScreenClick, this);
     }
 
+    protected onDestroy(): void {
+        this.node.off(NodeEventType.TOUCH_END, this.onFullScreenClick, this);
+    }
     private viewHeroAttribute(serialNumber: string) {
         this.loadHeroAttribute(serialNumber);
         this.node.active = true;
@@ -50,94 +113,88 @@ export class heroAttribute extends Component {
 
     // 加载人物名称
     private loadName() {
-        let label = this.node.getChildByName("Attribute").getChildByName("Name").getComponent(Label);
-        label.string = `人物名称：${this.gHero.getName()}`;
+        this.heroNameLabel.string = `${this.gHero.getName()}`;
     }
 
     // 加载人物图片
     private loadImage() {
-        // TODO待补充
+        let imagePath: string = "heros/" + this.gHero.getImageName() + "/spriteFrame";
+        resources.load(imagePath, SpriteFrame, (err, spriteFrame) => {
+            this.heroImageSprite.spriteFrame = spriteFrame;
+        });
     }
 
-    // 加载等级
+    // 加载英雄等级
     private loadLeval() {
-        let button = this.node.getChildByName("Attribute").getChildByName("Leval").getComponent(Button);
-        button.getComponentInChildren(Label).string = `LV.${this.gHero.getLeval()}`;
+        this.heroLevalLabel.string = `LV.${this.gHero.getLeval()}`;
     }
 
     // 加载稀有度
     private loadRarity() {
-        let button = this.node.getChildByName("Attribute").getChildByName("Rarity").getComponent(Button);
-        button.getComponentInChildren(Label).string = `稀有度：${this.gHero.getRarity()}`;
+        this.heroRarityLabel.string = `${this.gHero.getRarity()}`;
     }
 
     // 加载职业
     private loadRole() {
-        let button = this.node.getChildByName("Attribute").getChildByName("Role").getComponent(Button);
-        button.getComponentInChildren(Label).string = `职业：${this.gHero.getRole()}`;
+        // todo 职业用图标表示
+        // this.heroRoleSprite
     }
 
     // 加载人物列传
     private loadIntroduction() {
-        let label = this.node.getChildByName("Attribute").getChildByName("Introduction").getComponent(Label);
-        label.string = `人物列传：${this.gHero.getIntroduction()}`;
+        this.heroIntroductionLabel.string = `人物列传：${this.gHero.getIntroduction()}`;
     }
 
     // 加载生命值
     private loadBasicHealth() {
-        let button = this.node.getChildByName("Attribute").getChildByName("BasicHealth").getComponent(Button);
-        button.getComponentInChildren(Label).string = `生命值：${this.gHero.getBasicHealth()}`;
+        this.heroBasicHealthLabel.string = `${this.gHero.getBasicHealth()}`;
     }
     // 加载基础攻击力
     private loadBasicAttack() {
-        let button = this.node.getChildByName("Attribute").getChildByName("BasicAttack").getComponent(Button);
-        button.getComponentInChildren(Label).string = `攻击力：${this.gHero.getBasicAttack()}`;
+        this.heroBasicAttackLabel.string = `${this.gHero.getBasicAttack()}`;
     }
 
     // 加载防御力
     private loadBasicDefense() {
-        let button = this.node.getChildByName("Attribute").getChildByName("BasicDefense").getComponent(Button);
-        button.getComponentInChildren(Label).string = `防御力：${this.gHero.getBasicDefense()}`;
+        this.heroBasicDefenseLabel.string = `${this.gHero.getBasicDefense()}`;
     }
 
     // 加载攻击速度
     private loadBasicAttackSpeed() {
-        let button = this.node.getChildByName("Attribute").getChildByName("BasicAttackSpeed").getComponent(Button);
-        button.getComponentInChildren(Label).string = `攻击速度：${this.gHero.getBasicAttackSpeed()}`;
+        this.heroBasicAttackSpeedLabel.string = `${this.gHero.getBasicAttackSpeed()}`;
     }
 
     // 加载暴击率
     private loadBasicCriticalStrikeRate() {
-        let button = this.node.getChildByName("Attribute").getChildByName("BasicCriticalStrikeRate").getComponent(Button);
-        button.getComponentInChildren(Label).string = `暴击：${this.gHero.getBasicCriticalStrikeRate()}%`;
+        this.heroBasicCriticalStrikeRateLabel.string = `${this.gHero.getBasicCriticalStrikeRate()}%`;
     }
 
     // 加载暴击伤害
     private loadBasicCriticalStrike() {
-        let button = this.node.getChildByName("Attribute").getChildByName("BasicCriticalStrike").getComponent(Button);
-        button.getComponentInChildren(Label).string = `暴伤：${this.gHero.getBasicCriticalStrike()}%`;
+        this.heroBasicCriticalStrikeLabel.string = `${this.gHero.getBasicCriticalStrike()}%`;
     }
 
     // 加载第一个技能
     private loadSkill1() {
-        let button = this.node.getChildByName("Attribute").getChildByName("Skill1").getComponent(Button);
-        button.getComponentInChildren(Label).string = `${this.gHero.getSkills()[0]}`;
+        this.heroFirstSkillLabel.string = `${this.gHero.getSkills()[0]}`;
     }
     // 加载第二个技能
     private loadSkill2() {
-        let button = this.node.getChildByName("Attribute").getChildByName("Skill2").getComponent(Button);
-        button.getComponentInChildren(Label).string = `${this.gHero.getSkills()[1]}`;
+        this.heroSecondSkillLabel.string = `${this.gHero.getSkills()[1]}`;
     }
 
     // 加载第三个技能
     private loadSkill3() {
-        let button = this.node.getChildByName("Attribute").getChildByName("Skill3").getComponent(Button);
-        button.getComponentInChildren(Label).string = `${this.gHero.getSkills()[2]}`;
+        this.heroThridSkillLabel.string = `${this.gHero.getSkills()[2]}`;
     }
     // 加载第四个技能
     private loadSkill4() {
-        let button = this.node.getChildByName("Attribute").getChildByName("Skill4").getComponent(Button);
-        button.getComponentInChildren(Label).string = `${this.gHero.getSkills()[3]}`;
+        this.heroFourthSkillLabel.string = `${this.gHero.getSkills()[3]}`;
+    }
+
+    // 点击到屏幕背景框时，隐藏英雄属性界面
+    private onFullScreenClick(event: EventTouch) {
+        this.node.active = false;
     }
 
     update(deltaTime: number) {

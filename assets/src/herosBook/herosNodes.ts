@@ -1,7 +1,7 @@
 /* 英雄图鉴节点 */
 import { getHeroMap } from "../resource/character/heroList";
 import { BasicHeroAttribute, NationType } from "../resource/character/attribute";
-import { Button, EventHandheld, EventHandler, HorizontalTextAlignment, Label, Layers, math, Node, resources, Sprite, SpriteFrame, UITransform, VerticalTextAlignment } from "cc";
+import { Button, HorizontalTextAlignment, Label, Layers, math, Node, resources, Sprite, SpriteFrame, UITransform, VerticalTextAlignment } from "cc";
 import { GHeroLabelNodeName } from "./kind";
 
 export type HeroNodesMap = Map<string, Node>;
