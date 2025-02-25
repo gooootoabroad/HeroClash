@@ -211,7 +211,7 @@ const heroMap: Map<string, BasicHeroAttribute> = new Map([
             basicAttribute: {
                 serialNumber: "7",
                 name: "曹操",
-                role: RoleType.mage,
+                role: RoleType.auxiliary,
                 leval: 1,
                 imageName: "caocao",
                 basicAttack: 60,
@@ -293,35 +293,7 @@ const heroMap: Map<string, BasicHeroAttribute> = new Map([
     ["10",
         {
             basicAttribute: {
-                serialNumber: "11",
-                name: "张颌",
-                role: RoleType.crossbowman,
-                leval: 1,
-                imageName: "zhanghe",
-                basicAttack: 60,
-                basicDefense: 10,
-                basicHealth: 100,
-                basicAttackSpeed: 5,
-                basicCriticalStrikeRate: 1,
-                basicCriticalStrike: 150,
-
-                skills: [
-                    HeroSkillType.S1,
-                    HeroSkillType.S2,
-                    HeroSkillType.S3,
-                    HeroSkillType.S4
-                ],
-                scores: 80,
-            },
-            rarity: HeroRarityType.epic,
-            nation: NationType.weiguo,
-            introduction: "待补充",
-        }
-    ],
-    ["11",
-        {
-            basicAttribute: {
-                serialNumber: "12",
+                serialNumber: "10",
                 name: "张春华",
                 role: RoleType.mage,
                 leval: 1,
@@ -343,13 +315,13 @@ const heroMap: Map<string, BasicHeroAttribute> = new Map([
             },
             rarity: HeroRarityType.normal,
             nation: NationType.weiguo,
-            introduction: "待补充",
+            introduction: "张春华，三国时期历史人物，曹魏粟邑县令张汪之女，晋宣帝司马懿的正妻，晋景帝司马师和晋文帝司马昭的母亲，后被追尊为宣穆皇后。",
         }
     ],
-    ["12",
+    ["11",
         {
             basicAttribute: {
-                serialNumber: "13",
+                serialNumber: "11",
                 name: "孙权",
                 role: RoleType.mage,
                 leval: 1,
@@ -371,13 +343,13 @@ const heroMap: Map<string, BasicHeroAttribute> = new Map([
             },
             rarity: HeroRarityType.epic,
             nation: NationType.wuguo,
-            introduction: "待补充",
+            introduction: "孙权，三国时期孙吴开国皇帝，字仲谋，生于182年，卒于252年5月21日，吴郡富春县（今浙江省杭州市富阳区）人‌。他是孙坚与吴夫人的次子，在父亲和兄长孙策打下江东基业后，继兄掌事，成为一方诸侯。",
         }
     ],
-    ["13",
+    ["12",
         {
             basicAttribute: {
-                serialNumber: "14",
+                serialNumber: "12",
                 name: "黄盖",
                 role: RoleType.warrior,
                 leval: 1,
@@ -399,13 +371,13 @@ const heroMap: Map<string, BasicHeroAttribute> = new Map([
             },
             rarity: HeroRarityType.epic,
             nation: NationType.wuguo,
-            introduction: "待补充",
+            introduction: "‌黄盖，东汉末年三国时期孙吴的著名将领，字公覆，零陵郡泉陵县（今湖南省永州市）人‌。他抑制豪强，扶助贫弱，整训军队，使得地方安定有序‌。他的忠诚与牺牲精神深深打动了后人，成为忠诚与英勇的象征‌。",
         }
     ],
-    ["14",
+    ["13",
         {
             basicAttribute: {
-                serialNumber: "15",
+                serialNumber: "13",
                 name: "韩当",
                 role: RoleType.warrior,
                 leval: 1,
@@ -427,13 +399,13 @@ const heroMap: Map<string, BasicHeroAttribute> = new Map([
             },
             rarity: HeroRarityType.epic,
             nation: NationType.wuguo,
-            introduction: "待补充",
+            introduction: "‌韩当，三国时期东吴名将，字义公，辽西郡令支县（今河北迁安）人，生年不详，卒于226年‌。韩当为人忠诚正直，在军中深受士兵和将领们的爱戴。",
         }
     ],
-    ["15",
+    ["14",
         {
             basicAttribute: {
-                serialNumber: "16",
+                serialNumber: "14",
                 name: "甘宁",
                 role: RoleType.crossbowman,
                 leval: 1,
@@ -455,13 +427,13 @@ const heroMap: Map<string, BasicHeroAttribute> = new Map([
             },
             rarity: HeroRarityType.legend,
             nation: NationType.wuguo,
-            introduction: "待补充",
+            introduction: "‌甘宁，字兴霸，三国时期孙吴名将，官至西陵太守、折冲将军‌‌。甘宁虽然粗野凶狠，暴躁嗜杀，但他开朗豪爽，有勇有谋，轻视钱财，敬重士人，厚待士卒，并深得士卒拥戴。",
         }
     ],
-    ["16",
+    ["15",
         {
             basicAttribute: {
-                serialNumber: "17",
+                serialNumber: "15",
                 name: "太史慈",
                 role: RoleType.crossbowman,
                 leval: 1,
@@ -483,13 +455,13 @@ const heroMap: Map<string, BasicHeroAttribute> = new Map([
             },
             rarity: HeroRarityType.legend,
             nation: NationType.wuguo,
-            introduction: "待补充",
+            introduction: "‌太史慈，字子义，东汉末年至三国时期吴国名将，弓马熟练，箭法精良，官至建昌都尉。生于166年，卒于206年，东莱黄县（今山东龙口东黄城集）人。",
         }
     ],
-    ["17",
+    ["16",
         {
             basicAttribute: {
-                serialNumber: "18",
+                serialNumber: "16",
                 name: "吕蒙",
                 role: RoleType.crossbowman,
                 leval: 1,
@@ -511,13 +483,13 @@ const heroMap: Map<string, BasicHeroAttribute> = new Map([
             },
             rarity: HeroRarityType.epic,
             nation: NationType.wuguo,
-            introduction: "待补充",
+            introduction: "‌吕蒙，字子明，东汉末年名将，汝南富陂（今安徽省阜南东南）人，生于178年，卒于220年初，是三国时期东吴的重要将领‌。以其卓越的军事才能、非凡的战略眼光和坚韧的品格，为东吴的稳固和发展做出了重要贡献。",
         }
     ],
-    ["18",
+    ["17",
         {
             basicAttribute: {
-                serialNumber: "19",
+                serialNumber: "17",
                 name: "吕布",
                 role: RoleType.warrior,
                 leval: 1,
@@ -539,13 +511,13 @@ const heroMap: Map<string, BasicHeroAttribute> = new Map([
             },
             rarity: HeroRarityType.legend,
             nation: NationType.qunxiong,
-            introduction: "待补充",
+            introduction: "‌吕布，字奉先，号称“飞将”，东汉末年名将，汉末群雄之一，五原郡九原（今内蒙古包头西北）人。吕布武艺高强，手持方天画戟，骑乘赤兔马，被誉为“飞将”，堪比西汉的李广，威震天下‌。",
         }
     ],
-    ["19",
+    ["18",
         {
             basicAttribute: {
-                serialNumber: "20",
+                serialNumber: "18",
                 name: "貂蝉",
                 role: RoleType.mage,
                 leval: 1,
@@ -567,13 +539,13 @@ const heroMap: Map<string, BasicHeroAttribute> = new Map([
             },
             rarity: HeroRarityType.epic,
             nation: NationType.qunxiong,
-            introduction: "待补充",
+            introduction: "‌貂蝉是小说《三国演义》中的人物，被誉为中国古代四大美女之一，她的美丽、聪明和勇敢都成为了后人传颂的佳话。",
         }
     ],
-    ["20",
+    ["19",
         {
             basicAttribute: {
-                serialNumber: "21",
+                serialNumber: "19",
                 name: "潘凤",
                 role: RoleType.warrior,
                 leval: 1,
@@ -595,35 +567,7 @@ const heroMap: Map<string, BasicHeroAttribute> = new Map([
             },
             rarity: HeroRarityType.well,
             nation: NationType.qunxiong,
-            introduction: "待补充",
-        }
-    ],
-    ["21",
-        {
-            basicAttribute: {
-                serialNumber: "22",
-                name: "潘璋",
-                imageName: "panzhang",
-                role: RoleType.crossbowman,
-                leval: 1,
-                basicAttack: 60,
-                basicDefense: 10,
-                basicHealth: 100,
-                basicAttackSpeed: 5,
-                basicCriticalStrikeRate: 1,
-                basicCriticalStrike: 150,
-
-                skills: [
-                    HeroSkillType.S1,
-                    HeroSkillType.S2,
-                    HeroSkillType.S3,
-                    HeroSkillType.S4
-                ],
-                scores: 80,
-            },
-            rarity: HeroRarityType.normal,
-            nation: NationType.qunxiong,
-            introduction: "待补充",
+            introduction: "‌潘凤，字无双，是《三国演义》中虚构的人物，青州泰安（今山东泰安）人，高九尺，腰大十二围，使一百八十斤开山大斧。他自信而勇猛，却因轻敌而战死，成为了人们茶余饭后的谈资。",
         }
     ],
 ]);
