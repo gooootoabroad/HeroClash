@@ -69,10 +69,11 @@ export class UserWeaponryManager {
     }
 
     // 创建基础装备
-    public createWeaponry(serialNumberList: string[]): void {
+    public createWeaponry(serialNumberList: string[]): UserWeaponry {
         try {
             Mutex.getInstance().lock(weaponryMutexID);
             let currentWeaponry = this.getWeaponryFromStorage();
+            let createWeaponry = { weapons: new Map<string, UserWeaponryAttribute>() };
             for (let serialNumber of serialNumberList) {
                 console.info("create weaponry serial number %s", serialNumber);
                 let basicWeaponry = getWeaponryBySerialNumber(serialNumber);
@@ -92,6 +93,7 @@ export class UserWeaponryManager {
                         }
 
                         currentWeaponry.weapons.set(weaponryInfo.weaponryID, weaponryInfo);
+                        createWeaponry.weapons.set(weaponryInfo.weaponryID, weaponryInfo);
                         break;
                 }
             }
@@ -99,6 +101,7 @@ export class UserWeaponryManager {
             this.saveWeaponry(currentWeaponry);
             this.weaponryCache = currentWeaponry;
             Mutex.getInstance().unlock(weaponryMutexID);
+            return createWeaponry;
         } catch (error) {
             if (!(error instanceof VisibleError) || error.code != ERROR_CODES.LOCK_FAILED) {
                 Mutex.getInstance().unlock(weaponryMutexID);
