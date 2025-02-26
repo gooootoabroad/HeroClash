@@ -1,6 +1,6 @@
 // 英雄图鉴
 
-import { _decorator, Button, Canvas, Component, director, EventTouch, HorizontalTextAlignment, Label, Layout, Material, math, Node, resources, Script, Sprite, SpriteAtlas, SpriteFrame, UITransform, VerticalTextAlignment } from 'cc';
+import { _decorator, Button, Canvas, Component, director, EventTouch, HorizontalTextAlignment, Label, Layout, Material, math, Node, resources, Script, Sprite, SpriteAtlas, SpriteFrame, SystemEvent, UITransform, VerticalTextAlignment } from 'cc';
 import { BasicHeroAttribute, NationType } from "../resource/character/attribute";
 import { herosNodesInit } from './herosNodes';
 const { ccclass, property } = _decorator;
@@ -51,6 +51,8 @@ export class herosBook extends Component {
     protected onLoad(): void {
         // TODO: 后续放游戏加载时初始化
         herosNodesInit();
+        // TODO：最大监听数
+
 
         this.canvasMap = new Map<HerosButtonType, HerosCanvasType>();
         this.canvasMap.set(HerosButtonType.All, { button: this.allHerosButton, canvas: this.allHerosCanvas });
