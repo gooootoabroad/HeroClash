@@ -1,5 +1,5 @@
 // 武器抽卡模块
-import { _decorator, Node, Component, Event, Button, Label, Vec3, UITransform, Sprite, resources, SpriteFrame, Layers, math } from 'cc';
+import { _decorator, Node, Component, Event, Button, Label, Vec3, UITransform, Sprite, resources, SpriteFrame, Layers, math, Prefab, instantiate } from 'cc';
 import { CurrencyType, Currency } from '../resource/currency/kind';
 import { CurrencyManager } from '../resource/currency/manager';
 import { WeaponryRarityType } from '../resource/weaponry/enum';
@@ -39,6 +39,9 @@ export class weaponRecruit extends Component {
     // 展示奖品的节点
     @property(Node)
     private showPrizeNode: Node = null;
+    // 武器UI展示图片预制体
+    @property(Prefab)
+    private weaponPrefab: Prefab = null;
 
     // 当前抽卡次数
     private recruitTimes: number = 0;
@@ -182,13 +185,10 @@ export class weaponRecruit extends Component {
     }
 
     private updateOneTimeLabel() {
-        let label = this.oneTimeNode.getChildByName("Button").getComponentInChildren(Label);
-        let text = `每日首次免费\n招募一次`;
-        if (this.freeOneTimeUsed) {
-            text = `和田玉：100\n招募一次`;
-        }
-
-        label.string = text;
+        let description = this.oneTimeNode.getChildByName("Button").getChildByName("Description");
+        description.active = false;
+        let costNode = this.oneTimeNode.getChildByName("Button").getChildByName("Cost");
+        costNode.active = true;
     }
 
     // 展示抽卡的武器界面
@@ -206,14 +206,17 @@ export class weaponRecruit extends Component {
         let nodeHight = nodeWidth;
         // 节点之间的y距离
         let nodeDistanceY = (showPrizeUITransform.height - 2 * nodeHight) / 3;
-        // 节点初始位置(这个点是图片中心点，要考虑图片的长高)
-        let firstNodePosX = -((showPrizeUITransform.width - 20) / 2) + (nodeWidth / 2);
-        let firstNodePosY = ((showPrizeUITransform.height - (nodeDistanceY * 2)) / 2) - (nodeHight / 2);
+        // 节点初始位置
+        let firstNodePosX = -((showPrizeUITransform.width - 20) / 2);
+        // 高度低一点，上面有字
+        let firstNodePosY = ((showPrizeUITransform.height - (nodeDistanceY * 2)) / 2) - 60;
+        console.log("firstNodePosX firstNodePosY", firstNodePosX, firstNodePosY);
         // 初始化节点
         for (let i = 0; i < weaponryAttributes.length; i++) {
-            const node = new Node("Prize");
+            const node = instantiate(this.weaponPrefab);
+            node.name = "Prize";
             node.layer = Layers.Enum.UI_2D;
-            let uiTransform = node.addComponent(UITransform);
+            let uiTransform = node.getComponent(UITransform);
             uiTransform.width = nodeWidth;
             uiTransform.height = nodeHight;
             node.setParent(this.showPrizeNode);
@@ -222,7 +225,7 @@ export class weaponRecruit extends Component {
             let labelNode = new Node("Name");
             labelNode.layer = Layers.Enum.UI_2D;
             labelNode.setParent(node);
-            labelNode.setPosition(new Vec3(0, -70));
+            labelNode.setPosition(new Vec3(55, -20));
             let labelUI = labelNode.addComponent(UITransform);
             labelUI.setContentSize(new math.Size(100, 50));
             let label = labelNode.addComponent(Label);
@@ -230,7 +233,7 @@ export class weaponRecruit extends Component {
             label.lineHeight = 30;
             label.string = weaponryAttributes[i].name;
             // 设置图片
-            let sprite = node.addComponent(Sprite);
+            let sprite = node.getChildByName("Sprite").getComponent(Sprite);
             sprite.sizeMode = Sprite.SizeMode.CUSTOM;
             // TODO 补充武器图片
             //let imagePath: string = "weapons/" + weaponryAttributes[i].imageName + "/spriteFrame";

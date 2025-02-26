@@ -60,7 +60,7 @@ export class ShowWeaponsAnimation extends Component {
             item.setPosition(new Vec3(i * (this.imageWidth + this.imageDistance), item.position.y));
             this.imageNodeList.push({ imageNode: item, weaponInfo: showWeaponsList[j] });
             // 添加武器图片
-            let sprite = item.getComponent(Sprite);
+            let sprite = item.getChildByName("Sprite").getComponent(Sprite);
             sprite.sizeMode = Sprite.SizeMode.CUSTOM;
             sprite.type = Sprite.Type.SIMPLE;
             let imagePath: string = "weapons/" + showWeaponsList[j].imageName + "/spriteFrame";
@@ -113,7 +113,7 @@ export class ShowWeaponsAnimation extends Component {
     private showWeaponInfo(weaponInfo: WeaponryAttribute) {
         // 基础信息展示
         let basicInfoNode = this.weaponUI.getChildByName("BasicInfo");
-        let weaponImageNode = basicInfoNode.getChildByName("WeaponImage");
+        let weaponImageNode = basicInfoNode.getChildByName("Image").getChildByName("Sprite");
         // 添加武器图片
         let sprite = weaponImageNode.getComponent(Sprite);
         sprite.sizeMode = Sprite.SizeMode.CUSTOM;
