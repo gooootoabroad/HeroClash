@@ -1,8 +1,6 @@
 // 英雄图鉴
 
-import { _decorator, Button, Canvas, Component, director, EventTouch, HorizontalTextAlignment, Label, Layout, Material, math, Node, resources, Script, Sprite, SpriteAtlas, SpriteFrame, SystemEvent, UITransform, VerticalTextAlignment } from 'cc';
-import { BasicHeroAttribute, NationType } from "../resource/character/attribute";
-import { herosNodesInit } from './herosNodes';
+import { _decorator, Button, Component, Node } from 'cc';
 const { ccclass, property } = _decorator;
 
 enum HerosButtonType {
@@ -49,8 +47,6 @@ export class herosBook extends Component {
     public qunHerosCanvas: Node = null;
 
     protected onLoad(): void {
-        // TODO: 后续放游戏加载时初始化
-        herosNodesInit();
         // TODO：最大监听数
 
 

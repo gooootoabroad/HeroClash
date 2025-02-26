@@ -82,7 +82,7 @@ export class heroAttribute extends Component {
 
         // 初始化各个组件
         this.heroNameLabel = this.node.getChildByName("Attribute").getChildByName("HeroBody").getChildByName("Name").getComponentInChildren(Label);
-        this.heroImageSprite = this.node.getChildByName("Attribute").getChildByName("HeroBody").getChildByName("HeroImage").getComponent(Sprite);
+        this.heroImageSprite = this.node.getChildByName("Attribute").getChildByName("HeroBody").getChildByName("HeroFrame").getChildByName("InsideFrame1").getChildByName("InsideFrame2").getChildByName("Mask").getChildByName("HeroImage").getComponent(Sprite);
         this.heroLevalLabel = this.node.getChildByName("Attribute").getChildByName("HeroBody").getChildByName("Leval").getComponentInChildren(Label);
         this.heroRaritySprite = this.node.getChildByName("Attribute").getChildByName("HeroBody").getChildByName("Rarity").getComponent(Sprite);
         this.heroRoleSprite = this.node.getChildByName("Attribute").getChildByName("HeroBody").getChildByName("Role").getComponent(Sprite);
@@ -222,10 +222,10 @@ export class heroAttribute extends Component {
         this.node.active = true;
     }
 
+  
     // 加载英雄信息
     private loadHeroAttribute(serialNumber: string) {
         this.gHero = new BasicHero(serialNumber);
-        console.log("new a hero: ", this.gHero);
 
         this.loadName();
         this.loadImage();
@@ -274,7 +274,6 @@ export class heroAttribute extends Component {
                 return;
             }
             this.heroRaritySprite.spriteFrame = spriteFrame;
-
         });
     }
 
@@ -287,7 +286,6 @@ export class heroAttribute extends Component {
                 return;
             }
             this.heroRoleSprite.spriteFrame = spriteFrame;
-
         });
     }
 
