@@ -1,28 +1,25 @@
-import { _decorator, Component, EventTouch, Node } from 'cc';
-import { GShuHeroNodesMap, HeroNodesMap } from "./herosNodes";
+import { _decorator, Component, EventTouch, instantiate, Node, Prefab } from 'cc';
+import { createHeroNode, GShuHeroNodesMap, HeroNodesMap } from "./herosNodes";
 import { GEventTarget, GEventUpdateHeroBasicAttributeCanvas } from '../utils/event';
+import { BasicHeroAttribute, NationType } from '../resource/character/attribute';
+import { getHeroMap } from '../resource/character/heroList';
 const { ccclass, property } = _decorator;
 
 
 @ccclass('herosShu')
 export class herosShu extends Component {
-    // 英雄节点
-    private herosNodesMap: HeroNodesMap = null;
     // 滚动列表节点
     private gContentNode: Node = null;
 
+    @property(Prefab)
+    public gHeroPrefab: Prefab = null;
 
     start() {
-        this.herosNodesMap = GShuHeroNodesMap;
-
         this.gContentNode = this.node.getChildByName("HerosScrollView").getChildByName("view").getChildByName("content");
         this.loadHeros();
     }
 
     protected onDestroy(): void {
-        for (let [_, heroNode] of this.herosNodesMap) {
-            heroNode.off(Node.EventType.TOUCH_START, this.onTouch, heroNode);
-        }
     }
 
     update(deltaTime: number) {
@@ -31,18 +28,21 @@ export class herosShu extends Component {
 
     // 加载英雄
     private loadHeros() {
-        for (let [serialNumber, heroNode] of this.herosNodesMap) {
-            heroNode.on(Node.EventType.TOUCH_START,
+        let gHerosMap: Map<string, BasicHeroAttribute> = getHeroMap();
+        for (let [serialNumber, attribute] of gHerosMap) {
+            if (attribute.nation !== NationType.shuguo) continue;
+            // 先使用预制体作为父节点
+            let node = instantiate(this.gHeroPrefab);
+            // 再将预制体内容初始化
+            createHeroNode(node, attribute);
+            // 监听事件 TODO:怎么销毁匿名函数事件？
+            node.on(Node.EventType.TOUCH_START,
                 function (event) {
                     GEventTarget.emit(GEventUpdateHeroBasicAttributeCanvas, serialNumber);
                 }
-                , heroNode);
-            this.gContentNode.addChild(heroNode);
+                , node);
+            this.gContentNode.addChild(node);
         }
-    }
-
-    private onTouch(event: EventTouch) {
-        console.log("%s,%s", event.getUILocation().x, event.getUILocation().y);
     }
 }
 

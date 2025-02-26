@@ -1,7 +1,6 @@
 // 英雄图鉴
 
 import { _decorator, Button, Component, Node } from 'cc';
-import { herosNodesInit } from './herosNodes';
 const { ccclass, property } = _decorator;
 
 enum HerosButtonType {
@@ -48,8 +47,6 @@ export class herosBook extends Component {
     public qunHerosCanvas: Node = null;
 
     protected onLoad(): void {
-        // TODO: 后续放游戏加载时初始化
-        herosNodesInit();
         // TODO：最大监听数
 
 

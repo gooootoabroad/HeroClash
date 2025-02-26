@@ -222,6 +222,7 @@ export class heroAttribute extends Component {
         this.node.active = true;
     }
 
+  
     // 加载英雄信息
     private loadHeroAttribute(serialNumber: string) {
         this.gHero = new BasicHero(serialNumber);
