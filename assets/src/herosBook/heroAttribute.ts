@@ -1,15 +1,18 @@
 /*英雄属性信息 */
 
-import { _decorator, Button, Component, EventTarget, EventTouch, Label, Node, NodeEventType, resources, Sprite, SpriteFrame } from 'cc';
+import { _decorator, Button, Component, EventTarget, EventTouch, HorizontalTextAlignment, Label, Layers, math, Node, NodeEventType, Overflow, resources, Sprite, SpriteFrame, UITransform, VerticalTextAlignment } from 'cc';
 import { BasicHero } from "../resource/character/basicHero";
 import { GEventTarget, GEventUpdateHeroBasicAttributeCanvas } from '../utils/event';
-import { NationType } from '../resource/character/attribute';
+import { getSkillMap } from "../resource/skills/skillList";
+import { HeroSkill, HeroSkillType } from '../resource/skills/skill';
 const { ccclass, property } = _decorator;
 
 @ccclass('heroAttribute')
 export class heroAttribute extends Component {
     // 英雄
     private gHero: BasicHero;
+    // 技能树
+    private skillMap: Map<string, HeroSkill>;
 
     // 英雄名称
     private heroNameLabel: Label = null;
@@ -39,18 +42,14 @@ export class heroAttribute extends Component {
     // 基础暴击伤害
     private heroBasicCriticalStrikeLabel: Label = null;
 
-    // 第一个技能
-    private heroFirstSkillLabel: Label = null;
-    // 第二个技能
-    private heroSecondSkillLabel: Label = null;
-    // 第三个技能
-    private heroThridSkillLabel: Label = null;
-    // 第四个技能
-    private heroFourthSkillLabel: Label = null;
+    // 技能
+    private heroSkillsContentNode: Node = null;
 
     start() {
         // 刚开始隐藏画布
         this.node.active = false;
+
+        this.skillMap = getSkillMap();
 
         // 初始化各个组件
         this.heroNameLabel = this.node.getChildByName("Attribute").getChildByName("HeroBody").getChildByName("Name").getComponentInChildren(Label);
@@ -69,10 +68,7 @@ export class heroAttribute extends Component {
         this.heroBasicCriticalStrikeRateLabel = this.node.getChildByName("Attribute").getChildByName("BasicAttribute").getChildByName("BasicCriticalStrikeRate").getComponentInChildren(Label);
         this.heroBasicCriticalStrikeLabel = this.node.getChildByName("Attribute").getChildByName("BasicAttribute").getChildByName("BasicCriticalStrike").getComponentInChildren(Label);
 
-        this.heroFirstSkillLabel = this.node.getChildByName("Attribute").getChildByName("Skill").getChildByName("Skill1").getComponentInChildren(Label);
-        this.heroSecondSkillLabel = this.node.getChildByName("Attribute").getChildByName("Skill").getChildByName("Skill2").getComponentInChildren(Label);
-        this.heroThridSkillLabel = this.node.getChildByName("Attribute").getChildByName("Skill").getChildByName("Skill3").getComponentInChildren(Label);
-        this.heroFourthSkillLabel = this.node.getChildByName("Attribute").getChildByName("Skill").getChildByName("Skill4").getComponentInChildren(Label);
+        this.heroSkillsContentNode = this.node.getChildByName("Attribute").getChildByName("Skill").getChildByName("view").getChildByName("content");
 
         // 监听事件，并初始化数值
         GEventTarget.on(GEventUpdateHeroBasicAttributeCanvas, (serialNumber) => {
@@ -111,10 +107,7 @@ export class heroAttribute extends Component {
         this.loadBasicAttackSpeed();
         this.loadBasicCriticalStrikeRate();
         this.loadBasicCriticalStrike();
-        this.loadSkill1();
-        this.loadSkill2();
-        this.loadSkill3();
-        this.loadSkill4();
+        this.loadSkills();
     }
 
     // 加载人物名称
@@ -148,7 +141,7 @@ export class heroAttribute extends Component {
                 return;
             }
             this.heroRaritySprite.spriteFrame = spriteFrame;
-            
+
         });
     }
 
@@ -161,7 +154,7 @@ export class heroAttribute extends Component {
                 return;
             }
             this.heroRoleSprite.spriteFrame = spriteFrame;
-            
+
         });
     }
 
@@ -174,7 +167,7 @@ export class heroAttribute extends Component {
                 return;
             }
             this.heroNationSprite.spriteFrame = spriteFrame;
-            
+
         });
     }
     // 加载人物列传
@@ -211,22 +204,18 @@ export class heroAttribute extends Component {
         this.heroBasicCriticalStrikeLabel.string = `${this.gHero.getBasicCriticalStrike()}%`;
     }
 
-    // 加载第一个技能
-    private loadSkill1() {
-        this.heroFirstSkillLabel.string = `${this.gHero.getSkills()[0]}`;
-    }
-    // 加载第二个技能
-    private loadSkill2() {
-        this.heroSecondSkillLabel.string = `${this.gHero.getSkills()[1]}`;
-    }
+    // 加载所有技能
+    private loadSkills() {
+        // 先销毁已有技能
+        this.heroSkillsContentNode.destroyAllChildren();
+        // 再加载新技能
+        let skillIDs = this.gHero.getSkills();
 
-    // 加载第三个技能
-    private loadSkill3() {
-        this.heroThridSkillLabel.string = `${this.gHero.getSkills()[2]}`;
-    }
-    // 加载第四个技能
-    private loadSkill4() {
-        this.heroFourthSkillLabel.string = `${this.gHero.getSkills()[3]}`;
+        for (const skillID of skillIDs) {
+
+            let skill = this.skillMap.get(skillID);
+            this.heroSkillsContentNode.addChild(this.loadSkill(skill));
+        }
     }
 
     // 点击到屏幕背景框时，隐藏英雄属性界面
@@ -234,6 +223,99 @@ export class heroAttribute extends Component {
         this.node.active = false;
     }
 
+    // 加载一个技能
+    private loadSkill(heroSkill: HeroSkill): Node {
+        let parentNode = new Node("SkillNode");
+        let uiTransform = parentNode.addComponent(UITransform);
+        let parentNodeSprite = parentNode.addComponent(Sprite);
+        let textNode = new Node("Text");
+        let textNodeTransform = textNode.addComponent(UITransform);
+        let textLabel = textNode.addComponent(Label);
+        parentNode.addChild(textNode);
+        let introductionNode = new Node("Introduction");
+        let introductionNodeTransform = introductionNode.addComponent(UITransform);
+        let introductionNodeSprite = introductionNode.addComponent(Sprite);
+        parentNode.addChild(introductionNode);
+        let introductionTextNode = new Node("IntroductionText");
+        let introductionTextNodeTransform = introductionTextNode.addComponent(UITransform);
+        let introductionLabel = introductionTextNode.addComponent(Label);
+        introductionNode.addChild(introductionTextNode);
+
+        // 设置父节点层次
+        parentNode.layer = Layers.Enum.UI_2D;
+        // 调整父节点大小
+        let parentNodeSize = new math.Size;
+        parentNodeSize.set(480, 70);
+        uiTransform.setContentSize(parentNodeSize);
+
+        // 设置技能名称节点层次
+        textNode.layer = Layers.Enum.UI_2D;
+        // 设置技能名称节点大小和坐标
+        let skillTextNodeSize = new math.Size;
+        skillTextNodeSize.set(450, 20);
+        textNodeTransform.setContentSize(skillTextNodeSize);
+        textNode.setPosition(-6, 22);
+        // 左对齐
+        textLabel.horizontalAlign = HorizontalTextAlignment.LEFT;
+        // 上对齐
+        textLabel.verticalAlign = VerticalTextAlignment.TOP;
+        // 溢出处理，节点约束框之外的文字会被截断。
+        textLabel.overflow = Overflow.CLAMP;
+        // 字体大小
+        textLabel.fontSize = 15;
+        // 字体颜色
+        textLabel.color = math.color(0, 0, 0, 255);
+        // 技能名称
+        let skillTypeDes = heroSkill.type === HeroSkillType.active ? "主动技能" : "被动技能";
+        textLabel.string = `${skillTypeDes}        ${heroSkill.name}`
+        // 调整父节点图片
+        parentNodeSprite.sizeMode = Sprite.SizeMode.CUSTOM;
+        let parentNodeImagePath: string = "heroAttribute/" + "skill" + "/spriteFrame";
+        resources.load(parentNodeImagePath, SpriteFrame, (err, spriteFrame) => {
+            parentNodeSprite.spriteFrame = spriteFrame;
+        });
+
+        // 设置节点层次
+        introductionNode.layer = Layers.Enum.UI_2D;
+        // 调整技能大小和坐标
+        let introductionNodeSize = new math.Size;
+        introductionNodeSize.set(40, 40);
+        introductionNodeTransform.setContentSize(introductionNodeSize);
+        introductionNode.setPosition(-205, -12);
+
+        // 调整技能图标
+        introductionNodeSprite.sizeMode = Sprite.SizeMode.CUSTOM;
+        let introductionNodeImagePath: string = "skills/" + heroSkill.imageName + "/spriteFrame";
+        resources.load(introductionNodeImagePath, SpriteFrame, (err, spriteFrame) => {
+            introductionNodeSprite.spriteFrame = spriteFrame;
+        });
+
+        // 设置节点层次
+        introductionTextNode.layer = Layers.Enum.UI_2D;
+        // 设置技能描述大小和位置
+        let introductionTextNodeSize = new math.Size;
+        introductionTextNodeSize.set(400, 40);
+        introductionTextNodeTransform.setContentSize(introductionTextNodeSize);
+        introductionTextNode.setPosition(238, 0, 0);
+        // 左对齐
+        introductionLabel.horizontalAlign = HorizontalTextAlignment.LEFT;
+        // 中心对齐
+        introductionLabel.verticalAlign = VerticalTextAlignment.CENTER;
+        // 溢出处理，节点约束框之外的文字会被截断。
+        introductionLabel.overflow = Overflow.CLAMP;
+        // 字体大小
+        introductionLabel.fontSize = 15;
+        // 字体颜色
+        introductionLabel.color = math.color(0, 0, 0, 255);
+        // 字体间隔
+        introductionLabel.lineHeight = 16;
+        // 自动换行
+        introductionLabel.enableWrapText = true;
+        // 技能描述
+        introductionLabel.string = heroSkill.description;
+
+        return parentNode;
+    }
     update(deltaTime: number) {
 
     }

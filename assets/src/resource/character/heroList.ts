@@ -1,4 +1,5 @@
-import { BasicHeroAttribute, CharacterAttribute, HeroSkillType, HeroRarityType, RoleType, NationType } from './attribute';
+import { HeroSkillType } from '../skills/skill';
+import { BasicHeroAttribute, HeroRarityType, RoleType, NationType } from './attribute';
 
 // 获取英雄列表
 // @return map<序号，属性>
@@ -22,11 +23,7 @@ export function getDefaultHero(): BasicHeroAttribute {
             basicCriticalStrikeRate: 0,
             basicCriticalStrike: 0,
 
-            skills: [
-                HeroSkillType.S1,
-                HeroSkillType.S2,
-                HeroSkillType.S3,
-                HeroSkillType.S4
+            skillIDs: [
             ],
             scores: 0,
         },
@@ -53,11 +50,8 @@ const heroMap: Map<string, BasicHeroAttribute> = new Map([
                 basicCriticalStrikeRate: 1,
                 basicCriticalStrike: 150,
 
-                skills: [
-                    HeroSkillType.S1,
-                    HeroSkillType.S2,
-                    HeroSkillType.S3,
-                    HeroSkillType.S4
+                skillIDs: [
+                    "1",
                 ],
                 scores: 100,
             },
@@ -81,11 +75,8 @@ const heroMap: Map<string, BasicHeroAttribute> = new Map([
                 basicCriticalStrikeRate: 1,
                 basicCriticalStrike: 150,
 
-                skills: [
-                    HeroSkillType.S1,
-                    HeroSkillType.S2,
-                    HeroSkillType.S3,
-                    HeroSkillType.S4
+                skillIDs: [
+                    "11",
                 ],
                 scores: 100,
             },
@@ -109,11 +100,8 @@ const heroMap: Map<string, BasicHeroAttribute> = new Map([
                 basicCriticalStrikeRate: 1,
                 basicCriticalStrike: 150,
 
-                skills: [
-                    HeroSkillType.S1,
-                    HeroSkillType.S2,
-                    HeroSkillType.S3,
-                    HeroSkillType.S4
+                skillIDs: [
+                    "21",
                 ],
                 scores: 100,
             },
@@ -137,11 +125,8 @@ const heroMap: Map<string, BasicHeroAttribute> = new Map([
                 basicCriticalStrikeRate: 1,
                 basicCriticalStrike: 150,
 
-                skills: [
-                    HeroSkillType.S1,
-                    HeroSkillType.S2,
-                    HeroSkillType.S3,
-                    HeroSkillType.S4
+                skillIDs: [
+                    "31",
                 ],
                 scores: 100,
             },
@@ -165,11 +150,8 @@ const heroMap: Map<string, BasicHeroAttribute> = new Map([
                 basicCriticalStrikeRate: 1,
                 basicCriticalStrike: 150,
 
-                skills: [
-                    HeroSkillType.S1,
-                    HeroSkillType.S2,
-                    HeroSkillType.S3,
-                    HeroSkillType.S4
+                skillIDs: [
+                    "41",
                 ],
                 scores: 80,
             },
@@ -193,11 +175,8 @@ const heroMap: Map<string, BasicHeroAttribute> = new Map([
                 basicCriticalStrikeRate: 1,
                 basicCriticalStrike: 150,
 
-                skills: [
-                    HeroSkillType.S1,
-                    HeroSkillType.S2,
-                    HeroSkillType.S3,
-                    HeroSkillType.S4
+                skillIDs: [
+                    "51",
                 ],
                 scores: 80,
             },
@@ -221,11 +200,8 @@ const heroMap: Map<string, BasicHeroAttribute> = new Map([
                 basicCriticalStrikeRate: 1,
                 basicCriticalStrike: 150,
 
-                skills: [
-                    HeroSkillType.S1,
-                    HeroSkillType.S2,
-                    HeroSkillType.S3,
-                    HeroSkillType.S4
+                skillIDs: [
+                    "61",
                 ],
                 scores: 80,
             },
@@ -249,11 +225,8 @@ const heroMap: Map<string, BasicHeroAttribute> = new Map([
                 basicCriticalStrikeRate: 1,
                 basicCriticalStrike: 150,
 
-                skills: [
-                    HeroSkillType.S1,
-                    HeroSkillType.S2,
-                    HeroSkillType.S3,
-                    HeroSkillType.S4
+                skillIDs: [
+                    "71",
                 ],
                 scores: 80,
             },
@@ -277,11 +250,8 @@ const heroMap: Map<string, BasicHeroAttribute> = new Map([
                 basicCriticalStrikeRate: 1,
                 basicCriticalStrike: 150,
 
-                skills: [
-                    HeroSkillType.S1,
-                    HeroSkillType.S2,
-                    HeroSkillType.S3,
-                    HeroSkillType.S4
+                skillIDs: [
+                    "81",
                 ],
                 scores: 80,
             },
@@ -305,11 +275,8 @@ const heroMap: Map<string, BasicHeroAttribute> = new Map([
                 basicCriticalStrikeRate: 1,
                 basicCriticalStrike: 150,
 
-                skills: [
-                    HeroSkillType.S1,
-                    HeroSkillType.S2,
-                    HeroSkillType.S3,
-                    HeroSkillType.S4
+                skillIDs: [
+                    "91",
                 ],
                 scores: 80,
             },
@@ -333,11 +300,8 @@ const heroMap: Map<string, BasicHeroAttribute> = new Map([
                 basicCriticalStrikeRate: 1,
                 basicCriticalStrike: 150,
 
-                skills: [
-                    HeroSkillType.S1,
-                    HeroSkillType.S2,
-                    HeroSkillType.S3,
-                    HeroSkillType.S4
+                skillIDs: [
+                    "101",
                 ],
                 scores: 80,
             },
@@ -361,11 +325,8 @@ const heroMap: Map<string, BasicHeroAttribute> = new Map([
                 basicCriticalStrikeRate: 1,
                 basicCriticalStrike: 150,
 
-                skills: [
-                    HeroSkillType.S1,
-                    HeroSkillType.S2,
-                    HeroSkillType.S3,
-                    HeroSkillType.S4
+                skillIDs: [
+                    "111",
                 ],
                 scores: 80,
             },
@@ -389,11 +350,8 @@ const heroMap: Map<string, BasicHeroAttribute> = new Map([
                 basicCriticalStrikeRate: 1,
                 basicCriticalStrike: 150,
 
-                skills: [
-                    HeroSkillType.S1,
-                    HeroSkillType.S2,
-                    HeroSkillType.S3,
-                    HeroSkillType.S4
+                skillIDs: [
+                    "121",
                 ],
                 scores: 80,
             },
@@ -417,11 +375,8 @@ const heroMap: Map<string, BasicHeroAttribute> = new Map([
                 basicCriticalStrikeRate: 1,
                 basicCriticalStrike: 150,
 
-                skills: [
-                    HeroSkillType.S1,
-                    HeroSkillType.S2,
-                    HeroSkillType.S3,
-                    HeroSkillType.S4
+                skillIDs: [
+                    "131",
                 ],
                 scores: 80,
             },
@@ -445,11 +400,8 @@ const heroMap: Map<string, BasicHeroAttribute> = new Map([
                 basicCriticalStrikeRate: 1,
                 basicCriticalStrike: 150,
 
-                skills: [
-                    HeroSkillType.S1,
-                    HeroSkillType.S2,
-                    HeroSkillType.S3,
-                    HeroSkillType.S4
+                skillIDs: [
+                    "141",
                 ],
                 scores: 80,
             },
@@ -463,7 +415,7 @@ const heroMap: Map<string, BasicHeroAttribute> = new Map([
             basicAttribute: {
                 serialNumber: "16",
                 name: "吕蒙",
-                role: RoleType.crossbowman,
+                role: RoleType.mage,
                 leval: 1,
                 imageName: "lvmeng",
                 basicAttack: 60,
@@ -473,11 +425,8 @@ const heroMap: Map<string, BasicHeroAttribute> = new Map([
                 basicCriticalStrikeRate: 1,
                 basicCriticalStrike: 150,
 
-                skills: [
-                    HeroSkillType.S1,
-                    HeroSkillType.S2,
-                    HeroSkillType.S3,
-                    HeroSkillType.S4
+                skillIDs: [
+                    "151",
                 ],
                 scores: 80,
             },
@@ -501,11 +450,8 @@ const heroMap: Map<string, BasicHeroAttribute> = new Map([
                 basicCriticalStrikeRate: 1,
                 basicCriticalStrike: 150,
 
-                skills: [
-                    HeroSkillType.S1,
-                    HeroSkillType.S2,
-                    HeroSkillType.S3,
-                    HeroSkillType.S4
+                skillIDs: [
+                    "161",
                 ],
                 scores: 80,
             },
@@ -529,11 +475,8 @@ const heroMap: Map<string, BasicHeroAttribute> = new Map([
                 basicCriticalStrikeRate: 1,
                 basicCriticalStrike: 150,
 
-                skills: [
-                    HeroSkillType.S1,
-                    HeroSkillType.S2,
-                    HeroSkillType.S3,
-                    HeroSkillType.S4
+                skillIDs: [
+                    "171",
                 ],
                 scores: 80,
             },
@@ -557,11 +500,8 @@ const heroMap: Map<string, BasicHeroAttribute> = new Map([
                 basicCriticalStrikeRate: 1,
                 basicCriticalStrike: 150,
 
-                skills: [
-                    HeroSkillType.S1,
-                    HeroSkillType.S2,
-                    HeroSkillType.S3,
-                    HeroSkillType.S4
+                skillIDs: [
+                    "181",
                 ],
                 scores: 80,
             },

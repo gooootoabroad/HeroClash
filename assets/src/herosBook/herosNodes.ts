@@ -100,7 +100,7 @@ function createHeroNode(heroAttribute: BasicHeroAttribute): Node {
     size.set(150, 150);
     uiTransform.setContentSize(size);
 
-    // 调整按钮颜色
+    // 调整图片
     sprite.sizeMode = Sprite.SizeMode.CUSTOM;
     let imagePath: string = "heros/" + heroAttribute.basicAttribute.imageName + "/spriteFrame";
     resources.load(imagePath, SpriteFrame, (err, spriteFrame) => {

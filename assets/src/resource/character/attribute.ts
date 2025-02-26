@@ -15,7 +15,7 @@ export interface CharacterAttribute {
     basicCriticalStrikeRate: number; // 基础暴击率
     basicCriticalStrike: number;    // 基础暴击伤害
 
-    skills: HeroSkillType[];        // 技能栏
+    skillIDs: string[];             // 技能ID列表
     scores: number;                 // 分值，用于计算战力
 }
 
@@ -49,12 +49,4 @@ export enum NationType {
     shuguo = "shu", // 蜀国
     wuguo = "wu",   // 吴国
     qunxiong = "qun",   //群雄
-}
-
-// 人物技能定义 TODO：待补充
-export enum HeroSkillType {
-    S1 = "S1",
-    S2 = "S2",
-    S3 = "S3",
-    S4 = "S4",
 }
