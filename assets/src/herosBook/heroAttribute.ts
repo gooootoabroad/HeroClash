@@ -29,18 +29,47 @@ export class heroAttribute extends Component {
     // 人物列传
     private heroIntroductionLabel: Label = null;
 
+    // 基础生命值节点
+    private heroBasicHealthNode: Node = null;
     // 基础生命值
     private heroBasicHealthLabel: Label = null;
-    // 基础攻击力
+    // 基础生命值说明
+    private heroBasicHealthDesLabel: Label = null;
+
+    // 基础攻击力节点
+    private heroBasicAttackNode: Node = null;
+    // 基础攻击力值
     private heroBasicAttackLabel: Label = null;
-    // 基础防御力
+    // 基础攻击力说明
+    private heroBasicAttackDesLabel: Label = null;
+
+    // 基础防御力节点
+    private heroBasicDefenseNode: Node = null;
+    // 基础防御力值
     private heroBasicDefenseLabel: Label = null;
-    // 基础攻击速度
+    // 基础防御力说明
+    private heroBasicDefenseDesLabel: Label = null;
+
+    // 基础攻击速度节点
+    private heroBasicAttackSpeedNode: Node = null;
+    // 基础攻击速度值
     private heroBasicAttackSpeedLabel: Label = null;
-    // 基础暴击率
+    // 基础攻击速度说明
+    private heroBasicAttackSpeedDesLabel: Label = null;
+
+    // 基础暴击率值
+    private heroBasicCriticalStrikeRateNode: Node = null;
+    // 基础暴击率值
     private heroBasicCriticalStrikeRateLabel: Label = null;
-    // 基础暴击伤害
+    // 基础暴击率说明
+    private heroBasicCriticalStrikeRateDesLabel: Label = null;
+
+    // 基础暴击伤害节点
+    private heroBasicCriticalStrikeNode: Node = null;
+    // 基础暴击伤害值
     private heroBasicCriticalStrikeLabel: Label = null;
+    // 基础暴击伤害说明
+    private heroBasicCriticalStrikeDesLabel: Label = null;
 
     // 技能
     private heroSkillsContentNode: Node = null;
@@ -61,12 +90,29 @@ export class heroAttribute extends Component {
 
         this.heroIntroductionLabel = this.node.getChildByName("Attribute").getChildByName("Introduction").getComponentInChildren(Label);
 
-        this.heroBasicHealthLabel = this.node.getChildByName("Attribute").getChildByName("BasicAttribute").getChildByName("BasicHealth").getComponentInChildren(Label);
-        this.heroBasicAttackLabel = this.node.getChildByName("Attribute").getChildByName("BasicAttribute").getChildByName("BasicAttack").getComponentInChildren(Label);
-        this.heroBasicDefenseLabel = this.node.getChildByName("Attribute").getChildByName("BasicAttribute").getChildByName("BasicDefense").getComponentInChildren(Label);
-        this.heroBasicAttackSpeedLabel = this.node.getChildByName("Attribute").getChildByName("BasicAttribute").getChildByName("BasicAttackSpeed").getComponentInChildren(Label);
-        this.heroBasicCriticalStrikeRateLabel = this.node.getChildByName("Attribute").getChildByName("BasicAttribute").getChildByName("BasicCriticalStrikeRate").getComponentInChildren(Label);
-        this.heroBasicCriticalStrikeLabel = this.node.getChildByName("Attribute").getChildByName("BasicAttribute").getChildByName("BasicCriticalStrike").getComponentInChildren(Label);
+        this.heroBasicHealthNode = this.node.getChildByName("Attribute").getChildByName("BasicAttribute").getChildByName("BasicHealth");
+        this.heroBasicHealthLabel = this.heroBasicHealthNode.getChildByName("Text").getComponent(Label);
+        this.heroBasicHealthDesLabel = this.heroBasicHealthNode.getChildByName("Description").getComponent(Label);
+        
+        this.heroBasicAttackNode = this.node.getChildByName("Attribute").getChildByName("BasicAttribute").getChildByName("BasicAttack");
+        this.heroBasicAttackLabel = this.heroBasicAttackNode.getChildByName("Text").getComponent(Label);
+        this.heroBasicAttackDesLabel = this.heroBasicAttackNode.getChildByName("Description").getComponent(Label);
+        
+        this.heroBasicDefenseNode = this.node.getChildByName("Attribute").getChildByName("BasicAttribute").getChildByName("BasicDefense");
+        this.heroBasicDefenseLabel = this.heroBasicDefenseNode.getChildByName("Text").getComponent(Label);
+        this.heroBasicDefenseDesLabel = this.heroBasicDefenseNode.getChildByName("Description").getComponent(Label);
+        
+        this.heroBasicAttackSpeedNode = this.node.getChildByName("Attribute").getChildByName("BasicAttribute").getChildByName("BasicAttackSpeed");
+        this.heroBasicAttackSpeedLabel = this.heroBasicAttackSpeedNode.getChildByName("Text").getComponent(Label);
+        this.heroBasicAttackSpeedDesLabel = this.heroBasicAttackSpeedNode.getChildByName("Description").getComponent(Label);
+        
+        this.heroBasicCriticalStrikeRateNode = this.node.getChildByName("Attribute").getChildByName("BasicAttribute").getChildByName("BasicCriticalStrikeRate");
+        this.heroBasicCriticalStrikeRateLabel = this.heroBasicCriticalStrikeRateNode.getChildByName("Text").getComponent(Label);
+        this.heroBasicCriticalStrikeRateDesLabel = this.heroBasicCriticalStrikeRateNode.getChildByName("Description").getComponent(Label);
+        
+        this.heroBasicCriticalStrikeNode = this.node.getChildByName("Attribute").getChildByName("BasicAttribute").getChildByName("BasicCriticalStrike");
+        this.heroBasicCriticalStrikeLabel = this.heroBasicCriticalStrikeNode.getChildByName("Text").getComponent(Label);
+        this.heroBasicCriticalStrikeDesLabel = this.heroBasicCriticalStrikeNode.getChildByName("Description").getComponent(Label);
 
         this.heroSkillsContentNode = this.node.getChildByName("Attribute").getChildByName("Skill").getChildByName("view").getChildByName("content");
 
@@ -79,11 +125,98 @@ export class heroAttribute extends Component {
         );
 
         this.node.on(NodeEventType.TOUCH_END, this.onFullScreenClick, this);
+        
+        this.heroBasicHealthNode.on(NodeEventType.TOUCH_START, this.onHeroBasicHealthButtonStart, this);
+        this.heroBasicHealthNode.on(NodeEventType.TOUCH_END, this.onHeroBasicHealthButtonEnd, this);
+
+        this.heroBasicAttackNode.on(NodeEventType.TOUCH_START, this.onHeroBasicAttackButtonStart, this);
+        this.heroBasicAttackNode.on(NodeEventType.TOUCH_END, this.onHeroBasicAttackButtonEnd, this);
+
+        this.heroBasicDefenseNode.on(NodeEventType.TOUCH_START, this.onHeroBasicDefenseButtonStart, this);
+        this.heroBasicDefenseNode.on(NodeEventType.TOUCH_END, this.onHeroBasicDefenseButtonEnd, this);
+
+        this.heroBasicAttackSpeedNode.on(NodeEventType.TOUCH_START, this.onHeroBasicAttackSpeedButtonStart, this);
+        this.heroBasicAttackSpeedNode.on(NodeEventType.TOUCH_END, this.onHeroBasicAttackSpeedButtonEnd, this);
+
+        this.heroBasicCriticalStrikeRateNode.on(NodeEventType.TOUCH_START, this.onHeroBasicCriticalStrikeRateButtonStart, this);
+        this.heroBasicCriticalStrikeRateNode.on(NodeEventType.TOUCH_END, this.onHeroBasicCriticalStrikeRateButtonEnd, this);
+
+        this.heroBasicCriticalStrikeNode.on(NodeEventType.TOUCH_START, this.onHeroBasicCriticalStrikeButtonStart, this);
+        this.heroBasicCriticalStrikeNode.on(NodeEventType.TOUCH_END, this.onHeroBasicCriticalStrikeButtonEnd, this);
     }
 
     protected onDestroy(): void {
         this.node.off(NodeEventType.TOUCH_END, this.onFullScreenClick, this);
+        
+        this.heroBasicHealthNode.off(NodeEventType.TOUCH_START, this.onHeroBasicHealthButtonStart, this);
+        this.heroBasicHealthNode.off(NodeEventType.TOUCH_END, this.onHeroBasicHealthButtonEnd, this);
+
+        this.heroBasicAttackNode.off(NodeEventType.TOUCH_START, this.onHeroBasicAttackButtonStart, this);
+        this.heroBasicAttackNode.off(NodeEventType.TOUCH_END, this.onHeroBasicAttackButtonEnd, this);
+
+        
+        this.heroBasicDefenseNode.off(NodeEventType.TOUCH_START, this.onHeroBasicDefenseButtonStart, this);
+        this.heroBasicDefenseNode.off(NodeEventType.TOUCH_END, this.onHeroBasicDefenseButtonEnd, this);
+    
+        this.heroBasicAttackSpeedNode.off(NodeEventType.TOUCH_START, this.onHeroBasicAttackSpeedButtonStart, this);
+        this.heroBasicAttackSpeedNode.off(NodeEventType.TOUCH_END, this.onHeroBasicAttackSpeedButtonEnd, this);
+
+        this.heroBasicCriticalStrikeRateNode.off(NodeEventType.TOUCH_START, this.onHeroBasicCriticalStrikeRateButtonStart, this);
+        this.heroBasicCriticalStrikeRateNode.off(NodeEventType.TOUCH_END, this.onHeroBasicCriticalStrikeRateButtonEnd, this);
+
+        this.heroBasicCriticalStrikeNode.off(NodeEventType.TOUCH_START, this.onHeroBasicCriticalStrikeButtonStart, this);
+        this.heroBasicCriticalStrikeNode.off(NodeEventType.TOUCH_END, this.onHeroBasicCriticalStrikeButtonEnd, this);
+
     }
+
+    private onHeroBasicHealthButtonStart() {
+        this.heroBasicHealthDesLabel.string = "生命值";
+    }
+
+    private onHeroBasicHealthButtonEnd() {
+        this.heroBasicHealthDesLabel.string = "";
+    }
+
+    private onHeroBasicAttackButtonStart() {
+        this.heroBasicAttackDesLabel.string = "攻击力";
+    }
+
+    private onHeroBasicAttackButtonEnd() {
+        this.heroBasicAttackDesLabel.string = "";
+    }
+
+    private onHeroBasicDefenseButtonStart() {
+        this.heroBasicDefenseDesLabel.string = "防御力";
+    }
+
+    private onHeroBasicDefenseButtonEnd() {
+        this.heroBasicDefenseDesLabel.string = "";
+    }
+
+    private onHeroBasicAttackSpeedButtonStart() {
+        this.heroBasicAttackSpeedDesLabel.string = "攻击速度";
+    }
+
+    private onHeroBasicAttackSpeedButtonEnd() {
+        this.heroBasicAttackSpeedDesLabel.string = "";
+    }
+
+    private onHeroBasicCriticalStrikeRateButtonStart() {
+        this.heroBasicCriticalStrikeRateDesLabel.string = "暴击率";
+    }
+
+    private onHeroBasicCriticalStrikeRateButtonEnd() {
+        this.heroBasicCriticalStrikeRateDesLabel.string = "";
+    }
+
+    private onHeroBasicCriticalStrikeButtonStart() {
+        this.heroBasicCriticalStrikeDesLabel.string = "暴击伤害";
+    }
+
+    private onHeroBasicCriticalStrikeButtonEnd() {
+        this.heroBasicCriticalStrikeDesLabel.string = "";
+    }
+
     private viewHeroAttribute(serialNumber: string) {
         this.loadHeroAttribute(serialNumber);
         this.node.active = true;
