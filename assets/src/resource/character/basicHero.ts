@@ -84,7 +84,7 @@ export class BasicHero {
 
     // 获取技能列表
     public getSkills(): string[] {
-        return this.gHeroAttribute.basicAttribute.skills;
+        return this.gHeroAttribute.basicAttribute.skillIDs;
     }
 
     // 获取分值
