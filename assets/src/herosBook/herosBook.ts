@@ -1,7 +1,6 @@
 // 英雄图鉴
 
-import { _decorator, Button, Canvas, Component, director, EventTouch, HorizontalTextAlignment, Label, Layout, Material, math, Node, resources, Script, Sprite, SpriteAtlas, SpriteFrame, SystemEvent, UITransform, VerticalTextAlignment } from 'cc';
-import { BasicHeroAttribute, NationType } from "../resource/character/attribute";
+import { _decorator, Button, Component, Node } from 'cc';
 import { herosNodesInit } from './herosNodes';
 const { ccclass, property } = _decorator;
 

@@ -1,8 +1,7 @@
 /* 英雄图鉴节点 */
 import { getHeroMap } from "../resource/character/heroList";
 import { BasicHeroAttribute, NationType } from "../resource/character/attribute";
-import { Button, HorizontalTextAlignment, Label, Layers, math, Node, resources, Sprite, SpriteFrame, UITransform, VerticalTextAlignment } from "cc";
-import { GHeroLabelNodeName } from "./kind";
+import { instantiate, Label, Node, Prefab, resources, Sprite, SpriteFrame } from "cc";
 
 export type HeroNodesMap = Map<string, Node>;
 
@@ -81,47 +80,56 @@ function qunHerosNodesInit() {
 }
 
 // 加载一个英雄
-function createHeroNode(heroAttribute: BasicHeroAttribute): Node {
-    let parentNode = new Node("HeroButtonNode");
-    let uiTransform = parentNode.addComponent(UITransform);
-    let sprite = parentNode.addComponent(Sprite);
-    parentNode.addComponent(Button);
-    let labelNode = new Node(GHeroLabelNodeName);
-    let labelTransform = labelNode.addComponent(UITransform);
-    parentNode.addChild(labelNode);
+function createHeroNode(parentNode: Node, heroAttribute: BasicHeroAttribute): Node {
+    let heroNameLabel = parentNode.getChildByName("Name").getComponentInChildren(Label);
+    let heroImageSprite = parentNode.getChildByName("HeroFrame").getChildByName("InsideFrame1").getChildByName("InsideFrame2").getChildByName("Mask").getChildByName("HeroImage").getComponent(Sprite);
+    let heroLevalLabel = parentNode.getChildByName("Leval").getComponentInChildren(Label);
+    let heroRaritySprite = parentNode.getChildByName("Rarity").getComponent(Sprite);
+    let heroRoleSprite = parentNode.getChildByName("Role").getComponent(Sprite);
+    let heroNationSprite = parentNode.getChildByName("Nation").getComponent(Sprite);
 
-    // 注册事件，无需销毁，跟随程序结束而销毁
+    heroNameLabel.string = `${heroAttribute.basicAttribute.name}`;
 
-    // 设置节点层次
-    parentNode.layer = Layers.Enum.UI_2D;
-
-    // 调整按钮大小
-    let size = new math.Size;
-    size.set(150, 150);
-    uiTransform.setContentSize(size);
-
-    // 调整图片
-    sprite.sizeMode = Sprite.SizeMode.CUSTOM;
     let imagePath: string = "heros/" + heroAttribute.basicAttribute.imageName + "/spriteFrame";
     resources.load(imagePath, SpriteFrame, (err, spriteFrame) => {
-        sprite.spriteFrame = spriteFrame;
+        if (err) {
+            console.warn(err);
+            return;
+        }
+        heroImageSprite.spriteFrame = spriteFrame;
     });
 
-    // 设置label节点大小
-    labelTransform.setContentSize(size);
-    let label = labelNode.addComponent(Label);
+    heroLevalLabel.string = `LV.${heroAttribute.basicAttribute.leval}`;
 
-    // 设置颜色，黑色
-    let nameColor = new math.Color;
-    nameColor.set(0, 0, 0);
-    label.color = nameColor;
-    // 设置名称
-    label.string = `${heroAttribute.basicAttribute.name}`;
-    // 设置大小
-    label.fontSize = 10;
-    // 设置位置
-    label.horizontalAlign = HorizontalTextAlignment.LEFT;
-    label.verticalAlign = VerticalTextAlignment.TOP;
+    imagePath = "words/" + heroAttribute.rarity + "/spriteFrame";
+    resources.load(imagePath, SpriteFrame, (err, spriteFrame) => {
+        if (err) {
+            console.warn(err);
+            return;
+        }
+        heroRaritySprite.spriteFrame = spriteFrame;
+    });
+
+    imagePath = "roles/" + heroAttribute.basicAttribute.role + "/spriteFrame";
+    resources.load(imagePath, SpriteFrame, (err, spriteFrame) => {
+        if (err) {
+            console.warn(err);
+            return;
+        }
+        heroRoleSprite.spriteFrame = spriteFrame;
+    });
+
+
+    imagePath = "nations/" + heroAttribute.nation + "/spriteFrame";
+    resources.load(imagePath, SpriteFrame, (err, spriteFrame) => {
+        if (err) {
+            console.warn(err);
+            return;
+        }
+        heroNationSprite.spriteFrame = spriteFrame;
+
+    });
+
 
     return parentNode;
 }
