@@ -56,15 +56,15 @@ export class herosBook extends Component {
         this.canvasMap.set(HerosButtonType.Shu, { button: this.shuGuoHerosButton, canvas: this.shuHerosCanvas });
         this.canvasMap.set(HerosButtonType.Wu, { button: this.wuGuoHerosButton, canvas: this.wuHerosCanvas });
         this.canvasMap.set(HerosButtonType.Qun, { button: this.qunHerosButton, canvas: this.qunHerosCanvas });
-    }
-
-    start() {
+    
         this.canvasMap.forEach((canvasItem, keyButtonType) => {
-
             canvasItem.button.interactable = true;
             canvasItem.canvas.active = false;
 
         });
+    }
+
+    start() {
         this.change2AllHerosCanvas();
     }
 
@@ -101,7 +101,6 @@ export class herosBook extends Component {
                 canvasItem.canvas.active = false;
             }
         });
-
 
         // 禁用当前按钮并打开画布
         const currentStoreItem = this.canvasMap.get(buttonType);
