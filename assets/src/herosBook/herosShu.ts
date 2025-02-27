@@ -1,5 +1,5 @@
-import { _decorator, Component, EventTouch, instantiate, Node, Prefab } from 'cc';
-import { createHeroNode, GShuHeroNodesMap, HeroNodesMap } from "./herosNodes";
+import { _decorator, Component, instantiate, Node, Prefab } from 'cc';
+import { createHeroNode } from "./herosNodes";
 import { GEventTarget, GEventUpdateHeroBasicAttributeCanvas } from '../utils/event';
 import { BasicHeroAttribute, NationType } from '../resource/character/attribute';
 import { getHeroMap } from '../resource/character/heroList';
