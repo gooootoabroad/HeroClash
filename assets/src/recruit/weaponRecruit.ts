@@ -1,10 +1,10 @@
 // 武器抽卡模块
-import { _decorator, Node, Component, Event, Button, Label, Vec3, UITransform, Sprite, resources, SpriteFrame, Layers, math, Prefab, instantiate } from 'cc';
+import { _decorator, Node, Component, Event, Button, Label, Vec3, UITransform, Sprite, resources, SpriteFrame, Layers, math, Prefab, instantiate, Color } from 'cc';
 import { CurrencyType, Currency } from '../resource/currency/kind';
 import { CurrencyManager } from '../resource/currency/manager';
 import { WeaponryRarityType } from '../resource/weaponry/enum';
 import { getWeaponsByRarity } from '../resource/weaponry/weaponry';
-import { UserWeaponryAttribute, UserWeaponryManager } from '../resource/weaponry/manager';
+import { getRarityColor, UserWeaponryAttribute, UserWeaponryManager } from '../resource/weaponry/manager';
 import { GEventRecruitWeaponAnimationEnd, GEventRecruitWeaponAnimationStart, GEventShowRecruitPrizeEnd, GEventTarget } from '../utils/event';
 const { ccclass, property } = _decorator;
 
@@ -116,16 +116,24 @@ export class weaponRecruit extends Component {
         let serialNumberList: string[] = [];
         for (let time = 0; time < recruitInfo.times; time++) {
             // 抽卡
-            let serialNumber: string;
+            let serialNumberInfo: {
+                serialNumber: string;
+                rarity: WeaponryRarityType;
+            };
             if (this.recruitTimes + 1 >= legendWeaponsTimes) {
-                serialNumber = this.randomWeaponSerialNumber(WeaponryRarityType.Legend);
+                serialNumberInfo = this.randomWeaponSerialNumber(WeaponryRarityType.Legend);
+            } else {
+                serialNumberInfo = this.randomWeaponSerialNumber();
+            }
+
+            // 判断如果是传说武器，就清空抽奖记录
+            if (serialNumberInfo.rarity == WeaponryRarityType.Legend) {
                 this.recruitTimes = 0;
             } else {
-                serialNumber = this.randomWeaponSerialNumber();
                 this.recruitTimes += 1;
             }
 
-            serialNumberList.push(serialNumber);
+            serialNumberList.push(serialNumberInfo.serialNumber);
         }
 
         // 更新武器资源，后续考虑下失败了怎么还原资源
@@ -140,7 +148,7 @@ export class weaponRecruit extends Component {
     }
 
     // 抽卡。可以传入指定的稀有度
-    private randomWeaponSerialNumber(rarity?: WeaponryRarityType): string {
+    private randomWeaponSerialNumber(rarity?: WeaponryRarityType): { serialNumber: string; rarity: WeaponryRarityType } {
         if (!rarity) {
             // 先随机获取一个稀有度
             rarity = this.getRandomRarityByProbability();
@@ -149,7 +157,8 @@ export class weaponRecruit extends Component {
         let weaponsMap = getWeaponsByRarity(rarity);
         // 获取 map 中所有的 keys
         const keys = Array.from(weaponsMap.keys());
-        return this.getRandomItem(keys);
+        let serialNumber = this.getRandomItem(keys);
+        return { serialNumber, rarity };
     }
 
     // 随机获取武器品级
@@ -219,6 +228,8 @@ export class weaponRecruit extends Component {
             let uiTransform = node.getComponent(UITransform);
             uiTransform.width = nodeWidth;
             uiTransform.height = nodeHight;
+            uiTransform.anchorX = 0;
+            uiTransform.anchorY = 0;
             node.setParent(this.showPrizeNode);
             node.setPosition(new Vec3(firstNodePosX + (i % 5) * (nodeWidth + nodeDistanceX), firstNodePosY - Math.floor(i / 5) * (nodeHight + nodeDistanceY)));
             // 设置奖品名字
@@ -231,9 +242,24 @@ export class weaponRecruit extends Component {
             let label = labelNode.addComponent(Label);
             label.fontSize = 20;
             label.lineHeight = 30;
+            label.color = new Color().fromHEX(getRarityColor(weaponryAttributes[i].rarity));
             label.string = weaponryAttributes[i].name;
-            // 设置图片
-            let sprite = node.getChildByName("Sprite").getComponent(Sprite);
+            // 设置图片，预制体自带两个node，需要调整这两个node的大小与位置
+            let insideFrame1 = node.getChildByName("InsideFrame1");
+            insideFrame1.setPosition(new Vec3(2, 2));
+            let insideFrame1UI = insideFrame1.getComponent(UITransform);
+            insideFrame1UI.anchorX = 0;
+            insideFrame1UI.anchorY = 0;
+            insideFrame1UI.width = nodeWidth - 4;
+            insideFrame1UI.height = nodeHight - 4;
+            let insideFrame2 = insideFrame1.getChildByName("InsideFrame2");
+            insideFrame2.setPosition(new Vec3(2, 2));
+            let insideFrame2UI = insideFrame2.getComponent(UITransform);
+            insideFrame2UI.anchorX = 0;
+            insideFrame2UI.anchorY = 0;
+            insideFrame2UI.width = insideFrame1UI.width - 4;
+            insideFrame2UI.height = insideFrame1UI.height - 4;
+            let sprite = insideFrame2UI.getComponent(Sprite);
             sprite.sizeMode = Sprite.SizeMode.CUSTOM;
             // TODO 补充武器图片
             //let imagePath: string = "weapons/" + weaponryAttributes[i].imageName + "/spriteFrame";

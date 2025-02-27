@@ -1,7 +1,7 @@
 // 用户装备管理
 
 import { WeaponryAttribute } from "./base";
-import { WeaponryKind } from "./enum";
+import { RarityColor, WeaponryKind, WeaponryRarityType } from "./enum";
 import { Mutex } from "../../utils/mutex";
 import { getWeaponryBySerialNumber } from "./weaponry";
 import { generateUUID } from "../../utils/uuid";
@@ -184,5 +184,19 @@ export class UserWeaponryManager {
             console.error("save %s failed, error: %s", storageWeaponryID, error.message);
             throw new Error(`Failed to save weaponry: ${error.message}`);
         }
+    }
+}
+
+// 获取对应稀有度的颜色
+export function getRarityColor(rarityType: WeaponryRarityType): string {
+    switch (rarityType) {
+        case WeaponryRarityType.Epic:
+            return RarityColor.Epic.toString();
+        case WeaponryRarityType.Excellent:
+            return RarityColor.Excellent.toString();
+        case WeaponryRarityType.Legend:
+            return RarityColor.Legend.toString();
+        case WeaponryRarityType.Well:
+            return RarityColor.Well.toString();
     }
 }

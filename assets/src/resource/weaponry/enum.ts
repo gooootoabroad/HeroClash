@@ -11,3 +11,11 @@ export enum WeaponryKind {
     Weapon = "武器",  // 武器
     // 护甲 护腿 配饰等
 }
+
+// 稀有度名字颜色定义
+export enum RarityColor {
+    Well = "#FFFFFF", // 白色
+    Excellent = "#3550E2", // 蓝色
+    Epic = "#E0D11B", // 黄色
+    Legend = "#EB650D", // 棕色
+}
