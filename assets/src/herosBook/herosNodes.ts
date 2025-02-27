@@ -1,7 +1,6 @@
 /* 英雄图鉴节点 */
-import { getHeroMap } from "../resource/character/heroList";
-import { BasicHeroAttribute, NationType } from "../resource/character/attribute";
-import { instantiate, Label, Node, Prefab, resources, Sprite, SpriteFrame } from "cc";
+import { BasicHeroAttribute } from "../resource/character/attribute";
+import { Label, Node, resources, Sprite, SpriteFrame } from "cc";
 
 export type HeroNodesMap = Map<string, Node>;
 
