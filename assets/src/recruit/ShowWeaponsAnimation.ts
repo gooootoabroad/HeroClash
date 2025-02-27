@@ -1,8 +1,10 @@
 // 抽武器卡界面滚动展示武器
-import { _decorator, Component, EventTouch, Node, UITransform, Vec3, resources, SpriteFrame, Sprite, Label, AudioSource } from 'cc';
+import { _decorator, Component, EventTouch, Node, UITransform, Vec3, resources, SpriteFrame, Sprite, Label, AudioSource, Color } from 'cc';
 import { WeaponryAttribute } from '../resource/weaponry/base';
 import { getRecruitShowWeapons } from '../resource/weaponry/weaponry';
 import { GEventRecruitWeaponAnimationEnd, GEventRecruitWeaponAnimationStart, GEventShowRecruitPrizeEnd, GEventTarget } from '../utils/event';
+import { getRarityColor, UserWeaponryManager } from '../resource/weaponry/manager';
+import { WeaponryRarityType } from '../resource/weaponry/enum';
 const { ccclass, property } = _decorator;
 
 // 图片节点与武器信息结构体
@@ -60,7 +62,7 @@ export class ShowWeaponsAnimation extends Component {
             item.setPosition(new Vec3(i * (this.imageWidth + this.imageDistance), item.position.y));
             this.imageNodeList.push({ imageNode: item, weaponInfo: showWeaponsList[j] });
             // 添加武器图片
-            let sprite = item.getChildByName("Sprite").getComponent(Sprite);
+            let sprite = item.getChildByName("InsideFrame1").getChildByName("InsideFrame2").getComponent(Sprite);
             sprite.sizeMode = Sprite.SizeMode.CUSTOM;
             sprite.type = Sprite.Type.SIMPLE;
             let imagePath: string = "weapons/" + showWeaponsList[j].imageName + "/spriteFrame";
@@ -113,7 +115,7 @@ export class ShowWeaponsAnimation extends Component {
     private showWeaponInfo(weaponInfo: WeaponryAttribute) {
         // 基础信息展示
         let basicInfoNode = this.weaponUI.getChildByName("BasicInfo");
-        let weaponImageNode = basicInfoNode.getChildByName("Image").getChildByName("Sprite");
+        let weaponImageNode = basicInfoNode.getChildByName("Image").getChildByName("InsideFrame1").getChildByName("InsideFrame2");
         // 添加武器图片
         let sprite = weaponImageNode.getComponent(Sprite);
         sprite.sizeMode = Sprite.SizeMode.CUSTOM;
@@ -129,7 +131,9 @@ export class ShowWeaponsAnimation extends Component {
         });
 
         // 添加名字
-        basicInfoNode.getChildByName("Name").getComponent(Label).string = weaponInfo.name;
+        let nameLabel = basicInfoNode.getChildByName("Name").getComponent(Label);
+        nameLabel.color = new Color().fromHEX(getRarityColor(weaponInfo.rarity));
+        nameLabel.string = weaponInfo.name;
         // 稀有度
         basicInfoNode.getChildByName("Rarity").getComponent(Label).string = weaponInfo.rarity.toString();
         // 分数
