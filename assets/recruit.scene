@@ -3305,8 +3305,8 @@
     "__prefab": null,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 400,
-      "height": 400
+      "width": 462,
+      "height": 1000
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -3336,12 +3336,12 @@
       "a": 255
     },
     "_spriteFrame": {
-      "__uuid__": "131649d9-993a-4cbc-8d25-74189e2fc376@f9941",
+      "__uuid__": "591b3d11-d293-4155-b95e-41848aa7b2ed@f9941",
       "__expectedType__": "cc.SpriteFrame"
     },
     "_type": 0,
     "_fillType": 0,
-    "_sizeMode": 0,
+    "_sizeMode": 1,
     "_fillCenter": {
       "__type__": "cc.Vec2",
       "x": 0,
@@ -3731,7 +3731,7 @@
     "propertyPath": [
       "_active"
     ],
-    "value": true
+    "value": false
   },
   {
     "__type__": "cc.AudioSource",
