@@ -116,7 +116,7 @@
       "a": 255
     },
     "_spriteFrame": null,
-    "_type": 1,
+    "_type": 0,
     "_fillType": 0,
     "_sizeMode": 0,
     "_fillCenter": {
@@ -183,6 +183,7 @@
       "__id__": 0
     },
     "fileId": "f8MIAqJrZNO6+WG77hYFYf",
+    "instance": null,
     "targetOverrides": null
   }
 ]
