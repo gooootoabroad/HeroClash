@@ -1,9 +1,8 @@
-import { _decorator, Component, instantiate, Node, resources, Sprite, SpriteFrame, tween, Vec2, Vec3 } from 'cc';
+import { _decorator, Component, instantiate, Label, Node, resources, Sprite, SpriteFrame, tween, Vec2, Vec3 } from 'cc';
 import { RoleType } from '../resource/character/attribute';
-import { BattleLauncher } from './BattleLauncher';
-import { MAC } from 'cc/env';
 import { play } from '../heroAnimation/play';
-import { character } from '../resource/character/base';
+import { deepCopy } from "../utils/copy";
+
 const { ccclass, property } = _decorator;
 
 
@@ -45,12 +44,12 @@ enum CharacterCampType {
     Role,
     Enemy
 }
-let GRoleArray: BattleCharacter[] = [
+let GHerosArray: BattleCharacter[] = [
     {
         index: 0,
         attribute: {
             id: "1",
-            name: "niuma",
+            name: "牛马神将",
             role: RoleType.warrior,
             imageName: "niuma",
             isLong: false,
@@ -58,7 +57,7 @@ let GRoleArray: BattleCharacter[] = [
             attack: 100,
             defense: 10,
             attackSpeed: 10,
-            criticalStrikeRate: 1,
+            criticalStrikeRate: 10,
             criticalStrike: 150,
 
             skillIDs: [],
@@ -70,7 +69,7 @@ let GRoleArray: BattleCharacter[] = [
         index: 1,
         attribute: {
             id: "2",
-            name: "niuma",
+            name: "牛马神将",
             role: RoleType.warrior,
             imageName: "niuma",
             isLong: false,
@@ -78,7 +77,7 @@ let GRoleArray: BattleCharacter[] = [
             attack: 100,
             defense: 10,
             attackSpeed: 11,
-            criticalStrikeRate: 1,
+            criticalStrikeRate: 20,
             criticalStrike: 150,
 
             skillIDs: [],
@@ -90,7 +89,7 @@ let GRoleArray: BattleCharacter[] = [
         index: 2,
         attribute: {
             id: "3",
-            name: "niuma",
+            name: "牛马神将",
             role: RoleType.warrior,
             imageName: "niuma",
             isLong: false,
@@ -98,7 +97,7 @@ let GRoleArray: BattleCharacter[] = [
             attack: 100,
             defense: 10,
             attackSpeed: 5,
-            criticalStrikeRate: 1,
+            criticalStrikeRate: 30,
             criticalStrike: 150,
 
             skillIDs: [],
@@ -110,7 +109,7 @@ let GRoleArray: BattleCharacter[] = [
         index: 3,
         attribute: {
             id: "4",
-            name: "niuma",
+            name: "牛马神将",
             role: RoleType.warrior,
             imageName: "niuma",
             isLong: false,
@@ -118,7 +117,7 @@ let GRoleArray: BattleCharacter[] = [
             attack: 100,
             defense: 10,
             attackSpeed: 3,
-            criticalStrikeRate: 1,
+            criticalStrikeRate: 40,
             criticalStrike: 150,
 
             skillIDs: [],
@@ -130,7 +129,7 @@ let GRoleArray: BattleCharacter[] = [
         index: 4,
         attribute: {
             id: "5",
-            name: "niuma",
+            name: "牛马神将",
             role: RoleType.warrior,
             imageName: "niuma",
             isLong: false,
@@ -138,7 +137,7 @@ let GRoleArray: BattleCharacter[] = [
             attack: 100,
             defense: 10,
             attackSpeed: 88,
-            criticalStrikeRate: 1,
+            criticalStrikeRate: 50,
             criticalStrike: 150,
 
             skillIDs: [],
@@ -153,7 +152,7 @@ let GEnemyArray: BattleCharacter[] = [
         index: 0,
         attribute: {
             id: "6",
-            name: "niuma",
+            name: "牛马神将",
             role: RoleType.warrior,
             imageName: "niuma",
             isLong: false,
@@ -161,7 +160,7 @@ let GEnemyArray: BattleCharacter[] = [
             attack: 100,
             defense: 10,
             attackSpeed: 9,
-            criticalStrikeRate: 1,
+            criticalStrikeRate: 10,
             criticalStrike: 150,
 
             skillIDs: [],
@@ -173,7 +172,7 @@ let GEnemyArray: BattleCharacter[] = [
         index: 1,
         attribute: {
             id: "7",
-            name: "niuma",
+            name: "牛马神将",
             role: RoleType.warrior,
             imageName: "niuma",
             isLong: false,
@@ -181,7 +180,7 @@ let GEnemyArray: BattleCharacter[] = [
             attack: 100,
             defense: 10,
             attackSpeed: 66,
-            criticalStrikeRate: 1,
+            criticalStrikeRate: 20,
             criticalStrike: 150,
 
             skillIDs: [],
@@ -193,7 +192,7 @@ let GEnemyArray: BattleCharacter[] = [
         index: 2,
         attribute: {
             id: "8",
-            name: "niuma",
+            name: "牛马神将",
             role: RoleType.warrior,
             imageName: "niuma",
             isLong: false,
@@ -201,7 +200,7 @@ let GEnemyArray: BattleCharacter[] = [
             attack: 100,
             defense: 10,
             attackSpeed: 77,
-            criticalStrikeRate: 1,
+            criticalStrikeRate: 30,
             criticalStrike: 150,
 
             skillIDs: [],
@@ -213,7 +212,7 @@ let GEnemyArray: BattleCharacter[] = [
         index: 3,
         attribute: {
             id: "9",
-            name: "niuma",
+            name: "牛马神将",
             role: RoleType.warrior,
             imageName: "niuma",
             isLong: false,
@@ -221,7 +220,7 @@ let GEnemyArray: BattleCharacter[] = [
             attack: 100,
             defense: 10,
             attackSpeed: 12,
-            criticalStrikeRate: 1,
+            criticalStrikeRate: 40,
             criticalStrike: 150,
 
             skillIDs: [],
@@ -233,7 +232,7 @@ let GEnemyArray: BattleCharacter[] = [
         index: 4,
         attribute: {
             id: "10",
-            name: "niuma",
+            name: "牛马神将",
             role: RoleType.warrior,
             imageName: "niuma",
             isLong: false,
@@ -241,7 +240,7 @@ let GEnemyArray: BattleCharacter[] = [
             attack: 100,
             defense: 10,
             attackSpeed: 11,
-            criticalStrikeRate: 1,
+            criticalStrikeRate: 50,
             criticalStrike: 150,
 
             skillIDs: [],
@@ -275,7 +274,7 @@ export class BattleFieldController extends Component {
     private gOrderIndex: number = 0;
     // 攻击队列被攻击者位置
     private gOrderTargetIndex: number = 0;
-    
+
     // 战斗英雄信息列表
     private gHerosArray: BattleCharacter[] = [];
     // 战斗英雄节点列表
@@ -318,16 +317,17 @@ export class BattleFieldController extends Component {
     }
 
     private _initCharacterAttribution() {
-        this.gHerosArray = GRoleArray;
-        this.gEnemiesArray = GEnemyArray;
-
+        this.gHerosArray = deepCopy(GHerosArray);
+        this.gEnemiesArray = deepCopy(GEnemyArray);
+        console.log(this.gHerosArray)
+        console.log(GHerosArray)
         for (let i = 0; i < 5; i++) {
             this.gOrderArray[i] = this.gHerosArray[i];
             this.gOrderArray[i + 5] = this.gEnemiesArray[i];
         }
 
         this.gCharacterCount = this.gOrderArray.length;
-        
+
         function sortFunc(speedA: BattleCharacter, speedB: BattleCharacter) { return speedB.attribute.attackSpeed - speedA.attribute.attackSpeed };
         // 降序排序
         this.gOrderArray.sort(sortFunc);
@@ -337,25 +337,13 @@ export class BattleFieldController extends Component {
     private _initHerosAnimation() {
         this.gHerosArray.forEach((character) => {
             let characterNode = this.node.getChildByName("Hero" + character.index);
+            // 初始化动画
             this.gHeroNodesArray[character.index] = characterNode;
-
-            // 初始化动画，现在只有牛马有动画
-            let characterSprite = characterNode.getComponent(Sprite);
-            if (character.attribute.name == "niuma") {
-                characterSprite.spriteFrame = null;
-                characterNode.getComponent(play).Init("niuma");;
-            } else {
-                // 加载人物图片
-                let imagePath = "heros/" + character.attribute.imageName + "_s2" + "/spriteFrame";
-                resources.load(imagePath, SpriteFrame, (err, spriteFrame) => {
-                    if (err) {
-                        console.warn(err);
-                        return;
-                    }
-                    characterSprite.spriteFrame = spriteFrame;
-                });
-            }
-
+            characterNode.getComponent(play).Init(character.attribute.imageName);;
+        
+            // 设置人物名称
+            let nameLabel = characterNode.getChildByName("Name").getComponent(Label);
+            nameLabel.string = character.attribute.name;
             // 设置人物血条
             let bloodSprite = characterNode.getChildByName("BloodBackground").getChildByName("Blood").getComponent(Sprite);
             let imagePath = "battle/" + "blood-green" + "/spriteFrame";
@@ -375,27 +363,30 @@ export class BattleFieldController extends Component {
         this.gEnemiesArray.forEach((character) => {
             let characterNode = this.node.getChildByName("Enemy" + character.index);
             this.gEnemyNodesArray[character.index] = characterNode;
-
-            // 初始化动画，现在只有牛马有动画
+            // 初始化动画
             let characterSprite = characterNode.getComponent(Sprite);
-            if (character.attribute.name == "niuma") {
-                characterSprite.spriteFrame = null;
-                characterNode.getComponent(play).Init("niuma");;
-            } else {
-                // 加载人物图片
-                let imagePath = "heros/" + character.attribute.imageName + "_s1" + "/spriteFrame";
-                resources.load(imagePath, SpriteFrame, (err, spriteFrame) => {
-                    if (err) {
-                        console.warn(err);
-                        return;
-                    }
-                    characterSprite.spriteFrame = spriteFrame;
-                });
-            }
+            characterSprite.spriteFrame = null;
+                characterNode.getComponent(play).Init(character.attribute.imageName);;
 
-            // 左右对称旋转人物
+            // 设置人物名称
+            let nameLabel = characterNode.getChildByName("Name").getComponent(Label);
+            nameLabel.string = character.attribute.name;
+            // 左右对称旋转人物，但是血条等不对称
             let originScale = characterNode.scale;
             characterNode.setScale(new Vec3(-originScale.x, originScale.y, originScale.z));
+            let bloodNode = characterNode.getChildByName("BloodBackground");
+            originScale = bloodNode.scale;
+            bloodNode.setScale(new Vec3(-originScale.x, originScale.y, originScale.z));
+            let angerNode = characterNode.getChildByName("AngerBackground");
+            originScale = angerNode.scale;
+            angerNode.setScale(new Vec3(-originScale.x, originScale.y, originScale.z));
+            let hurtNode = characterNode.getChildByName("Hurt");
+            originScale = hurtNode.scale;
+            hurtNode.setScale(new Vec3(-originScale.x, originScale.y, originScale.z));
+            let NameNode = characterNode.getChildByName("Name");
+            originScale = NameNode.scale;
+            NameNode.setScale(new Vec3(-originScale.x, originScale.y, originScale.z));
+
             // 设置人物血条
             let bloodSprite = characterNode.getChildByName("BloodBackground").getChildByName("Blood").getComponent(Sprite);
             let imagePath = "battle/" + "blood-red" + "/spriteFrame";
@@ -411,7 +402,7 @@ export class BattleFieldController extends Component {
     }
     // 下一次攻击
     private _nextAttack() {
-        if (this.gOrderIndex > this.gCharacterCount -1) {
+        if (this.gOrderIndex > this.gCharacterCount - 1) {
             this.gOrderIndex = 0;
         }
 
@@ -469,7 +460,7 @@ export class BattleFieldController extends Component {
                         }
                     }
                 }
-         
+
                 // TODO:如果没有攻击对象了，那么说明过了关卡，或者英雄死光了
                 if (targetCharacter == null) {
                     console.log("过关");
@@ -488,19 +479,23 @@ export class BattleFieldController extends Component {
                 if (attacker.camp == CharacterCampType.Enemy) {
                     attackerNode = this.gEnemyNodesArray[attacker.index];
                 }
-               console.log(attackerNode);
+
                 this.gOriginPosition.x = attackerNode.getPosition().x;
                 this.gOriginPosition.y = attackerNode.getPosition().y;
-            
+
                 var targetPos = new Vec2(0, 0);
                 targetPos.x = targetNode.getPosition().x;
                 targetPos.y = targetNode.getPosition().y;
-               
-                var callback = function() {
+
+                var callback = function () {
                     this._setAnimationState(attacker, CharacterStateType.ATTACK);
                 }.bind(this);
 
-                tween(attackerNode).to(0.5, {position: new Vec3(targetPos.x, targetPos.y, 0)}).call(callback).start();
+                if (attacker.camp == CharacterCampType.Role) {
+                    tween(attackerNode).to(0.5, { position: new Vec3(targetPos.x-40, targetPos.y, 0) }).call(callback).start();
+                } else {
+                    tween(attackerNode).to(0.5, { position: new Vec3(targetPos.x + 40, targetPos.y, 0) }).call(callback).start();
+                }
                 break;
             case CharacterStateType.ATTACK:
                 var attackerNode = this.gHeroNodesArray[attacker.index];
@@ -517,6 +512,8 @@ export class BattleFieldController extends Component {
                 // 暴击的攻击
                 var addAttack = isCritical ? attacker.attribute.attack * parseFloat((attacker.attribute.criticalStrike / 100).toFixed(2)) : 0;
 
+                // 原始属性
+                var originTargetCharacter = GHerosArray[this.gTargetCharacterIndex]
                 // 被攻击者
                 var targetCharacter = this.gHerosArray[this.gTargetCharacterIndex];
                 var targetNode = this.gHeroNodesArray[this.gTargetCharacterIndex];
@@ -524,6 +521,7 @@ export class BattleFieldController extends Component {
                 if (attacker.camp == CharacterCampType.Role) {
                     targetCharacter = this.gEnemiesArray[this.gTargetCharacterIndex];
                     targetNode = this.gEnemyNodesArray[this.gTargetCharacterIndex];
+                    originTargetCharacter = GEnemyArray[this.gTargetCharacterIndex];
                 }
                 // 被攻击者防御力
                 var targetDenfence = 0;
@@ -531,25 +529,31 @@ export class BattleFieldController extends Component {
                 // 最终的攻击力 = 攻击者攻击力 + 暴击 - 被攻击者防御力
                 attack = attacker.attribute.attack + addAttack - targetDenfence;
                 if (attack <= 0) attack = 0;
+
                 // 扣血
                 targetCharacter.attribute.health = targetCharacter.attribute.health - attack;
-                targetNode.getComponent("CharacterController").setBlood(targetCharacter.attribute.health);
+                // 设置受伤值
+                targetNode.getComponent("CharacterController").setHurt(attack);
+                // 设置血条
+                targetNode.getComponent("CharacterController").setBlood(targetCharacter.attribute.health / originTargetCharacter.attribute.health);
+
+                console.log("targetCharacter :%s ,_tmptargetCharacter: %s", targetCharacter.attribute.health, originTargetCharacter.attribute.health)
                 if (targetCharacter.attribute.health <= 0) {
                     // 角色死亡
                     targetCharacter.attribute.health = 0;
                     targetCharacter.state = CharacterStateType.DIE;
                     this.gOrderArray[this.gOrderTargetIndex].state = CharacterStateType.DIE;
                     this._setAnimationState(targetCharacter, CharacterStateType.DIE);
-              
+
                     targetNode.active = false;
                 }
                 // 回到原来位置
-                var callback = function() {
+                var callback = function () {
                     // 进入等待状态
                     this._setAnimationState(attacker, CharacterStateType.WAIT);
                 }.bind(this);
-                tween(attackerNode).to(0.5, {position: new Vec3(this.gOriginPosition.x,this.gOriginPosition.y,0)}).call(callback).start();                
-                
+                tween(attackerNode).to(0.5, { position: new Vec3(this.gOriginPosition.x, this.gOriginPosition.y, 0) }).call(callback).start();
+
 
                 break;
             case CharacterStateType.DIE:
