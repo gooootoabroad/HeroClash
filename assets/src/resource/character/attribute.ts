@@ -7,6 +7,7 @@ export interface CharacterAttribute {
     role: RoleType;                 // 职业
     leval: number;                  // 等级
     imageName: string;              // 图像名称
+    isLong: boolean;               // 是否远程攻击，法师也有可能是近战法师
 
     basicHealth: number;            // 基础生命值
     basicAttack: number;            // 基础攻击力
