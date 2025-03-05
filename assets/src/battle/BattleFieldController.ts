@@ -337,9 +337,13 @@ export class BattleFieldController extends Component {
     private _initHerosAnimation() {
         this.gHerosArray.forEach((character) => {
             let characterNode = this.node.getChildByName("Hero" + character.index);
-            // 初始化动画
             this.gHeroNodesArray[character.index] = characterNode;
-            characterNode.getComponent(play).Init(character.attribute.imageName);;
+
+            // 初始化动画
+            let bodyNode = characterNode.getChildByName("Body");
+            let bodySprite = bodyNode.getComponent(Sprite);
+            bodySprite.spriteFrame = null;
+            bodyNode.getComponent(play).Init(character.attribute.imageName);
         
             // 设置人物名称
             let nameLabel = characterNode.getChildByName("Name").getComponent(Label);
@@ -363,29 +367,19 @@ export class BattleFieldController extends Component {
         this.gEnemiesArray.forEach((character) => {
             let characterNode = this.node.getChildByName("Enemy" + character.index);
             this.gEnemyNodesArray[character.index] = characterNode;
-            // 初始化动画
-            let characterSprite = characterNode.getComponent(Sprite);
-            characterSprite.spriteFrame = null;
-                characterNode.getComponent(play).Init(character.attribute.imageName);;
 
+            // 初始化动画
+            let bodyNode = characterNode.getChildByName("Body");
+            let bodySprite = bodyNode.getComponent(Sprite);
+            bodySprite.spriteFrame = null;
+            bodyNode.getComponent(play).Init(character.attribute.imageName);
+            
             // 设置人物名称
             let nameLabel = characterNode.getChildByName("Name").getComponent(Label);
             nameLabel.string = character.attribute.name;
-            // 左右对称旋转人物，但是血条等不对称
-            let originScale = characterNode.scale;
-            characterNode.setScale(new Vec3(-originScale.x, originScale.y, originScale.z));
-            let bloodNode = characterNode.getChildByName("BloodBackground");
-            originScale = bloodNode.scale;
-            bloodNode.setScale(new Vec3(-originScale.x, originScale.y, originScale.z));
-            let angerNode = characterNode.getChildByName("AngerBackground");
-            originScale = angerNode.scale;
-            angerNode.setScale(new Vec3(-originScale.x, originScale.y, originScale.z));
-            let hurtNode = characterNode.getChildByName("Hurt");
-            originScale = hurtNode.scale;
-            hurtNode.setScale(new Vec3(-originScale.x, originScale.y, originScale.z));
-            let NameNode = characterNode.getChildByName("Name");
-            originScale = NameNode.scale;
-            NameNode.setScale(new Vec3(-originScale.x, originScale.y, originScale.z));
+            // 左右对称旋转人物图片，但是血条等不对称
+            let originScale = bodyNode.scale;
+            bodyNode.setScale(new Vec3(-originScale.x, originScale.y, originScale.z));
 
             // 设置人物血条
             let bloodSprite = characterNode.getChildByName("BloodBackground").getChildByName("Blood").getComponent(Sprite);
@@ -503,7 +497,7 @@ export class BattleFieldController extends Component {
                     attackerNode = this.gEnemyNodesArray[attacker.index];
                 }
                 // 开始播放攻击动画
-                attackerNode.getComponent(play).playAnimation("attack");
+                attackerNode.getChildByName("Body").getComponent(play).playAnimation("attack");
                 // 计算血量
                 // 攻击者攻击力
                 var attack = 0;
