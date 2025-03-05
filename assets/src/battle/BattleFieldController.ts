@@ -1,4 +1,4 @@
-import { _decorator, Component, instantiate, Label, Node, resources, Sprite, SpriteFrame, tween, Vec2, Vec3 } from 'cc';
+import { _decorator, Component, dragonBones, instantiate, Label, Node, resources, Sprite, SpriteFrame, tween, Vec2, Vec3 } from 'cc';
 import { RoleType } from '../resource/character/attribute';
 import { play } from '../heroAnimation/play';
 import { deepCopy } from "../utils/copy";
@@ -305,13 +305,11 @@ export class battleFieldController extends Component {
 
         // 游戏开始
         this.gOrderIndex = 0;
-
-        // 攻击开始
-        this._nextAttack();
     }
 
     start() {
-
+        // 攻击开始
+        this._nextAttack();
     }
 
     update(deltaTime: number) {
@@ -339,12 +337,32 @@ export class battleFieldController extends Component {
         this.gHerosArray.forEach((character) => {
             let characterNode = this.node.getChildByName("Hero" + character.index);
             this.gHeroNodesArray[character.index] = characterNode;
-
-            // 初始化动画
             let bodyNode = characterNode.getChildByName("Body");
-            let bodySprite = bodyNode.getComponent(Sprite);
-            bodySprite.spriteFrame = null;
-            bodyNode.getComponent(play).Init(character.attribute.imageName);
+            // 初始化动画
+            let armatureDisplay = bodyNode.getComponent(dragonBones.ArmatureDisplay);
+            let skePath = "dragon/" + character.attribute.imageName + "/" + character.attribute.imageName + "_ske";
+            resources.load(skePath, dragonBones.DragonBonesAsset, (err, skeAsset) => {
+                if (err) {
+                    console.error("Failed to load ske.json:", err);
+                    return;
+                }
+                // 2. 加载纹理数据：tes.json
+                let texPath = "dragon/" + character.attribute.imageName + "/" + character.attribute.imageName + "_tex";
+                resources.load(texPath, dragonBones.DragonBonesAtlasAsset, (err, atlasAsset) => {
+                    if (err) {
+                        console.error("Failed to load tes.json:", err);
+                        return;
+                    }
+                    // 设置加载的资源到 ArmatureDisplay
+                    armatureDisplay.dragonAsset = skeAsset;
+                    armatureDisplay.dragonAtlasAsset = atlasAsset;
+
+                    // 骨骼名称
+                    armatureDisplay.armatureName = "Armature";
+                    // 播放动画
+                    armatureDisplay.playAnimation("standby", 0);
+                })
+            })
 
             // 设置人物名称
             let nameLabel = characterNode.getChildByName("Name").getComponent(Label);
@@ -371,16 +389,37 @@ export class battleFieldController extends Component {
 
             // 初始化动画
             let bodyNode = characterNode.getChildByName("Body");
-            let bodySprite = bodyNode.getComponent(Sprite);
-            bodySprite.spriteFrame = null;
-            bodyNode.getComponent(play).Init(character.attribute.imageName);
+            let armatureDisplay = bodyNode.getComponent(dragonBones.ArmatureDisplay);
+            let skePath = "dragon/" + character.attribute.imageName + "/" + character.attribute.imageName + "_ske";
+            resources.load(skePath, dragonBones.DragonBonesAsset, (err, skeAsset) => {
+                if (err) {
+                    console.error("Failed to load ske.json:", err);
+                    return;
+                }
+                // 2. 加载纹理数据：tes.json
+                let texPath = "dragon/" + character.attribute.imageName + "/" + character.attribute.imageName + "_tex";
+                resources.load(texPath, dragonBones.DragonBonesAtlasAsset, (err, atlasAsset) => {
+                    if (err) {
+                        console.error("Failed to load tes.json:", err);
+                        return;
+                    }
+                    // 设置加载的资源到 ArmatureDisplay
+                    armatureDisplay.dragonAsset = skeAsset;
+                    armatureDisplay.dragonAtlasAsset = atlasAsset;
+
+                    // 骨骼名称
+                    armatureDisplay.armatureName = "Armature";
+                    // 播放动画
+                    armatureDisplay.playAnimation("standby", 0);
+                })
+            })
+            // 左右对称旋转人物图片，但是血条等不对称
+            let originScale = bodyNode.scale;
+            bodyNode.setScale(new Vec3(-originScale.x, originScale.y, originScale.z));
 
             // 设置人物名称
             let nameLabel = characterNode.getChildByName("Name").getComponent(Label);
             nameLabel.string = character.attribute.name;
-            // 左右对称旋转人物图片，但是血条等不对称
-            let originScale = bodyNode.scale;
-            bodyNode.setScale(new Vec3(-originScale.x, originScale.y, originScale.z));
 
             // 设置人物血条
             let bloodSprite = characterNode.getChildByName("BloodBackground").getChildByName("Blood").getComponent(Sprite);
@@ -420,6 +459,7 @@ export class battleFieldController extends Component {
         switch (state) {
             case CharacterStateType.WAIT:
                 this.gOrderIndex = this.gOrderIndex + 1;
+                console.log("%s,%s", attacker.attribute.id,Date())
                 this._nextAttack();
                 break;
             case CharacterStateType.RUN:
@@ -487,9 +527,9 @@ export class battleFieldController extends Component {
                 }.bind(this);
 
                 if (attacker.camp == CharacterCampType.Hero) {
-                    tween(attackerNode).to(0.5, { position: new Vec3(targetPos.x - 40, targetPos.y, 0) }).call(callback).start();
+                    tween(attackerNode).to(0.3, { position: new Vec3(targetPos.x - 40, targetPos.y, 0) }).call(callback).start();
                 } else {
-                    tween(attackerNode).to(0.5, { position: new Vec3(targetPos.x + 40, targetPos.y, 0) }).call(callback).start();
+                    tween(attackerNode).to(0.3, { position: new Vec3(targetPos.x + 40, targetPos.y, 0) }).call(callback).start();
                 }
                 break;
             case CharacterStateType.ATTACK:
@@ -511,43 +551,46 @@ export class battleFieldController extends Component {
                 }
 
                 // 开始播放攻击动画
-                attackerNode.getChildByName("Body").getComponent(play).playAnimation("attack");
-                
-                // 计算血量
-                // 是否暴击
-                var isCritical = Math.random() < parseFloat((attacker.attribute.criticalStrikeRate / 100).toFixed(2));
-                // 最终攻击力 = 攻击力-防御力
-                var attack = isCritical ? (attacker.attribute.attack * parseFloat((attacker.attribute.criticalStrike / 100).toFixed(2)) - targetCharacter.attribute.defense): (attacker.attribute.attack -targetCharacter.attribute.defense);
+                var armatureDisplay = attackerNode.getChildByName("Body").getComponent(dragonBones.ArmatureDisplay);
+                armatureDisplay.playAnimation("attack", 1);
+                armatureDisplay.once(dragonBones.EventObject.COMPLETE, (event) => {
+                    // 计算血量
+                    // 是否暴击
+                    var isCritical = Math.random() < parseFloat((attacker.attribute.criticalStrikeRate / 100).toFixed(2));
+                    // 最终攻击力 = 攻击力-防御力
+                    var attack = isCritical ? (attacker.attribute.attack * parseFloat((attacker.attribute.criticalStrike / 100).toFixed(2)) - targetCharacter.attribute.defense) : (attacker.attribute.attack - targetCharacter.attribute.defense);
 
-                if (attack <= 0) attack = 0;
+                    if (attack <= 0) attack = 0;
 
-                // 扣血
-                targetCharacter.attribute.health = targetCharacter.attribute.health - attack;
-                // 设置受伤值
-                targetNode.getComponent(characterController).setHurt(attack);
-                // 设置血条
-                targetNode.getComponent(characterController).setBlood(targetCharacter.attribute.health / originTargetCharacter.attribute.health);
+                    // 扣血
+                    targetCharacter.attribute.health = targetCharacter.attribute.health - attack;
+                    // 设置受伤值
+                    targetNode.getComponent(characterController).setHurt(attack);
+                    // 设置血条
+                    targetNode.getComponent(characterController).setBlood(targetCharacter.attribute.health / originTargetCharacter.attribute.health);
 
-                if (targetCharacter.attribute.health <= 0) {
-                    // 角色死亡
-                    targetCharacter.attribute.health = 0;
-                    targetCharacter.state = CharacterStateType.DIE;
-                    this.gOrderArray[this.gOrderTargetIndex].state = CharacterStateType.DIE;
-                    this._setAnimationState(targetCharacter, CharacterStateType.DIE);
+                    if (targetCharacter.attribute.health <= 0) {
+                        // 角色死亡
+                        targetCharacter.attribute.health = 0;
+                        targetCharacter.state = CharacterStateType.DIE;
 
-                    targetNode.active = false;
-                }
-                // 回到原来位置
-                var callback = function () {
-                    // 进入等待状态
-                    this._setAnimationState(attacker, CharacterStateType.WAIT);
-                }.bind(this);
-                tween(attackerNode).to(0.5, { position: new Vec3(this.gOriginPosition.x, this.gOriginPosition.y, 0) }).call(callback).start();
+                        this.gOrderArray[this.gOrderTargetIndex].state = CharacterStateType.DIE;
+                        this._setAnimationState(targetCharacter, CharacterStateType.DIE);
 
+                        targetNode.active = false;
+                    }
+
+                    // 回到原来位置
+                    var callback = function () {
+                        // 进入等待状态
+                        this._setAnimationState(attacker, CharacterStateType.WAIT);
+                    }.bind(this);
+                    tween(attackerNode).to(0.3, { position: new Vec3(this.gOriginPosition.x, this.gOriginPosition.y, 0) }).call(callback).start();
+
+                }, this);
 
                 break;
             case CharacterStateType.DIE:
-
                 break;
             default:
                 break;
