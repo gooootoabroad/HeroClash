@@ -29,7 +29,7 @@ export class bonesControl extends Component {
                 // 骨骼名称
                 this.armatureDisplay.armatureName = "Armature";
                 // 播放动画
-                this.armatureDisplay.playAnimation("attack", 1);
+                this.armatureDisplay.playAnimation("ability1", 0);
             })
         })
 
