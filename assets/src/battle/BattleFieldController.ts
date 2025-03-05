@@ -2,6 +2,7 @@ import { _decorator, Component, instantiate, Label, Node, resources, Sprite, Spr
 import { RoleType } from '../resource/character/attribute';
 import { play } from '../heroAnimation/play';
 import { deepCopy } from "../utils/copy";
+import { characterController } from "./characterController";
 
 const { ccclass, property } = _decorator;
 
@@ -41,9 +42,10 @@ interface BattleCharacterAttribute {
 
 // 阵营
 enum CharacterCampType {
-    Role,
+    Hero,
     Enemy
 }
+
 let GHerosArray: BattleCharacter[] = [
     {
         index: 0,
@@ -63,7 +65,7 @@ let GHerosArray: BattleCharacter[] = [
             skillIDs: [],
         },
         state: CharacterStateType.WAIT,
-        camp: CharacterCampType.Role
+        camp: CharacterCampType.Hero
     },
     {
         index: 1,
@@ -83,7 +85,7 @@ let GHerosArray: BattleCharacter[] = [
             skillIDs: [],
         },
         state: CharacterStateType.WAIT,
-        camp: CharacterCampType.Role
+        camp: CharacterCampType.Hero
     },
     {
         index: 2,
@@ -103,7 +105,7 @@ let GHerosArray: BattleCharacter[] = [
             skillIDs: [],
         },
         state: CharacterStateType.WAIT,
-        camp: CharacterCampType.Role
+        camp: CharacterCampType.Hero
     },
     {
         index: 3,
@@ -123,7 +125,7 @@ let GHerosArray: BattleCharacter[] = [
             skillIDs: [],
         },
         state: CharacterStateType.WAIT,
-        camp: CharacterCampType.Role
+        camp: CharacterCampType.Hero
     },
     {
         index: 4,
@@ -143,7 +145,7 @@ let GHerosArray: BattleCharacter[] = [
             skillIDs: [],
         },
         state: CharacterStateType.WAIT,
-        camp: CharacterCampType.Role
+        camp: CharacterCampType.Hero
     },
 ];
 let GEnemyArray: BattleCharacter[] = [
@@ -266,8 +268,8 @@ const GCharacterPosition: Map<string, any> = new Map([
     ["10", { x: -176, y: -154 }],
 ]);
 
-@ccclass('BattleFieldController')
-export class BattleFieldController extends Component {
+@ccclass('battleFieldController')
+export class battleFieldController extends Component {
     // 攻击顺序
     private gOrderArray: BattleCharacter[] = [];
     // 攻击队列目前运行的角色为止
@@ -319,8 +321,7 @@ export class BattleFieldController extends Component {
     private _initCharacterAttribution() {
         this.gHerosArray = deepCopy(GHerosArray);
         this.gEnemiesArray = deepCopy(GEnemyArray);
-        console.log(this.gHerosArray)
-        console.log(GHerosArray)
+
         for (let i = 0; i < 5; i++) {
             this.gOrderArray[i] = this.gHerosArray[i];
             this.gOrderArray[i + 5] = this.gEnemiesArray[i];
@@ -328,8 +329,8 @@ export class BattleFieldController extends Component {
 
         this.gCharacterCount = this.gOrderArray.length;
 
-        function sortFunc(speedA: BattleCharacter, speedB: BattleCharacter) { return speedB.attribute.attackSpeed - speedA.attribute.attackSpeed };
         // 降序排序
+        function sortFunc(speedA: BattleCharacter, speedB: BattleCharacter) { return speedB.attribute.attackSpeed - speedA.attribute.attackSpeed };
         this.gOrderArray.sort(sortFunc);
     }
 
@@ -344,7 +345,7 @@ export class BattleFieldController extends Component {
             let bodySprite = bodyNode.getComponent(Sprite);
             bodySprite.spriteFrame = null;
             bodyNode.getComponent(play).Init(character.attribute.imageName);
-        
+
             // 设置人物名称
             let nameLabel = characterNode.getChildByName("Name").getComponent(Label);
             nameLabel.string = character.attribute.name;
@@ -373,7 +374,7 @@ export class BattleFieldController extends Component {
             let bodySprite = bodyNode.getComponent(Sprite);
             bodySprite.spriteFrame = null;
             bodyNode.getComponent(play).Init(character.attribute.imageName);
-            
+
             // 设置人物名称
             let nameLabel = characterNode.getChildByName("Name").getComponent(Label);
             nameLabel.string = character.attribute.name;
@@ -425,7 +426,7 @@ export class BattleFieldController extends Component {
                 // 确定攻击对象，优先攻击前排，前排位置按照英雄数组顺序固定
                 var targetCharacter: BattleCharacter = null;
                 var targetNode: Node = null;
-                if (attacker.camp == CharacterCampType.Role) {
+                if (attacker.camp == CharacterCampType.Hero) {
                     for (let i = 0; i < this.gEnemiesArray.length; i++) {
                         if (this.gEnemiesArray[i].state != CharacterStateType.DIE) {
                             targetCharacter = this.gEnemiesArray[i];
@@ -485,8 +486,8 @@ export class BattleFieldController extends Component {
                     this._setAnimationState(attacker, CharacterStateType.ATTACK);
                 }.bind(this);
 
-                if (attacker.camp == CharacterCampType.Role) {
-                    tween(attackerNode).to(0.5, { position: new Vec3(targetPos.x-40, targetPos.y, 0) }).call(callback).start();
+                if (attacker.camp == CharacterCampType.Hero) {
+                    tween(attackerNode).to(0.5, { position: new Vec3(targetPos.x - 40, targetPos.y, 0) }).call(callback).start();
                 } else {
                     tween(attackerNode).to(0.5, { position: new Vec3(targetPos.x + 40, targetPos.y, 0) }).call(callback).start();
                 }
@@ -496,42 +497,37 @@ export class BattleFieldController extends Component {
                 if (attacker.camp == CharacterCampType.Enemy) {
                     attackerNode = this.gEnemyNodesArray[attacker.index];
                 }
-                // 开始播放攻击动画
-                attackerNode.getChildByName("Body").getComponent(play).playAnimation("attack");
-                // 计算血量
-                // 攻击者攻击力
-                var attack = 0;
-                // 是否暴击
-                var isCritical = Math.random() < parseFloat((attacker.attribute.criticalStrikeRate / 100).toFixed(2));
-                // 暴击的攻击
-                var addAttack = isCritical ? attacker.attribute.attack * parseFloat((attacker.attribute.criticalStrike / 100).toFixed(2)) : 0;
 
-                // 原始属性
+                // 被攻击者原始属性
                 var originTargetCharacter = GHerosArray[this.gTargetCharacterIndex]
                 // 被攻击者
                 var targetCharacter = this.gHerosArray[this.gTargetCharacterIndex];
                 var targetNode = this.gHeroNodesArray[this.gTargetCharacterIndex];
 
-                if (attacker.camp == CharacterCampType.Role) {
+                if (attacker.camp == CharacterCampType.Hero) {
                     targetCharacter = this.gEnemiesArray[this.gTargetCharacterIndex];
                     targetNode = this.gEnemyNodesArray[this.gTargetCharacterIndex];
                     originTargetCharacter = GEnemyArray[this.gTargetCharacterIndex];
                 }
-                // 被攻击者防御力
-                var targetDenfence = 0;
-                targetDenfence = targetCharacter.attribute.defense;
-                // 最终的攻击力 = 攻击者攻击力 + 暴击 - 被攻击者防御力
-                attack = attacker.attribute.attack + addAttack - targetDenfence;
+
+                // 开始播放攻击动画
+                attackerNode.getChildByName("Body").getComponent(play).playAnimation("attack");
+                
+                // 计算血量
+                // 是否暴击
+                var isCritical = Math.random() < parseFloat((attacker.attribute.criticalStrikeRate / 100).toFixed(2));
+                // 最终攻击力 = 攻击力-防御力
+                var attack = isCritical ? (attacker.attribute.attack * parseFloat((attacker.attribute.criticalStrike / 100).toFixed(2)) - targetCharacter.attribute.defense): (attacker.attribute.attack -targetCharacter.attribute.defense);
+
                 if (attack <= 0) attack = 0;
 
                 // 扣血
                 targetCharacter.attribute.health = targetCharacter.attribute.health - attack;
                 // 设置受伤值
-                targetNode.getComponent("CharacterController").setHurt(attack);
+                targetNode.getComponent(characterController).setHurt(attack);
                 // 设置血条
-                targetNode.getComponent("CharacterController").setBlood(targetCharacter.attribute.health / originTargetCharacter.attribute.health);
+                targetNode.getComponent(characterController).setBlood(targetCharacter.attribute.health / originTargetCharacter.attribute.health);
 
-                console.log("targetCharacter :%s ,_tmptargetCharacter: %s", targetCharacter.attribute.health, originTargetCharacter.attribute.health)
                 if (targetCharacter.attribute.health <= 0) {
                     // 角色死亡
                     targetCharacter.attribute.health = 0;

@@ -4,8 +4,8 @@ import { _decorator, Component, Label, Node, Sprite } from 'cc';
 const { ccclass, property } = _decorator;
 
 
-@ccclass('CharacterController')
-export class CharacterController extends Component {
+@ccclass('characterController')
+export class characterController extends Component {
     // 血条
     private gBloodBarSprite: Sprite = null;
 
