@@ -1,8 +1,7 @@
 import { _decorator, Component, dragonBones, instantiate, Label, Node, resources, Sprite, SpriteFrame, tween, Vec2, Vec3 } from 'cc';
 import { RoleType } from '../resource/character/attribute';
-import { play } from '../heroAnimation/play';
 import { deepCopy } from "../utils/copy";
-import { characterController } from "./characterController";
+import { characterController } from "./CharacterController";
 
 const { ccclass, property } = _decorator;
 
@@ -459,7 +458,7 @@ export class battleFieldController extends Component {
         switch (state) {
             case CharacterStateType.WAIT:
                 this.gOrderIndex = this.gOrderIndex + 1;
-                console.log("%s,%s", attacker.attribute.id,Date())
+                console.log("%s,%s", attacker.attribute.id, Date())
                 this._nextAttack();
                 break;
             case CharacterStateType.RUN:
@@ -553,7 +552,7 @@ export class battleFieldController extends Component {
                 // 开始播放攻击动画
                 var armatureDisplay = attackerNode.getChildByName("Body").getComponent(dragonBones.ArmatureDisplay);
                 armatureDisplay.playAnimation("attack", 1);
-                armatureDisplay.once(dragonBones.EventObject.COMPLETE, (event) => {
+                armatureDisplay.once(dragonBones.EventObject.COMPLETE, () => {
                     // 计算血量
                     // 是否暴击
                     var isCritical = Math.random() < parseFloat((attacker.attribute.criticalStrikeRate / 100).toFixed(2));
