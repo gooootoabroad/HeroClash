@@ -1,19 +1,19 @@
 import { _decorator, Component, Node, Prefab } from 'cc';
 const { ccclass, property } = _decorator;
 
-@ccclass('BattleLauncher')
-export class BattleLauncher extends Component {
+@ccclass('battleLauncher')
+export class battleLauncher extends Component {
     
     // 单例
-    static Instance: BattleLauncher = null;
+    static Instance: battleLauncher = null;
 
     @property(Prefab)
     CharacterPrefab: Prefab = null;
     
 
     protected onLoad(): void {
-        if (BattleLauncher.Instance == null) {
-            BattleLauncher.Instance = this;
+        if (battleLauncher.Instance == null) {
+            battleLauncher.Instance = this;
         } else {
             this.destroy();
             return;
