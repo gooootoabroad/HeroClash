@@ -363,6 +363,7 @@ export class battleFieldController extends Component {
                     armatureDisplay.playAnimation("standby", 0);
                 })
             })
+            //armatureDisplay.setAnimationCacheMode(dragonBones.AnimationCacheMode.SHARED_CACHE);
 
             // 设置人物名称
             let nameLabel = characterNode.getChildByName("Name").getComponent(Label);
@@ -413,6 +414,7 @@ export class battleFieldController extends Component {
                     armatureDisplay.playAnimation("standby", 0);
                 })
             })
+            // armatureDisplay.setAnimationCacheMode(dragonBones.AnimationCacheMode.SHARED_CACHE);
             // 左右对称旋转人物图片，但是血条等不对称
             let originScale = bodyNode.scale;
             bodyNode.setScale(new Vec3(-originScale.x, originScale.y, originScale.z));
