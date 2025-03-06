@@ -1,7 +1,7 @@
 import { _decorator, Component, dragonBones, instantiate, Label, Node, resources, Sprite, SpriteFrame, tween, Vec2, Vec3 } from 'cc';
 import { RoleType } from '../resource/character/attribute';
 import { deepCopy } from "../utils/copy";
-import { characterController } from "./CharacterController";
+import { characterController } from "./characterController";
 
 const { ccclass, property } = _decorator;
 
@@ -362,7 +362,6 @@ export class battleFieldController extends Component {
                     armatureDisplay.playAnimation("standby", 0);
                 })
             })
-
             // 设置人物名称
             let nameLabel = characterNode.getChildByName("Name").getComponent(Label);
             nameLabel.string = character.attribute.name;
@@ -412,6 +411,7 @@ export class battleFieldController extends Component {
                     armatureDisplay.playAnimation("standby", 0);
                 })
             })
+
             // 左右对称旋转人物图片，但是血条等不对称
             let originScale = bodyNode.scale;
             bodyNode.setScale(new Vec3(-originScale.x, originScale.y, originScale.z));
@@ -458,7 +458,6 @@ export class battleFieldController extends Component {
         switch (state) {
             case CharacterStateType.WAIT:
                 this.gOrderIndex = this.gOrderIndex + 1;
-                console.log("%s,%s", attacker.attribute.id, Date())
                 this._nextAttack();
                 break;
             case CharacterStateType.RUN:
@@ -552,6 +551,7 @@ export class battleFieldController extends Component {
                 // 开始播放攻击动画
                 var armatureDisplay = attackerNode.getChildByName("Body").getComponent(dragonBones.ArmatureDisplay);
                 armatureDisplay.playAnimation("attack", 1);
+
                 armatureDisplay.once(dragonBones.EventObject.COMPLETE, () => {
                     // 计算血量
                     // 是否暴击
