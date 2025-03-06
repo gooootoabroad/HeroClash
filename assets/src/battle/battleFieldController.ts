@@ -450,9 +450,9 @@ export class battleFieldController extends Component {
     }
 
     // 设置动画状态
-    private _setAnimationState(attacker: BattleCharacter, state: CharacterStateType) {
+    private _setAnimationState(character: BattleCharacter, state: CharacterStateType) {
         // 状态机
-        attacker.state = state;
+        character.state = state;
         switch (state) {
             case CharacterStateType.WAIT:
                 this.gOrderIndex = this.gOrderIndex + 1;
@@ -462,7 +462,7 @@ export class battleFieldController extends Component {
                 // 确定攻击对象，优先攻击前排，前排位置按照英雄数组顺序固定
                 var targetCharacter: BattleCharacter = null;
                 var targetNode: Node = null;
-                if (attacker.camp == CharacterCampType.Hero) {
+                if (character.camp == CharacterCampType.Hero) {
                     for (let i = 0; i < this.gEnemiesArray.length; i++) {
                         if (this.gEnemiesArray[i].state != CharacterStateType.DIE) {
                             targetCharacter = this.gEnemiesArray[i];
@@ -499,39 +499,39 @@ export class battleFieldController extends Component {
                 }
 
                 // 移动到目标位置，远程攻击不需要移动
-                var isLong = attacker.attribute.isLong;
+                var isLong = character.attribute.isLong;
                 // var characterNode = null;
                 if (isLong) {
-                    this._setAnimationState(attacker, CharacterStateType.ATTACK);
+                    this._setAnimationState(character, CharacterStateType.ATTACK);
                     return;
                 }
                 // 近战攻击要移动位置
-                var attackerNode = this.gHeroNodesArray[attacker.index];
-                if (attacker.camp == CharacterCampType.Enemy) {
-                    attackerNode = this.gEnemyNodesArray[attacker.index];
+                var characterNode = this.gHeroNodesArray[character.index];
+                if (character.camp == CharacterCampType.Enemy) {
+                    characterNode = this.gEnemyNodesArray[character.index];
                 }
 
-                this.gOriginPosition.x = attackerNode.getPosition().x;
-                this.gOriginPosition.y = attackerNode.getPosition().y;
+                this.gOriginPosition.x = characterNode.getPosition().x;
+                this.gOriginPosition.y = characterNode.getPosition().y;
 
                 var targetPos = new Vec2(0, 0);
                 targetPos.x = targetNode.getPosition().x;
                 targetPos.y = targetNode.getPosition().y;
 
                 var callback = function () {
-                    this._setAnimationState(attacker, CharacterStateType.ATTACK);
+                    this._setAnimationState(character, CharacterStateType.ATTACK);
                 }.bind(this);
 
-                if (attacker.camp == CharacterCampType.Hero) {
-                    tween(attackerNode).to(0.3, { position: new Vec3(targetPos.x - 40, targetPos.y, 0) }).call(callback).start();
+                if (character.camp == CharacterCampType.Hero) {
+                    tween(characterNode).to(0.3, { position: new Vec3(targetPos.x - 40, targetPos.y, 0) }).call(callback).start();
                 } else {
-                    tween(attackerNode).to(0.3, { position: new Vec3(targetPos.x + 40, targetPos.y, 0) }).call(callback).start();
+                    tween(characterNode).to(0.3, { position: new Vec3(targetPos.x + 40, targetPos.y, 0) }).call(callback).start();
                 }
                 break;
             case CharacterStateType.ATTACK:
-                var attackerNode = this.gHeroNodesArray[attacker.index];
-                if (attacker.camp == CharacterCampType.Enemy) {
-                    attackerNode = this.gEnemyNodesArray[attacker.index];
+                var characterNode = this.gHeroNodesArray[character.index];
+                if (character.camp == CharacterCampType.Enemy) {
+                    characterNode = this.gEnemyNodesArray[character.index];
                 }
 
                 // 被攻击者原始属性
@@ -540,22 +540,22 @@ export class battleFieldController extends Component {
                 var targetCharacter = this.gHerosArray[this.gTargetCharacterIndex];
                 var targetNode = this.gHeroNodesArray[this.gTargetCharacterIndex];
 
-                if (attacker.camp == CharacterCampType.Hero) {
+                if (character.camp == CharacterCampType.Hero) {
                     targetCharacter = this.gEnemiesArray[this.gTargetCharacterIndex];
                     targetNode = this.gEnemyNodesArray[this.gTargetCharacterIndex];
                     originTargetCharacter = GEnemyArray[this.gTargetCharacterIndex];
                 }
 
                 // 开始播放攻击动画
-                var armatureDisplay = attackerNode.getChildByName("Body").getComponent(dragonBones.ArmatureDisplay);
+                var armatureDisplay = characterNode.getChildByName("Body").getComponent(dragonBones.ArmatureDisplay);
                 armatureDisplay.playAnimation("attack", 1);
 
                 armatureDisplay.once(dragonBones.EventObject.COMPLETE, () => {
                     // 计算血量
                     // 是否暴击
-                    var isCritical = Math.random() < parseFloat((attacker.attribute.criticalStrikeRate / 100).toFixed(2));
+                    var isCritical = Math.random() < parseFloat((character.attribute.criticalStrikeRate / 100).toFixed(2));
                     // 最终攻击力 = 攻击力-防御力
-                    var attack = isCritical ? (attacker.attribute.attack * parseFloat((attacker.attribute.criticalStrike / 100).toFixed(2)) - targetCharacter.attribute.defense) : (attacker.attribute.attack - targetCharacter.attribute.defense);
+                    var attack = isCritical ? (character.attribute.attack * parseFloat((character.attribute.criticalStrike / 100).toFixed(2)) - targetCharacter.attribute.defense) : (character.attribute.attack - targetCharacter.attribute.defense);
 
                     if (attack <= 0) attack = 0;
 
@@ -570,24 +570,30 @@ export class battleFieldController extends Component {
                         // 角色死亡
                         targetCharacter.attribute.health = 0;
                         targetCharacter.state = CharacterStateType.DIE;
-
-                        this.gOrderArray[this.gOrderTargetIndex].state = CharacterStateType.DIE;
                         this._setAnimationState(targetCharacter, CharacterStateType.DIE);
-
-                        targetNode.active = false;
                     }
 
                     // 回到原来位置
                     var callback = function () {
                         // 进入等待状态
-                        this._setAnimationState(attacker, CharacterStateType.WAIT);
+                        this._setAnimationState(character, CharacterStateType.WAIT);
                     }.bind(this);
-                    tween(attackerNode).to(0.3, { position: new Vec3(this.gOriginPosition.x, this.gOriginPosition.y, 0) }).call(callback).start();
+                    tween(characterNode).to(0.3, { position: new Vec3(this.gOriginPosition.x, this.gOriginPosition.y, 0) }).call(callback).start();
                     armatureDisplay.playAnimation("standby", 0);
                 }, this);
 
                 break;
             case CharacterStateType.DIE:
+                var characterNode = this.gHeroNodesArray[character.index];
+                if (character.camp == CharacterCampType.Enemy) {
+                    characterNode = this.gEnemyNodesArray[character.index];
+                }
+                var armatureDisplay = characterNode.getChildByName("Body").getComponent(dragonBones.ArmatureDisplay);
+                armatureDisplay.playAnimation("died", 1);
+                armatureDisplay.once(dragonBones.EventObject.COMPLETE, () => {
+                    targetNode.active = false;
+                }, this);
+            
                 break;
             default:
                 break;
