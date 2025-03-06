@@ -5,8 +5,6 @@ import { characterController } from "./characterController";
 
 const { ccclass, property } = _decorator;
 
-
-
 enum CharacterStateType {
     WAIT,
     RUN,
@@ -585,7 +583,7 @@ export class battleFieldController extends Component {
                         this._setAnimationState(attacker, CharacterStateType.WAIT);
                     }.bind(this);
                     tween(attackerNode).to(0.3, { position: new Vec3(this.gOriginPosition.x, this.gOriginPosition.y, 0) }).call(callback).start();
-
+                    armatureDisplay.playAnimation("standby", 0);
                 }, this);
 
                 break;
