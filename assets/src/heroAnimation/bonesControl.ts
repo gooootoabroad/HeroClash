@@ -1,4 +1,4 @@
-import { _decorator, Component, dragonBones, Node, resources } from 'cc';
+import { _decorator, Component, dragonBones, Input, input, Node, resources } from 'cc';
 const { ccclass, property } = _decorator;
 
 @ccclass('bonesControl')
@@ -29,7 +29,7 @@ export class bonesControl extends Component {
                 // 骨骼名称
                 this.armatureDisplay.armatureName = "Armature";
                 // 播放动画
-                this.armatureDisplay.playAnimation("ability1", 0);
+                this.armatureDisplay.playAnimation("attacked", 0);
             })
         })
 
@@ -40,11 +40,19 @@ export class bonesControl extends Component {
 
     }
     start() {
-
+        input.on(Input.EventType.MOUSE_DOWN, () => {
+            this.armatureDisplay.playAnimation("died", 1);
+        }, this);
     }
 
     update(deltaTime: number) {
 
+    }
+
+    protected onDestroy(): void {
+        input.off(Input.EventType.MOUSE_DOWN, () => {
+            this.armatureDisplay.playAnimation("died", 1);
+        }, this);
     }
 }
 
