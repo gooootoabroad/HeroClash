@@ -1,7 +1,7 @@
 import { _decorator, Component, dragonBones, instantiate, Label, Node, resources, Sprite, SpriteFrame, tween, Vec2, Vec3 } from 'cc';
 import { RoleType } from '../resource/character/attribute';
 import { deepCopy } from "../utils/copy";
-import { characterController } from "./characterController";
+import { characterController } from "./CharacterController";
 
 const { ccclass, property } = _decorator;
 
