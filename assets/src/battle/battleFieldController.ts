@@ -260,7 +260,7 @@ export class battleFieldController extends Component {
         character.state = state;
         switch (state) {
             case CharacterStateType.Wait:
-                character.node.getComponent(characterController).wait();
+                //character.node.getComponent(characterController).wait();
                 this.gOrderIndex = this.gOrderIndex + 1;
                 this._nextAttack();
                 break;
@@ -281,7 +281,7 @@ export class battleFieldController extends Component {
                 }.bind(this);
 
                 characterCtl.move(new Vec2(targetPosition.x, targetPosition.y), callback);
-                
+
                 break;
             case CharacterStateType.Attack:
                 // 攻击目标
@@ -290,6 +290,7 @@ export class battleFieldController extends Component {
                 // 等待攻击动画完成
                 var bodyArmatureDisplay = character.node.getChildByName("Body").getComponent(dragonBones.ArmatureDisplay);
                 bodyArmatureDisplay.once(dragonBones.EventObject.COMPLETE, () => {
+                    character.node.getComponent(characterController).wait();
                     // 处理被攻击目标死亡
                     var targetCtl = this.gTargetNode.getComponent(characterController);
                     var targetState = targetCtl.getState();
