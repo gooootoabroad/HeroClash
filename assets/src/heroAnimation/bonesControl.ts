@@ -25,23 +25,25 @@ export class bonesControl extends Component {
                 // 设置加载的资源到 ArmatureDisplay
                 this.armatureDisplay.dragonAsset = skeAsset;
                 this.armatureDisplay.dragonAtlasAsset = atlasAsset;
+                this.armatureDisplay.setAnimationCacheMode(dragonBones.AnimationCacheMode.SHARED_CACHE);
 
                 // 骨骼名称
                 this.armatureDisplay.armatureName = "Armature";
                 // 播放动画
-                this.armatureDisplay.playAnimation("attacked", 0);
+                this.armatureDisplay.playAnimation("standby", -1);
             })
         })
 
         // 可以监听事件
-        this.armatureDisplay.on(dragonBones.EventObject.START, () => {
-            console.log("animation start");
+        this.armatureDisplay.on(dragonBones.EventObject.COMPLETE, () => {
+            console.log("animation end");
+            //this.armatureDisplay.playAnimation("standby", 0);
         }, this);
 
     }
     start() {
         input.on(Input.EventType.MOUSE_DOWN, () => {
-            this.armatureDisplay.playAnimation("died", 1);
+            this.armatureDisplay.playAnimation("ability1", 1);
         }, this);
     }
 
