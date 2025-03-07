@@ -17,6 +17,8 @@ export class characterController extends Component {
     private gOriginHealth: number = 0;
     // 角色初始位置，用于攻击后回原来位置
     private gOriginPosition: Vec2 = null;
+    // 怒气值
+    private gAnger: number = 0;
 
     // 人物名称节点
     @property(Node)
@@ -25,6 +27,10 @@ export class characterController extends Component {
     // 血条节点
     @property(Node)
     private gBloodBarNode: Node = null;
+
+    // 怒气节点
+    @property(Node)
+    private gAngerNode: Node = null;
 
     // 受到的伤害
     @property(Node)
@@ -36,13 +42,19 @@ export class characterController extends Component {
     // 动画
     private gBodyArmatureDisplay: dragonBones.ArmatureDisplay = null;
 
+    // 运行时间
+    private gElapsedTime = 0;
+
     protected onLoad(): void {
         this.gOriginPosition = new Vec2(this.node.position.x, this.node.position.y);
         this.gBodyArmatureDisplay = this.gBodyNode.getComponent(dragonBones.ArmatureDisplay);
     }
 
     update(deltaTime: number) {
-
+        this.gElapsedTime += deltaTime;
+        if (this.gElapsedTime > 0.3) {
+            this.setAnger(this.gAnger + 1);
+        }
     }
 
     // 设置英雄属性，一般用于初始化人物使用
@@ -106,12 +118,15 @@ export class characterController extends Component {
             }
             this.gBloodBarNode.getComponent(Sprite).spriteFrame = spriteFrame;
         });
+        // 怒气条清空
+        this.gAnger = 0;
+        this.gAngerNode.getComponent(Sprite).fillRange = 0;
         // 左右对称旋转敌人图画
         if (this.gCamp == CharacterCampType.Enemy) {
             let originScale = this.gBodyNode.scale;
             this.gBodyNode.setScale(new Vec3(-originScale.x, originScale.y, originScale.z));
-
         }
+
     }
 
     // 获取人物ID
@@ -138,30 +153,44 @@ export class characterController extends Component {
         if (this.gAttribute.isLong) {
             return;
         }
-        // callbackFunc.bind(this);
+
         if (this.gCamp == CharacterCampType.Hero) {
-            tween(this.node).to(0.3, { position: new Vec3(targetPos.x - 40, targetPos.y, 0) }).call(callbackFunc).start();
+            tween(this.node).to(0.3, { position: new Vec3(targetPos.x - 80, targetPos.y, 0) }).call(callbackFunc).start();
         } else {
-            tween(this.node).to(0.3, { position: new Vec3(targetPos.x + 40, targetPos.y, 0) }).call(callbackFunc).start();
+            tween(this.node).to(0.3, { position: new Vec3(targetPos.x + 80, targetPos.y, 0) }).call(callbackFunc).start();
         }
     }
 
     // 英雄攻击
     public attack(targetNode: Node) {
-
-        // 播放攻击动画
-        this.gBodyArmatureDisplay.playAnimation(AnimationType.Attack, 1);
-        // 计算血量
-        // 是否暴击
-        var isCritical = Math.random() < parseFloat((this.gAttribute.criticalStrikeRate / 100).toFixed(2));
-        // 最终攻击力 = 攻击力-防御力
+        var attack = 0;
         var targetCharacterController = targetNode.getComponent(characterController);
-        var targetDefense = targetCharacterController.getDefense();
-        var attack = isCritical ? (this.gAttribute.attack * parseFloat((this.gAttribute.criticalStrike / 100).toFixed(2)) - targetDefense) : (this.gAttribute.attack - targetDefense);
-        if (attack <= 0) attack = 0;
+        // 怒气值满放大招
+        if (this.gAnger == 100) {
+            // 播放大招动画
+            this.gBodyArmatureDisplay.playAnimation(AnimationType.Skill1, 1);
+            attack = this.gAttribute.attack * 3;
+        } else {
+            // 播放攻击动画
+            this.gBodyArmatureDisplay.playAnimation(AnimationType.Attack, 1);
+            // 计算血量
+            // 是否暴击
+            var isCritical = Math.random() < parseFloat((this.gAttribute.criticalStrikeRate / 100).toFixed(2));
+            // 最终攻击力 = 攻击力-防御力
+            var targetDefense = targetCharacterController.getDefense();
+            var attack = isCritical ? (this.gAttribute.attack * parseFloat((this.gAttribute.criticalStrike / 100).toFixed(2)) - targetDefense) : (this.gAttribute.attack - targetDefense);
+            if (attack <= 0) attack = 0;
+
+        }
+
         this.gBodyArmatureDisplay.once(dragonBones.EventObject.COMPLETE, () => {
             // 敌方扣血
             targetCharacterController.attacked(attack);
+            // 重置怒气
+            if (this.gAnger == 100) {
+                this.gAngerNode.getComponent(Sprite).fillRange = 0;
+                this.gAnger = 0;
+            }
         }, this);
 
     }
@@ -169,8 +198,7 @@ export class characterController extends Component {
     // 英雄回位
     public moveBack(callbackFunc: () => void) {
         // callbackFunc.bind(this);
-
-        tween(this.node).to(0.3, { position: new Vec3(this.gOriginPosition.x - 40, this.gOriginPosition.y, 0) }).call(callbackFunc).start();
+        tween(this.node).to(0.3, { position: new Vec3(this.gOriginPosition.x, this.gOriginPosition.y, 0) }).call(callbackFunc).start();
     }
     // 被攻击，包括受伤显示，生命衰减，血条比例
     // @param hurt：受到的伤害值
@@ -182,7 +210,7 @@ export class characterController extends Component {
         if (this.gAttribute.health <= 0) {
             this.gAttribute.health = 0;
         }
-        
+
         // 受伤值显示
         this.gHurtNode.getComponent(Label).string = hurt.toString();
         this.gHurtNode.active = true;
@@ -218,13 +246,23 @@ export class characterController extends Component {
     // 设置死亡情况，3秒后隐藏该节点
     public died() {
         this.gState = CharacterStateType.Die;
-        this.gBodyArmatureDisplay.playAnimation("died", 1);
+        this.gBodyArmatureDisplay.playAnimation(AnimationType.Died, 1);
         this.gBodyArmatureDisplay.once(dragonBones.EventObject.COMPLETE, () => {
             let timeOutID = setTimeout(() => {
                 this.node.active = false;
                 clearTimeout(timeOutID);
             }, 3000);
         }, this);
+    }
+
+    private setAnger(anger: number) {
+        this.gAnger = anger;
+        if (this.gAnger <= 0) {
+            this.gAnger = 0;
+        } else if (this.gAnger > 100) {
+            this.gAnger = 100;
+        }
+        this.gAngerNode.getComponent(Sprite).fillRange = this.gAnger / 100;
     }
 }
 

@@ -509,7 +509,7 @@
       "__uuid__": "e72686e8-452c-4f6a-9d1e-0ffa4c43295c@f9941",
       "__expectedType__": "cc.SpriteFrame"
     },
-    "_type": 0,
+    "_type": 3,
     "_fillType": 0,
     "_sizeMode": 0,
     "_fillCenter": {
@@ -1123,6 +1123,9 @@
     },
     "gBloodBarNode": {
       "__id__": 3
+    },
+    "gAngerNode": {
+      "__id__": 15
     },
     "gHurtNode": {
       "__id__": 38
