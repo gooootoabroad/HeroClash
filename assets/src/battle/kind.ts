@@ -49,4 +49,5 @@ export enum AnimationType {
     Attack = "attack",      // 攻击
     Attacked = "attacked",  // 被攻击
     Died = "died",          // 死亡
+    Skill1 = "ability1",    // 技能
 }
