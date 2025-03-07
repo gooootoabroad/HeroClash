@@ -1,6 +1,6 @@
 // 角色控制，包括英雄和敌军
 
-import { _decorator, Component, dragonBones, Label, Node, resources, Sprite, SpriteFrame, tween, Vec2, Vec3 } from 'cc';
+import { _decorator, Component, dragonBones, find, Label, Layers, Node, resources, Sprite, SpriteFrame, tween, Vec2, Vec3 } from 'cc';
 import { AnimationType, BattleCharacterAttribute, CharacterCampType, CharacterStateType } from './kind';
 const { ccclass, property } = _decorator;
 
@@ -163,6 +163,8 @@ export class characterController extends Component {
 
     // 英雄攻击
     public attack(targetNode: Node) {
+        // 更换层级，渲染显示在其他人物前面
+        this.node.setParent(find("Canvas/Attacker"));
         var attack = 0;
         var targetCharacterController = targetNode.getComponent(characterController);
         // 怒气值满放大招
@@ -191,13 +193,14 @@ export class characterController extends Component {
                 this.gAngerNode.getComponent(Sprite).fillRange = 0;
                 this.gAnger = 0;
             }
+            // 恢复渲染层级
+            this.node.setParent(find("Canvas/Characters"));
         }, this);
 
     }
 
     // 英雄回位
     public moveBack(callbackFunc: () => void) {
-        // callbackFunc.bind(this);
         tween(this.node).to(0.3, { position: new Vec3(this.gOriginPosition.x, this.gOriginPosition.y, 0) }).call(callbackFunc).start();
     }
     // 被攻击，包括受伤显示，生命衰减，血条比例
