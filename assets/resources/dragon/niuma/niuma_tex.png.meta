@@ -2,7 +2,7 @@
   "ver": "1.0.27",
   "importer": "image",
   "imported": true,
-  "uuid": "5083348f-437a-4b5a-88ad-02c25c304730",
+  "uuid": "ea66c4b9-5fe5-430b-81dc-937521485a2f",
   "files": [
     ".json",
     ".png"
@@ -10,7 +10,7 @@
   "subMetas": {
     "6c48a": {
       "importer": "texture",
-      "uuid": "5083348f-437a-4b5a-88ad-02c25c304730@6c48a",
+      "uuid": "ea66c4b9-5fe5-430b-81dc-937521485a2f@6c48a",
       "displayName": "niuma_tex",
       "id": "6c48a",
       "name": "texture",
@@ -22,7 +22,7 @@
         "mipfilter": "none",
         "anisotropy": 0,
         "isUuid": true,
-        "imageUuidOrDatabaseUri": "5083348f-437a-4b5a-88ad-02c25c304730",
+        "imageUuidOrDatabaseUri": "ea66c4b9-5fe5-430b-81dc-937521485a2f",
         "visible": false
       },
       "ver": "1.0.22",
@@ -37,6 +37,6 @@
     "hasAlpha": true,
     "type": "texture",
     "fixAlphaTransparencyArtifacts": false,
-    "redirect": "5083348f-437a-4b5a-88ad-02c25c304730@6c48a"
+    "redirect": "ea66c4b9-5fe5-430b-81dc-937521485a2f@6c48a"
   }
 }
