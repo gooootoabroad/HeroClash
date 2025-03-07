@@ -733,6 +733,7 @@
     "_dragonAsset": null,
     "_dragonAtlasAsset": null,
     "_armatureName": "",
+    "_animationName": "",
     "_animationIndexValue": 0,
     "_defaultCacheModeValue": 0,
     "_timeScale": 1,
@@ -1116,6 +1117,18 @@
     "_enabled": true,
     "__prefab": {
       "__id__": 47
+    },
+    "gNameNode": {
+      "__id__": 32
+    },
+    "gBloodBarNode": {
+      "__id__": 3
+    },
+    "gHurtNode": {
+      "__id__": 38
+    },
+    "gBodyNode": {
+      "__id__": 26
     },
     "_id": ""
   },

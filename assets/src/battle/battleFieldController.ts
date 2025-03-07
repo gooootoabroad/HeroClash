@@ -2,250 +2,156 @@ import { _decorator, Component, dragonBones, instantiate, Label, Node, resources
 import { RoleType } from '../resource/character/attribute';
 import { deepCopy } from "../utils/copy";
 import { characterController } from "./characterController";
+import { BattleCharacter, CharacterStateType, CharacterCampType, BattleCharacterAttribute } from "./kind";
 
 const { ccclass, property } = _decorator;
 
-enum CharacterStateType {
-    WAIT,
-    RUN,
-    ATTACK,
-    DIE
-}
-
-// 战斗界面英雄信息
-interface BattleCharacter {
-    index: number, // 序号，用于标注位置
-    attribute: BattleCharacterAttribute, // 英雄属性
-    state: CharacterStateType,   // 英雄状态
-    camp: CharacterCampType, // 判断敌人
-}
-
-// 战斗界面英雄属性
-interface BattleCharacterAttribute {
-    id: string;
-    name: string;             // 人物名称
-    role: RoleType;           // 职业
-    imageName: string;        // 图像名称
-    isLong: boolean;            // 是否是远程
-    health: number;            // 生命值
-    attack: number;            // 攻击力
-    defense: number;           // 防御力
-    attackSpeed: number;       // 攻击速度
-    criticalStrikeRate: number; // 暴击率
-    criticalStrike: number;    // 暴击伤害
-
-    skillIDs: string[];        // 技能ID列表
-}
-
-// 阵营
-enum CharacterCampType {
-    Hero,
-    Enemy
-}
-
-let GHerosArray: BattleCharacter[] = [
+// 单边英雄数量
+const GCharacterCount = 5;
+let GHerosAttArray: BattleCharacterAttribute[] = [
     {
-        index: 0,
-        attribute: {
-            id: "1",
-            name: "牛马神将",
-            role: RoleType.warrior,
-            imageName: "niuma",
-            isLong: false,
-            health: 1000,
-            attack: 100,
-            defense: 10,
-            attackSpeed: 10,
-            criticalStrikeRate: 10,
-            criticalStrike: 150,
-
-            skillIDs: [],
-        },
-        state: CharacterStateType.WAIT,
-        camp: CharacterCampType.Hero
+        id: "1",
+        name: "牛马神将1",
+        role: RoleType.warrior,
+        imageName: "niuma",
+        isLong: false,
+        health: 500,
+        attack: 100,
+        defense: 10,
+        attackSpeed: 10,
+        criticalStrikeRate: 10,
+        criticalStrike: 150,
+        skillIDs: [],
     },
     {
-        index: 1,
-        attribute: {
-            id: "2",
-            name: "牛马神将",
-            role: RoleType.warrior,
-            imageName: "niuma",
-            isLong: false,
-            health: 1000,
-            attack: 100,
-            defense: 10,
-            attackSpeed: 11,
-            criticalStrikeRate: 20,
-            criticalStrike: 150,
-
-            skillIDs: [],
-        },
-        state: CharacterStateType.WAIT,
-        camp: CharacterCampType.Hero
+        id: "2",
+        name: "牛马神将2",
+        role: RoleType.warrior,
+        imageName: "niuma",
+        isLong: false,
+        health: 500,
+        attack: 100,
+        defense: 10,
+        attackSpeed: 11,
+        criticalStrikeRate: 20,
+        criticalStrike: 150,
+        skillIDs: [],
     },
     {
-        index: 2,
-        attribute: {
-            id: "3",
-            name: "牛马神将",
-            role: RoleType.warrior,
-            imageName: "niuma",
-            isLong: false,
-            health: 1000,
-            attack: 100,
-            defense: 10,
-            attackSpeed: 5,
-            criticalStrikeRate: 30,
-            criticalStrike: 150,
-
-            skillIDs: [],
-        },
-        state: CharacterStateType.WAIT,
-        camp: CharacterCampType.Hero
+        id: "3",
+        name: "牛马神将3",
+        role: RoleType.warrior,
+        imageName: "niuma",
+        isLong: false,
+        health: 500,
+        attack: 100,
+        defense: 10,
+        attackSpeed: 5,
+        criticalStrikeRate: 30,
+        criticalStrike: 150,
+        skillIDs: [],
     },
     {
-        index: 3,
-        attribute: {
-            id: "4",
-            name: "牛马神将",
-            role: RoleType.warrior,
-            imageName: "niuma",
-            isLong: false,
-            health: 1000,
-            attack: 100,
-            defense: 10,
-            attackSpeed: 3,
-            criticalStrikeRate: 40,
-            criticalStrike: 150,
-
-            skillIDs: [],
-        },
-        state: CharacterStateType.WAIT,
-        camp: CharacterCampType.Hero
+        id: "4",
+        name: "牛马神将4",
+        role: RoleType.warrior,
+        imageName: "niuma",
+        isLong: false,
+        health: 500,
+        attack: 100,
+        defense: 10,
+        attackSpeed: 3,
+        criticalStrikeRate: 40,
+        criticalStrike: 150,
+        skillIDs: [],
     },
     {
-        index: 4,
-        attribute: {
-            id: "5",
-            name: "牛马神将",
-            role: RoleType.warrior,
-            imageName: "niuma",
-            isLong: false,
-            health: 1000,
-            attack: 100,
-            defense: 10,
-            attackSpeed: 88,
-            criticalStrikeRate: 50,
-            criticalStrike: 150,
-
-            skillIDs: [],
-        },
-        state: CharacterStateType.WAIT,
-        camp: CharacterCampType.Hero
+        id: "5",
+        name: "牛马神将5",
+        role: RoleType.warrior,
+        imageName: "niuma",
+        isLong: false,
+        health: 500,
+        attack: 100,
+        defense: 10,
+        attackSpeed: 88,
+        criticalStrikeRate: 50,
+        criticalStrike: 150,
+        skillIDs: [],
     },
 ];
-let GEnemyArray: BattleCharacter[] = [
+let GEnemyAttArray: BattleCharacterAttribute[] = [
     /* ------------------------ */
     {
-        index: 0,
-        attribute: {
-            id: "6",
-            name: "牛马神将",
-            role: RoleType.warrior,
-            imageName: "niuma",
-            isLong: false,
-            health: 1000,
-            attack: 100,
-            defense: 10,
-            attackSpeed: 9,
-            criticalStrikeRate: 10,
-            criticalStrike: 150,
-
-            skillIDs: [],
-        },
-        state: CharacterStateType.WAIT,
-        camp: CharacterCampType.Enemy
+        id: "6",
+        name: "牛马神将6",
+        role: RoleType.warrior,
+        imageName: "niuma",
+        isLong: false,
+        health: 500,
+        attack: 100,
+        defense: 10,
+        attackSpeed: 9,
+        criticalStrikeRate: 10,
+        criticalStrike: 150,
+        skillIDs: [],
     },
     {
-        index: 1,
-        attribute: {
-            id: "7",
-            name: "牛马神将",
-            role: RoleType.warrior,
-            imageName: "niuma",
-            isLong: false,
-            health: 1000,
-            attack: 100,
-            defense: 10,
-            attackSpeed: 66,
-            criticalStrikeRate: 20,
-            criticalStrike: 150,
-
-            skillIDs: [],
-        },
-        state: CharacterStateType.WAIT,
-        camp: CharacterCampType.Enemy
+        id: "7",
+        name: "牛马神将7",
+        role: RoleType.warrior,
+        imageName: "niuma",
+        isLong: false,
+        health: 500,
+        attack: 100,
+        defense: 10,
+        attackSpeed: 66,
+        criticalStrikeRate: 20,
+        criticalStrike: 150,
+        skillIDs: [],
     },
     {
-        index: 2,
-        attribute: {
-            id: "8",
-            name: "牛马神将",
-            role: RoleType.warrior,
-            imageName: "niuma",
-            isLong: false,
-            health: 1000,
-            attack: 100,
-            defense: 10,
-            attackSpeed: 77,
-            criticalStrikeRate: 30,
-            criticalStrike: 150,
-
-            skillIDs: [],
-        },
-        state: CharacterStateType.WAIT,
-        camp: CharacterCampType.Enemy
+        id: "8",
+        name: "牛马神将8",
+        role: RoleType.warrior,
+        imageName: "niuma",
+        isLong: false,
+        health: 500,
+        attack: 100,
+        defense: 10,
+        attackSpeed: 77,
+        criticalStrikeRate: 30,
+        criticalStrike: 150,
+        skillIDs: [],
     },
     {
-        index: 3,
-        attribute: {
-            id: "9",
-            name: "牛马神将",
-            role: RoleType.warrior,
-            imageName: "niuma",
-            isLong: false,
-            health: 1000,
-            attack: 100,
-            defense: 10,
-            attackSpeed: 12,
-            criticalStrikeRate: 40,
-            criticalStrike: 150,
+        id: "9",
+        name: "牛马神将9",
+        role: RoleType.warrior,
+        imageName: "niuma",
+        isLong: false,
+        health: 500,
+        attack: 100,
+        defense: 10,
+        attackSpeed: 12,
+        criticalStrikeRate: 40,
+        criticalStrike: 150,
 
-            skillIDs: [],
-        },
-        state: CharacterStateType.WAIT,
-        camp: CharacterCampType.Enemy
+        skillIDs: [],
     },
     {
-        index: 4,
-        attribute: {
-            id: "10",
-            name: "牛马神将",
-            role: RoleType.warrior,
-            imageName: "niuma",
-            isLong: false,
-            health: 1000,
-            attack: 100,
-            defense: 10,
-            attackSpeed: 11,
-            criticalStrikeRate: 50,
-            criticalStrike: 150,
-
-            skillIDs: [],
-        },
-        state: CharacterStateType.WAIT,
-        camp: CharacterCampType.Enemy
+        id: "10",
+        name: "牛马神将10",
+        role: RoleType.warrior,
+        imageName: "niuma",
+        isLong: false,
+        health: 500,
+        attack: 100,
+        defense: 10,
+        attackSpeed: 11,
+        criticalStrikeRate: 50,
+        criticalStrike: 150,
+        skillIDs: [],
     },
 ];
 
@@ -271,34 +177,19 @@ export class battleFieldController extends Component {
     private gOrderArray: BattleCharacter[] = [];
     // 攻击队列目前运行的角色为止
     private gOrderIndex: number = 0;
-    // 攻击队列被攻击者位置
-    private gOrderTargetIndex: number = 0;
+
+    // 被攻击对象节点
+    private gTargetNode: Node = null;
 
     // 战斗英雄信息列表
-    private gHerosArray: BattleCharacter[] = [];
-    // 战斗英雄节点列表
-    private gHeroNodesArray: Node[] = [];
+    private gHerosArray: BattleCharacterAttribute[] = [];
+
     // 敌人信息列表
-    private gEnemiesArray: BattleCharacter[] = [];
-    // 敌人节点列表
-    private gEnemyNodesArray: Node[] = [];
-    // 目标所处的索引位置
-    private gTargetCharacterIndex: number = 0;
-
-    // 原始节点位置
-    private gOriginPosition = new Vec2(0, 0);
-
-    // 角色数量
-    private gCharacterCount: number = 0;
+    private gEnemiesArray: BattleCharacterAttribute[] = [];
 
     protected onLoad(): void {
         // TODO 先预设几个英雄和敌人，后面去布阵列表拿取
         this._initCharacterAttribution();
-
-        // 初始化英雄动画
-        this._initHerosAnimation();
-        // 初始化敌人动画
-        this._initEnemiesAnimation();
 
         // 游戏开始
         this.gOrderIndex = 0;
@@ -314,126 +205,40 @@ export class battleFieldController extends Component {
     }
 
     private _initCharacterAttribution() {
-        this.gHerosArray = deepCopy(GHerosArray);
-        this.gEnemiesArray = deepCopy(GEnemyArray);
-
+        this.gHerosArray = deepCopy(GHerosAttArray);
+        this.gEnemiesArray = deepCopy(GEnemyAttArray);
+        // TODO 临时代码，后续从布阵获取
         for (let i = 0; i < 5; i++) {
-            this.gOrderArray[i] = this.gHerosArray[i];
-            this.gOrderArray[i + 5] = this.gEnemiesArray[i];
+            let character1: BattleCharacter = {
+                id: this.gHerosArray[i].id,
+                state: CharacterStateType.Wait,
+                camp: CharacterCampType.Hero,
+                attackSpeed: this.gHerosArray[i].attackSpeed,
+                node: this.node.getChildByName("Hero" + i)
+            };
+            character1.node.getComponent(characterController).init(this.gHerosArray[i], CharacterCampType.Hero, CharacterStateType.Wait);
+            this.gOrderArray[i] = character1;
+
+            let character2: BattleCharacter = {
+                id: this.gEnemiesArray[i].id,
+                state: CharacterStateType.Wait,
+                camp: CharacterCampType.Enemy,
+                attackSpeed: this.gEnemiesArray[i].attackSpeed,
+                node: this.node.getChildByName("Enemy" + i)
+            };
+
+            character2.node.getComponent(characterController).init(this.gEnemiesArray[i], CharacterCampType.Enemy, CharacterStateType.Wait);
+            this.gOrderArray[i + 5] = character2;
         }
 
-        this.gCharacterCount = this.gOrderArray.length;
-
         // 降序排序
-        function sortFunc(speedA: BattleCharacter, speedB: BattleCharacter) { return speedB.attribute.attackSpeed - speedA.attribute.attackSpeed };
+        function sortFunc(objA: BattleCharacter, objB: BattleCharacter) { return objB.attackSpeed - objA.attackSpeed };
         this.gOrderArray.sort(sortFunc);
     }
 
-    // 初始化英雄动画
-    private _initHerosAnimation() {
-        this.gHerosArray.forEach((character) => {
-            let characterNode = this.node.getChildByName("Hero" + character.index);
-            this.gHeroNodesArray[character.index] = characterNode;
-            let bodyNode = characterNode.getChildByName("Body");
-            // 初始化动画
-            let armatureDisplay = bodyNode.getComponent(dragonBones.ArmatureDisplay);
-            let skePath = "dragon/" + character.attribute.imageName + "/" + character.attribute.imageName + "_ske";
-            resources.load(skePath, dragonBones.DragonBonesAsset, (err, skeAsset) => {
-                if (err) {
-                    console.error("Failed to load ske.json:", err);
-                    return;
-                }
-                // 2. 加载纹理数据：tes.json
-                let texPath = "dragon/" + character.attribute.imageName + "/" + character.attribute.imageName + "_tex";
-                resources.load(texPath, dragonBones.DragonBonesAtlasAsset, (err, atlasAsset) => {
-                    if (err) {
-                        console.error("Failed to load tes.json:", err);
-                        return;
-                    }
-                    // 设置加载的资源到 ArmatureDisplay
-                    armatureDisplay.dragonAsset = skeAsset;
-                    armatureDisplay.dragonAtlasAsset = atlasAsset;
-
-                    // 骨骼名称
-                    armatureDisplay.armatureName = "Armature";
-                    // 播放动画
-                    armatureDisplay.playAnimation("standby", 0);
-                })
-            })
-            // 设置人物名称
-            let nameLabel = characterNode.getChildByName("Name").getComponent(Label);
-            nameLabel.string = character.attribute.name;
-            // 设置人物血条
-            let bloodSprite = characterNode.getChildByName("BloodBackground").getChildByName("Blood").getComponent(Sprite);
-            let imagePath = "battle/" + "blood-green" + "/spriteFrame";
-            resources.load(imagePath, SpriteFrame, (err, spriteFrame) => {
-                if (err) {
-                    console.warn(err);
-                    return;
-                }
-                bloodSprite.spriteFrame = spriteFrame;
-            });
-        }
-        );
-    }
-
-    // 初始化敌人动画
-    private _initEnemiesAnimation() {
-        this.gEnemiesArray.forEach((character) => {
-            let characterNode = this.node.getChildByName("Enemy" + character.index);
-            this.gEnemyNodesArray[character.index] = characterNode;
-
-            // 初始化动画
-            let bodyNode = characterNode.getChildByName("Body");
-            let armatureDisplay = bodyNode.getComponent(dragonBones.ArmatureDisplay);
-            let skePath = "dragon/" + character.attribute.imageName + "/" + character.attribute.imageName + "_ske";
-            resources.load(skePath, dragonBones.DragonBonesAsset, (err, skeAsset) => {
-                if (err) {
-                    console.error("Failed to load ske.json:", err);
-                    return;
-                }
-                // 2. 加载纹理数据：tes.json
-                let texPath = "dragon/" + character.attribute.imageName + "/" + character.attribute.imageName + "_tex";
-                resources.load(texPath, dragonBones.DragonBonesAtlasAsset, (err, atlasAsset) => {
-                    if (err) {
-                        console.error("Failed to load tes.json:", err);
-                        return;
-                    }
-                    // 设置加载的资源到 ArmatureDisplay
-                    armatureDisplay.dragonAsset = skeAsset;
-                    armatureDisplay.dragonAtlasAsset = atlasAsset;
-
-                    // 骨骼名称
-                    armatureDisplay.armatureName = "Armature";
-                    // 播放动画
-                    armatureDisplay.playAnimation("standby", 0);
-                })
-            })
-
-            // 左右对称旋转人物图片，但是血条等不对称
-            let originScale = bodyNode.scale;
-            bodyNode.setScale(new Vec3(-originScale.x, originScale.y, originScale.z));
-
-            // 设置人物名称
-            let nameLabel = characterNode.getChildByName("Name").getComponent(Label);
-            nameLabel.string = character.attribute.name;
-
-            // 设置人物血条
-            let bloodSprite = characterNode.getChildByName("BloodBackground").getChildByName("Blood").getComponent(Sprite);
-            let imagePath = "battle/" + "blood-red" + "/spriteFrame";
-            resources.load(imagePath, SpriteFrame, (err, spriteFrame) => {
-                if (err) {
-                    console.warn(err);
-                    return;
-                }
-                bloodSprite.spriteFrame = spriteFrame;
-            });
-        }
-        );
-    }
     // 下一次攻击
     private _nextAttack() {
-        if (this.gOrderIndex > this.gCharacterCount - 1) {
+        if (this.gOrderIndex > this.gOrderArray.length - 1) {
             this.gOrderIndex = 0;
         }
 
@@ -441,8 +246,8 @@ export class battleFieldController extends Component {
 
         // 等待情况的攻击者，要发起攻击
         // 如果攻击者此时不是等待状态，则由下一个人发起攻击
-        if (attacker.state == CharacterStateType.WAIT) {
-            this._setAnimationState(attacker, CharacterStateType.RUN);
+        if (attacker.state == CharacterStateType.Wait) {
+            this._setAnimationState(attacker, CharacterStateType.Move);
         } else {
             this.gOrderIndex = this.gOrderIndex + 1;
             this._nextAttack();
@@ -454,150 +259,84 @@ export class battleFieldController extends Component {
         // 状态机
         character.state = state;
         switch (state) {
-            case CharacterStateType.WAIT:
+            case CharacterStateType.Wait:
+                character.node.getComponent(characterController).wait();
                 this.gOrderIndex = this.gOrderIndex + 1;
                 this._nextAttack();
                 break;
-            case CharacterStateType.RUN:
+            case CharacterStateType.Move:
                 // 确定攻击对象，优先攻击前排，前排位置按照英雄数组顺序固定
-                var targetCharacter: BattleCharacter = null;
-                var targetNode: Node = null;
-                if (character.camp == CharacterCampType.Hero) {
-                    for (let i = 0; i < this.gEnemiesArray.length; i++) {
-                        if (this.gEnemiesArray[i].state != CharacterStateType.DIE) {
-                            targetCharacter = this.gEnemiesArray[i];
-                            targetNode = this.gEnemyNodesArray[i];
-                            this.gTargetCharacterIndex = i;
-                            for (let j = 0; j < this.gOrderArray.length; j++) {
-                                if (this.gOrderArray[j].attribute.id == targetCharacter.attribute.id) {
-                                    this.gOrderTargetIndex = j;
-                                }
-                            }
-                            break;
-                        }
-                    }
-                } else {
-                    for (let i = 0; i < this.gHerosArray.length; i++) {
-                        if (this.gHerosArray[i].state != CharacterStateType.DIE) {
-                            targetCharacter = this.gHerosArray[i];
-                            targetNode = this.gHeroNodesArray[i];
-                            this.gTargetCharacterIndex = i;
-                            for (let j = 0; j < this.gOrderArray.length; j++) {
-                                if (this.gOrderArray[j].attribute.id == targetCharacter.attribute.id) {
-                                    this.gOrderTargetIndex = j;
-                                }
-                            }
-                            break;
-                        }
-                    }
-                }
-
+                this.gTargetNode = this.getAttackTargetNode(character);
                 // TODO:如果没有攻击对象了，那么说明过了关卡，或者英雄死光了
-                if (targetCharacter == null) {
+                if (this.gTargetNode == null) {
                     console.log("过关");
                     return;
                 }
-
-                // 移动到目标位置，远程攻击不需要移动
-                var isLong = character.attribute.isLong;
-                // var characterNode = null;
-                if (isLong) {
-                    this._setAnimationState(character, CharacterStateType.ATTACK);
-                    return;
-                }
-                // 近战攻击要移动位置
-                var characterNode = this.gHeroNodesArray[character.index];
-                if (character.camp == CharacterCampType.Enemy) {
-                    characterNode = this.gEnemyNodesArray[character.index];
-                }
-
-                this.gOriginPosition.x = characterNode.getPosition().x;
-                this.gOriginPosition.y = characterNode.getPosition().y;
-
-                var targetPos = new Vec2(0, 0);
-                targetPos.x = targetNode.getPosition().x;
-                targetPos.y = targetNode.getPosition().y;
+                // 移动到目标位置
+                var targetPosition = this.gTargetNode.getPosition();
+                var characterCtl = character.node.getComponent(characterController);
 
                 var callback = function () {
-                    this._setAnimationState(character, CharacterStateType.ATTACK);
+                    this._setAnimationState(character, CharacterStateType.Attack);
                 }.bind(this);
 
-                if (character.camp == CharacterCampType.Hero) {
-                    tween(characterNode).to(0.3, { position: new Vec3(targetPos.x - 40, targetPos.y, 0) }).call(callback).start();
-                } else {
-                    tween(characterNode).to(0.3, { position: new Vec3(targetPos.x + 40, targetPos.y, 0) }).call(callback).start();
-                }
+                characterCtl.move(new Vec2(targetPosition.x, targetPosition.y), callback);
+                
                 break;
-            case CharacterStateType.ATTACK:
-                var characterNode = this.gHeroNodesArray[character.index];
-                if (character.camp == CharacterCampType.Enemy) {
-                    characterNode = this.gEnemyNodesArray[character.index];
-                }
-
-                // 被攻击者原始属性
-                var originTargetCharacter = GHerosArray[this.gTargetCharacterIndex]
-                // 被攻击者
-                var targetCharacter = this.gHerosArray[this.gTargetCharacterIndex];
-                var targetNode = this.gHeroNodesArray[this.gTargetCharacterIndex];
-
-                if (character.camp == CharacterCampType.Hero) {
-                    targetCharacter = this.gEnemiesArray[this.gTargetCharacterIndex];
-                    targetNode = this.gEnemyNodesArray[this.gTargetCharacterIndex];
-                    originTargetCharacter = GEnemyArray[this.gTargetCharacterIndex];
-                }
-
-                // 开始播放攻击动画
-                var armatureDisplay = characterNode.getChildByName("Body").getComponent(dragonBones.ArmatureDisplay);
-                armatureDisplay.playAnimation("attack", 1);
-
-                armatureDisplay.once(dragonBones.EventObject.COMPLETE, () => {
-                    // 计算血量
-                    // 是否暴击
-                    var isCritical = Math.random() < parseFloat((character.attribute.criticalStrikeRate / 100).toFixed(2));
-                    // 最终攻击力 = 攻击力-防御力
-                    var attack = isCritical ? (character.attribute.attack * parseFloat((character.attribute.criticalStrike / 100).toFixed(2)) - targetCharacter.attribute.defense) : (character.attribute.attack - targetCharacter.attribute.defense);
-
-                    if (attack <= 0) attack = 0;
-
-                    // 扣血
-                    targetCharacter.attribute.health = targetCharacter.attribute.health - attack;
-                    // 设置受伤值
-                    targetNode.getComponent(characterController).setHurt(attack);
-                    // 设置血条
-                    targetNode.getComponent(characterController).setBlood(targetCharacter.attribute.health / originTargetCharacter.attribute.health);
-
-                    if (targetCharacter.attribute.health <= 0) {
-                        // 角色死亡
-                        targetCharacter.attribute.health = 0;
-                        targetCharacter.state = CharacterStateType.DIE;
-                        this._setAnimationState(targetCharacter, CharacterStateType.DIE);
+            case CharacterStateType.Attack:
+                // 攻击目标
+                var characterCtl = character.node.getComponent(characterController)
+                characterCtl.attack(this.gTargetNode);
+                // 等待攻击动画完成
+                var bodyArmatureDisplay = character.node.getChildByName("Body").getComponent(dragonBones.ArmatureDisplay);
+                bodyArmatureDisplay.once(dragonBones.EventObject.COMPLETE, () => {
+                    // 处理被攻击目标死亡
+                    var targetCtl = this.gTargetNode.getComponent(characterController);
+                    var targetState = targetCtl.getState();
+                    var targetID = targetCtl.getID();
+                    if (targetState == CharacterStateType.Die) {
+                        // 循环列表的数据需要置为死亡
+                        this.gOrderArray.forEach((target) => {
+                            if (target.id != targetID) return;
+                            target.state = CharacterStateType.Die;
+                        }
+                        );
                     }
-
-                    // 回到原来位置
+                    // 攻击完，返回原点，并进行下次攻击
                     var callback = function () {
-                        // 进入等待状态
-                        this._setAnimationState(character, CharacterStateType.WAIT);
+                        this._setAnimationState(character, CharacterStateType.Wait);
                     }.bind(this);
-                    tween(characterNode).to(0.3, { position: new Vec3(this.gOriginPosition.x, this.gOriginPosition.y, 0) }).call(callback).start();
-                    armatureDisplay.playAnimation("standby", 0);
+
+                    characterCtl.moveBack(callback);
                 }, this);
 
                 break;
-            case CharacterStateType.DIE:
-                var characterNode = this.gHeroNodesArray[character.index];
-                if (character.camp == CharacterCampType.Enemy) {
-                    characterNode = this.gEnemyNodesArray[character.index];
-                }
-                var armatureDisplay = characterNode.getChildByName("Body").getComponent(dragonBones.ArmatureDisplay);
-                armatureDisplay.playAnimation("died", 1);
-                armatureDisplay.once(dragonBones.EventObject.COMPLETE, () => {
-                    targetNode.active = false;
-                }, this);
-            
+            case CharacterStateType.Die:
+
                 break;
             default:
                 break;
         }
+    }
+
+    // 获取被攻击对象节点
+    // 当前算法：优先找前排
+    private getAttackTargetNode(attacker: BattleCharacter): Node {
+        var targetNode: Node = null;
+        var targetNodeNamePre = "Hero";
+        if (attacker.camp == CharacterCampType.Hero) {
+            targetNodeNamePre = "Enemy";
+        }
+        for (let i = 0; i < GCharacterCount; i++) {
+            let targetNodeTmp = this.node.getChildByName(targetNodeNamePre + i);
+            let targetState = targetNodeTmp.getComponent(characterController).getState();
+            if (targetState != CharacterStateType.Die) {
+                targetNode = targetNodeTmp;
+                break;
+            }
+        }
+
+        return targetNode;
     }
 }
 
