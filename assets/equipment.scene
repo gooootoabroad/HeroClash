@@ -686,7 +686,7 @@
       "_dragonAsset"
     ],
     "value": {
-      "__uuid__": "f1ef7c11-aeb1-4d83-88ed-5814539edc40",
+      "__uuid__": "47542a0e-b1b6-4475-8932-7132a151e44e",
       "__expectedType__": "dragonBones.DragonBonesAsset"
     }
   },
@@ -709,7 +709,7 @@
       "_dragonAtlasAsset"
     ],
     "value": {
-      "__uuid__": "b5a938b4-6a6c-460c-98d9-ac9618d757f9",
+      "__uuid__": "77c5f95f-1569-4ec9-91e3-6f792fbf342b",
       "__expectedType__": "dragonBones.DragonBonesAtlasAsset"
     }
   },

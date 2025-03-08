@@ -28,6 +28,8 @@ interface HeroInfo {
     horseEnhancementWeapon: enhancementInfo,
     // 全属性强化信息
     dragonEnhancementWeapon: enhancementInfo,
+    // 是否上阵
+    isDeployed: boolean,
     // 图鉴的基础信息
     basicHeroAttribute?: BasicHeroAttribute
 }
@@ -45,5 +47,6 @@ export function getPlayerHerosInfo(): HeroInfo[] {
         braceletEnhancement: { level: 0, effects: 0 },
         horseEnhancementWeapon: { level: 0, effects: 0 },
         dragonEnhancementWeapon: { level: 0, effects: 0 },
+        isDeployed: true,
     }]
 }
