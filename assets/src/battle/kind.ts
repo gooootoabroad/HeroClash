@@ -51,3 +51,32 @@ export enum AnimationType {
     Died = "died",          // 死亡
     Skill1 = "ability1",    // 技能
 }
+
+// 图像图层，越往下，显示的越上面
+export enum SiblingIndexType {
+    Zero,
+    One,
+    Two,
+    Three,
+    Four,
+    Five,
+    Six,
+    Seven,
+    Eight,
+    Nine,
+    Top,
+}
+
+export const GSiblingIndexMap: Map<number, SiblingIndexType> = new Map([
+        [0, SiblingIndexType.Zero],
+        [1, SiblingIndexType.One],
+        [2, SiblingIndexType.Two],
+        [3, SiblingIndexType.Three],
+        [4, SiblingIndexType.Four],
+        [5, SiblingIndexType.Five],
+        [6, SiblingIndexType.Six],
+        [7, SiblingIndexType.Seven],
+        [8, SiblingIndexType.Eight],
+        [9, SiblingIndexType.Nine],
+    ]
+)
