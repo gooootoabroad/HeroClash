@@ -1,7 +1,7 @@
 // 角色控制，包括英雄和敌军
 
 import { _decorator, Component, dragonBones, find, Label, Layers, Node, resources, Sprite, SpriteFrame, tween, Vec2, Vec3 } from 'cc';
-import { AnimationType, BattleCharacterAttribute, CharacterCampType, CharacterStateType } from './kind';
+import { AnimationType, BattleCharacterAttribute, CharacterCampType, CharacterStateType, SiblingIndexType } from './kind';
 const { ccclass, property } = _decorator;
 
 
@@ -45,6 +45,9 @@ export class characterController extends Component {
     // 运行时间
     private gElapsedTime = 0;
 
+    // 最初初始化的图层，用于图层还原使用
+    private gOriginSiblingIndex: SiblingIndexType = SiblingIndexType.Zero;
+
     protected onLoad(): void {
         this.gOriginPosition = new Vec2(this.node.position.x, this.node.position.y);
         this.gBodyArmatureDisplay = this.gBodyNode.getComponent(dragonBones.ArmatureDisplay);
@@ -58,7 +61,15 @@ export class characterController extends Component {
     }
 
     // 设置英雄属性，一般用于初始化人物使用
-    public init(attribute: BattleCharacterAttribute, camp: CharacterCampType, state: CharacterStateType) {
+    // @param   attribute: 角色属性
+    //          camp： 角色阵营
+    //          state：角色状态
+    //          siblingIndex：节点渲染图层
+    public init(attribute: BattleCharacterAttribute, camp: CharacterCampType, state: CharacterStateType, siblingIndex: SiblingIndexType) {
+        // 设置所有节点渲染图层
+        this.gOriginSiblingIndex = siblingIndex;
+        this.setChildrensSiblingIndex(this.node, siblingIndex);
+        
         // 初始化属性
         this.gAttribute = {
             id: attribute.id,
@@ -126,7 +137,6 @@ export class characterController extends Component {
             let originScale = this.gBodyNode.scale;
             this.gBodyNode.setScale(new Vec3(-originScale.x, originScale.y, originScale.z));
         }
-
     }
 
     // 获取人物ID
@@ -164,7 +174,7 @@ export class characterController extends Component {
     // 英雄攻击
     public attack(targetNode: Node) {
         // 更换层级，渲染显示在其他人物前面
-        this.node.setParent(find("Canvas/Attacker"));
+        this.setChildrensSiblingIndex(this.node, SiblingIndexType.Top);
         var attack = 0;
         var targetCharacterController = targetNode.getComponent(characterController);
         // 怒气值满放大招
@@ -194,7 +204,7 @@ export class characterController extends Component {
                 this.gAnger = 0;
             }
             // 恢复渲染层级
-            this.node.setParent(find("Canvas/Characters"));
+            this.setChildrensSiblingIndex(this.node, this.gOriginSiblingIndex);
         }, this);
 
     }
@@ -266,6 +276,14 @@ export class characterController extends Component {
             this.gAnger = 100;
         }
         this.gAngerNode.getComponent(Sprite).fillRange = this.gAnger / 100;
+    }
+
+    // 设置节点以及子节点的图层，从父节点开始
+    private setChildrensSiblingIndex(node: Node, siblingIndex: SiblingIndexType) {
+        node.setSiblingIndex(siblingIndex);
+        node.children.forEach(child => {
+            this.setChildrensSiblingIndex(child, siblingIndex);
+        });
     }
 }
 

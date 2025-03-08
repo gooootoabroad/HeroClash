@@ -2,7 +2,7 @@ import { _decorator, Component, dragonBones, instantiate, Label, Node, resources
 import { RoleType } from '../resource/character/attribute';
 import { deepCopy } from "../utils/copy";
 import { characterController } from "./characterController";
-import { BattleCharacter, CharacterStateType, CharacterCampType, BattleCharacterAttribute } from "./kind";
+import { BattleCharacter, CharacterStateType, CharacterCampType, BattleCharacterAttribute, SiblingIndexType, GSiblingIndexMap } from "./kind";
 
 const { ccclass, property } = _decorator;
 
@@ -208,6 +208,7 @@ export class battleFieldController extends Component {
         this.gHerosArray = deepCopy(GHerosAttArray);
         this.gEnemiesArray = deepCopy(GEnemyAttArray);
         // TODO 临时代码，后续从布阵获取
+        
         for (let i = 0; i < 5; i++) {
             let character1: BattleCharacter = {
                 id: this.gHerosArray[i].id,
@@ -216,7 +217,7 @@ export class battleFieldController extends Component {
                 attackSpeed: this.gHerosArray[i].attackSpeed,
                 node: this.node.getChildByName("Hero" + i)
             };
-            character1.node.getComponent(characterController).init(this.gHerosArray[i], CharacterCampType.Hero, CharacterStateType.Wait);
+            character1.node.getComponent(characterController).init(this.gHerosArray[i], CharacterCampType.Hero, CharacterStateType.Wait, GSiblingIndexMap.get(i));
             this.gOrderArray[i] = character1;
 
             let character2: BattleCharacter = {
@@ -227,7 +228,7 @@ export class battleFieldController extends Component {
                 node: this.node.getChildByName("Enemy" + i)
             };
 
-            character2.node.getComponent(characterController).init(this.gEnemiesArray[i], CharacterCampType.Enemy, CharacterStateType.Wait);
+            character2.node.getComponent(characterController).init(this.gEnemiesArray[i], CharacterCampType.Enemy, CharacterStateType.Wait, GSiblingIndexMap.get(9-i));
             this.gOrderArray[i + 5] = character2;
         }
 
@@ -307,7 +308,6 @@ export class battleFieldController extends Component {
                     var callback = function () {
                         this._setAnimationState(character, CharacterStateType.Wait);
                     }.bind(this);
-
                     characterCtl.moveBack(callback);
                 }, this);
 
