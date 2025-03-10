@@ -64,12 +64,21 @@ export class CurrencyManager {
         };
     }
 
-    // 检查指定ID的资源是否足够
-    public checkResource(currency: Currency): boolean {
+    // 检查资源是否足够
+    public isResourceEnough(currency: Currency): boolean {
         for (const key of Object.keys(currency) as (keyof Currency)[]) {
             if (this.currencyCache[key] < Math.abs(currency[key])) {
                 return false;
             }
+        }
+
+        return true;
+    }
+
+    // 检查指定的资源是否足够
+    public isSpecialResourceEnough(kind: CurrencyType, amount: number): boolean {
+        if (this.currencyCache[kind.toString()] < Math.abs(amount)) {
+            return false
         }
 
         return true;
