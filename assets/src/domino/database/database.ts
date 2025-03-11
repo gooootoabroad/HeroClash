@@ -163,7 +163,7 @@ export function getDBHerosBasicAttribute(): CharacterBasicAttribute[] {
     return [
         {
             seqID: "1",
-            name: "牛马神将",
+            name: "牛马神将1",
             role: RoleType.warrior,
             imageName: "niuma",
             isLong: false,
@@ -183,7 +183,7 @@ export function getDBHerosBasicAttribute(): CharacterBasicAttribute[] {
         },
         {
             seqID: "2",
-            name: "牛马神将",
+            name: "牛马神将2",
             role: RoleType.warrior,
             imageName: "niuma",
             isLong: false,
@@ -203,7 +203,7 @@ export function getDBHerosBasicAttribute(): CharacterBasicAttribute[] {
         },
         {
             seqID: "3",
-            name: "牛马神将",
+            name: "牛马神将3",
             role: RoleType.warrior,
             imageName: "niuma",
             isLong: false,
@@ -223,7 +223,7 @@ export function getDBHerosBasicAttribute(): CharacterBasicAttribute[] {
         },
         {
             seqID: "4",
-            name: "牛马神将",
+            name: "牛马神将4",
             role: RoleType.warrior,
             imageName: "niuma",
             isLong: true,
@@ -243,7 +243,7 @@ export function getDBHerosBasicAttribute(): CharacterBasicAttribute[] {
         },
         {
             seqID: "5",
-            name: "牛马神将",
+            name: "牛马神将5",
             role: RoleType.warrior,
             imageName: "niuma",
             isLong: true,
@@ -263,7 +263,7 @@ export function getDBHerosBasicAttribute(): CharacterBasicAttribute[] {
         },
         {
             seqID: "6",
-            name: "牛马神将",
+            name: "牛马神将6",
             role: RoleType.warrior,
             imageName: "niuma",
             isLong: true,

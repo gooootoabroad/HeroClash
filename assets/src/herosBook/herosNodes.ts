@@ -52,7 +52,6 @@ export function createHeroNode(parentNode: Node, heroAttribute: BasicHeroAttribu
             return;
         }
         heroNationSprite.spriteFrame = spriteFrame;
-
     });
 
 
