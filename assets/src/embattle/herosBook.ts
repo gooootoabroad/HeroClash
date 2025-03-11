@@ -1,5 +1,6 @@
 import { _decorator, Component, instantiate, Label, Node, Prefab, resources, Sprite, SpriteFrame } from 'cc';
 import { getPlayerHeros, HeroInfo } from '../domino/domino';
+import { DeployType } from '../types/type';
 const { ccclass, property } = _decorator;
 
 @ccclass('herosBook')
@@ -31,7 +32,6 @@ export class herosBook extends Component {
 
     // 创建英雄节点
     private _createHeroNode(playHero: HeroInfo): Node {
-        console.log(playHero)
         let parentNode = instantiate(this.gHeroPrefab);
         let heroNameLabel = parentNode.getChildByName("Name").getComponentInChildren(Label);
         let heroImageSprite = parentNode.getChildByName("HeroFrame").getChildByName("InsideFrame1").getChildByName("InsideFrame2").getChildByName("Mask").getChildByName("HeroImage").getComponent(Sprite);
@@ -39,6 +39,7 @@ export class herosBook extends Component {
         let heroRaritySprite = parentNode.getChildByName("Rarity").getComponent(Sprite);
         let heroRoleSprite = parentNode.getChildByName("Role").getComponent(Sprite);
         let heroNationSprite = parentNode.getChildByName("Nation").getComponent(Sprite);
+        let heroDeployNode = parentNode.getChildByName("Deploy");
 
         heroNameLabel.string = playHero.basicHeroAttribute.name;
 
@@ -51,7 +52,6 @@ export class herosBook extends Component {
             heroImageSprite.spriteFrame = spriteFrame;
         });
 
-        
         heroLevalLabel.string = `LV.${playHero.level}`;
 
         imagePath = "words/" + playHero.basicHeroAttribute.rarity + "/spriteFrame";
@@ -72,7 +72,6 @@ export class herosBook extends Component {
             heroRoleSprite.spriteFrame = spriteFrame;
         });
 
-
         imagePath = "nations/" + playHero.basicHeroAttribute.nation + "/spriteFrame";
         resources.load(imagePath, SpriteFrame, (err, spriteFrame) => {
             if (err) {
@@ -82,6 +81,13 @@ export class herosBook extends Component {
             heroNationSprite.spriteFrame = spriteFrame;
 
         });
+
+        // 上阵英雄显示上阵
+        if (playHero.deploy == DeployType.none) {
+            heroDeployNode.active = false;
+        } else {
+            heroDeployNode.active = true;
+        }
 
         return parentNode;
     }
