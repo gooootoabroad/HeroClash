@@ -44,10 +44,13 @@
       },
       {
         "__id__": 58
+      },
+      {
+        "__id__": 60
       }
     ],
     "_prefab": {
-      "__id__": 60
+      "__id__": 62
     },
     "_lpos": {
       "__type__": "cc.Vec3",
@@ -105,7 +108,7 @@
     "_lpos": {
       "__type__": "cc.Vec3",
       "x": 0,
-      "y": 21.341,
+      "y": -32.141,
       "z": 0
     },
     "_lrot": {
@@ -308,7 +311,7 @@
     "_lpos": {
       "__type__": "cc.Vec3",
       "x": -5.014,
-      "y": 147.852,
+      "y": 94.37,
       "z": 0
     },
     "_lrot": {
@@ -473,8 +476,8 @@
     },
     "_lpos": {
       "__type__": "cc.Vec3",
-      "x": 4.852,
-      "y": 107.634,
+      "x": 3.626,
+      "y": 54.623,
       "z": 0
     },
     "_lrot": {
@@ -523,7 +526,7 @@
     },
     "_lpos": {
       "__type__": "cc.Vec3",
-      "x": 2.416,
+      "x": 3.926,
       "y": -0.853,
       "z": 0
     },
@@ -565,7 +568,7 @@
     "_contentSize": {
       "__type__": "cc.Size",
       "width": 110,
-      "height": 34
+      "height": 22
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -776,7 +779,7 @@
     "_lpos": {
       "__type__": "cc.Vec3",
       "x": 6.165,
-      "y": 107.713,
+      "y": 54.231,
       "z": 0
     },
     "_lrot": {
@@ -867,7 +870,7 @@
     "_contentSize": {
       "__type__": "cc.Size",
       "width": 100,
-      "height": 30
+      "height": 20
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -1071,7 +1074,7 @@
     "_lpos": {
       "__type__": "cc.Vec3",
       "x": -45.302,
-      "y": 108.906,
+      "y": 55.424,
       "z": 0
     },
     "_lrot": {
@@ -1207,7 +1210,7 @@
     "_lpos": {
       "__type__": "cc.Vec3",
       "x": 0,
-      "y": -27.028,
+      "y": -80.51,
       "z": 0
     },
     "_lrot": {
@@ -1357,7 +1360,7 @@
     "_contentSize": {
       "__type__": "cc.Size",
       "width": 110,
-      "height": 70
+      "height": 200
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -1371,7 +1374,7 @@
     "fileId": "8955PymNJEpKyNzGT7D+BW"
   },
   {
-    "__type__": "cc.Sprite",
+    "__type__": "cc.Button",
     "_name": "",
     "_objFlags": 0,
     "__editorExtras__": {},
@@ -1382,38 +1385,82 @@
     "__prefab": {
       "__id__": 59
     },
-    "_customMaterial": null,
-    "_srcBlendFactor": 2,
-    "_dstBlendFactor": 4,
-    "_color": {
+    "clickEvents": [],
+    "_interactable": true,
+    "_transition": 2,
+    "_normalColor": {
       "__type__": "cc.Color",
-      "r": 122,
-      "g": 111,
-      "b": 111,
+      "r": 255,
+      "g": 255,
+      "b": 255,
       "a": 255
     },
-    "_spriteFrame": {
-      "__uuid__": "20835ba4-6145-4fbc-a58a-051ce700aa3e@f9941",
-      "__expectedType__": "cc.SpriteFrame"
+    "_hoverColor": {
+      "__type__": "cc.Color",
+      "r": 211,
+      "g": 211,
+      "b": 211,
+      "a": 255
     },
-    "_type": 1,
-    "_fillType": 0,
-    "_sizeMode": 0,
-    "_fillCenter": {
-      "__type__": "cc.Vec2",
-      "x": 0,
-      "y": 0
+    "_pressedColor": {
+      "__type__": "cc.Color",
+      "r": 255,
+      "g": 255,
+      "b": 255,
+      "a": 255
     },
-    "_fillStart": 0,
-    "_fillRange": 0,
-    "_isTrimmedMode": true,
-    "_useGrayscale": false,
-    "_atlas": null,
+    "_disabledColor": {
+      "__type__": "cc.Color",
+      "r": 124,
+      "g": 124,
+      "b": 124,
+      "a": 255
+    },
+    "_normalSprite": null,
+    "_hoverSprite": null,
+    "_pressedSprite": null,
+    "_disabledSprite": null,
+    "_duration": 0.1,
+    "_zoomScale": 1.2,
+    "_target": null,
     "_id": ""
   },
   {
     "__type__": "cc.CompPrefabInfo",
-    "fileId": "36YUPrXyZBIbA3Qa7KWfZ1"
+    "fileId": "91LZi8FidMaoPiNDp+mPi3"
+  },
+  {
+    "__type__": "60e69txgDlEiaLa/AlCWF2q",
+    "_name": "",
+    "_objFlags": 0,
+    "__editorExtras__": {},
+    "node": {
+      "__id__": 1
+    },
+    "_enabled": true,
+    "__prefab": {
+      "__id__": 61
+    },
+    "gHeroNameNode": {
+      "__id__": 10
+    },
+    "gHeroBodyNode": {
+      "__id__": 2
+    },
+    "gHeroRarityNode": {
+      "__id__": 31
+    },
+    "gHeroNationNode": {
+      "__id__": 44
+    },
+    "gHeroLevelNode": {
+      "__id__": 50
+    },
+    "_id": ""
+  },
+  {
+    "__type__": "cc.CompPrefabInfo",
+    "fileId": "ffdyvJfHtB2K7i6WdiryQQ"
   },
   {
     "__type__": "cc.PrefabInfo",

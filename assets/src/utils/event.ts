@@ -7,6 +7,8 @@ export const GEventTarget = new EventTarget();
 /* 自定义事件，通知使用 */
 // 图鉴更新英雄属性信息使用
 export const GEventUpdateHeroBasicAttributeCanvas = "UpdateHeroBasicAttributeCanvas";
+// 更新布阵信息中的布阵图像使用
+export const GEventUpdateDeployConent = "UpdateDeployConent";
 // 抽武器卡时开始播放的动画
 export const GEventRecruitWeaponAnimationStart = "RecruitWeaponAnimationStart";
 // 抽武器卡时结束播放的动画
