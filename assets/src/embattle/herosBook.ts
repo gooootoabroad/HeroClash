@@ -1,6 +1,7 @@
 import { _decorator, Component, instantiate, Label, Node, Prefab, resources, Sprite, SpriteFrame } from 'cc';
 import { getPlayerHeros, HeroInfo } from '../domino/domino';
 import { DeployType } from '../types/type';
+import { heroSelfController } from './heroSelfController';
 const { ccclass, property } = _decorator;
 
 @ccclass('herosBook')
@@ -40,7 +41,9 @@ export class herosBook extends Component {
         let heroRoleSprite = parentNode.getChildByName("Role").getComponent(Sprite);
         let heroNationSprite = parentNode.getChildByName("Nation").getComponent(Sprite);
         let heroDeployNode = parentNode.getChildByName("Deploy");
+        let heroInfoScript = parentNode.getComponent(heroSelfController);
 
+        heroInfoScript.setHeroInfo(playHero);
         heroNameLabel.string = playHero.basicHeroAttribute.name;
 
         let imagePath: string = "heros/" + playHero.basicHeroAttribute.imageName + "/spriteFrame";

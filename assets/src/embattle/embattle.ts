@@ -3,45 +3,48 @@ import { getPlayerHeros, HeroInfo } from '../domino/domino';
 import { DeployType } from '../types/type';
 import { AnimationType, initAnimation } from '../utils/dragon';
 import { loadNationsSpriteFrame, loadRaritySpriteFrame } from '../utils/loader';
+import { GEventTarget, GEventUpdateDeployConent } from '../utils/event';
+import { heroEmController } from './heroEmController';
 const { ccclass, property } = _decorator;
 
 @ccclass('embattle')
 export class embattle extends Component {
-
     @property(Node)
     private gHeroNodes: Node[] = [];
+
+    protected onLoad(): void {
+        this._setHerosPosition();
+    }
 
     start() {
         this._initHeros();
     }
 
-    update(deltaTime: number) {
-        
+    protected onDestroy(): void {
     }
 
+    update(deltaTime: number) {
+
+    }
+
+    private _setHerosPosition() {
+        for (let i = 0; i < this.gHeroNodes.length; i++) {
+            this.gHeroNodes[i].getComponent(heroEmController).setPosition(i);
+        }
+    }
+    
     private _initHeros() {
         var heros = getPlayerHeros();
         heros.forEach((hero) => {
             if (hero.deploy == DeployType.none) return;
             this._initHero(hero);
         });
-
     }
 
     private _initHero(playHero: HeroInfo) {
         var heroNode = this.gHeroNodes[playHero.deploy];
-        var nameLabel = heroNode.getChildByName("Name").getComponent(Label);
-        var bodyDisplay = heroNode.getChildByName("Body").getComponent(dragonBones.ArmatureDisplay);
-        var raritySprite = heroNode.getChildByName("RarityMask").getChildByName("Rarity").getComponent(Sprite);
-        var nationSprite = heroNode.getChildByName("Nation").getComponent(Sprite);
-        var levelLabel = heroNode.getChildByName("Level").getComponent(Label);
-    
-        nameLabel.string = playHero.basicHeroAttribute.name;
-        initAnimation(bodyDisplay, playHero.basicHeroAttribute.imageName);
-        levelLabel.string = `Lv.${playHero.level.toString()}`;
-        loadRaritySpriteFrame(raritySprite, playHero.basicHeroAttribute.rarity);
-        loadNationsSpriteFrame(nationSprite, playHero.basicHeroAttribute.nation);
-        
+        var heroScript = heroNode.getComponent(heroEmController);
+        heroScript.initHero(playHero);
     }
 }
 

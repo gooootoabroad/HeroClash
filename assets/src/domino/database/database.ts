@@ -34,7 +34,31 @@ export interface DBPlayerHero {
 }
 
 export function getDBPlayerHerosInfo(): DBPlayerHero[] {
-    return [{
+    return GDBPlayerHeros;
+}
+
+// 更新单个英雄信息
+export function updateDBPlayerHeroInfo(heroInfo: DBPlayerHero) {
+    GDBPlayerHeros.forEach((playHero) => {
+        if (heroInfo.id !== playHero.id) return;
+        
+        playHero.id = heroInfo.id;
+        playHero.seqID = heroInfo.seqID;
+        playHero.name = heroInfo.name;
+        playHero.weaponEnhancement = heroInfo.weaponEnhancement;
+        playHero.helmetEnhancement = heroInfo.helmetEnhancement;
+        playHero.armorEnhancement = heroInfo.armorEnhancement;
+        playHero.braceletEnhancement = heroInfo.braceletEnhancement;
+        playHero.horseEnhancementWeapon = heroInfo.horseEnhancementWeapon;
+        playHero.dragonEnhancementWeapon = heroInfo.dragonEnhancementWeapon;
+        playHero.deploy = heroInfo.deploy;
+        return;
+    });
+    return;
+}
+
+var GDBPlayerHeros: DBPlayerHero[] = [
+    {
         id: "1",
         seqID: "1",
         name: "niuma",
@@ -97,7 +121,7 @@ export function getDBPlayerHerosInfo(): DBPlayerHero[] {
         braceletEnhancement: { level: 0, value: 0 },
         horseEnhancementWeapon: { level: 0, value: 0 },
         dragonEnhancementWeapon: { level: 0, value: 0 },
-        deploy: DeployType.position5,
+        deploy: DeployType.none,
     },
     {
         id: "6",
@@ -112,50 +136,44 @@ export function getDBPlayerHerosInfo(): DBPlayerHero[] {
         dragonEnhancementWeapon: { level: 0, value: 0 },
         deploy: DeployType.none,
     },
-    ]
-}
-
-// 更新单个英雄信息
-export function updateDBPlayerHeroInfo(heroInfo: DBPlayerHero) {
-    return;
-}
+];
 
 // 人物图鉴基础属性
 export interface CharacterBasicAttribute {
     // 人物序号
-    seqID: string;                   
+    seqID: string;
     // 人物名称
-    name: string;                   
+    name: string;
     // 职业
-    role: RoleType;                 
+    role: RoleType;
     // 图像名称
-    imageName: string;              
+    imageName: string;
     // 是否远程攻击，法师也有可能是近战法师
-    isLong: boolean;                
+    isLong: boolean;
     // 稀有度
-    rarity: HeroRarityType;         
+    rarity: HeroRarityType;
     // 国家
-    nation: NationType;             
+    nation: NationType;
     // 人物列传
-    introduction: string;           
+    introduction: string;
 
     // 基础生命值
-    basicHealth: number;            
+    basicHealth: number;
     // 基础攻击力
-    basicAttack: number;            
+    basicAttack: number;
     // 基础防御力
-    basicDefense: number;           
+    basicDefense: number;
     // 基础攻击速度
-    basicAttackSpeed: number;       
+    basicAttackSpeed: number;
     // 基础暴击率
-    basicCriticalStrikeRate: number; 
+    basicCriticalStrikeRate: number;
     // 基础暴击伤害
-    basicCriticalStrike: number;    
+    basicCriticalStrike: number;
 
     // 技能ID列表
-    skillIDs: string[];             
+    skillIDs: string[];
     // 分值，用于计算战力
-    scores: number;                 
+    scores: number;
 }
 
 // 英雄图鉴

@@ -13,7 +13,7 @@ export function getHerosBasicAttMap(heros: CharacterBasicAttribute[]): Map<strin
     return herosMap;
 }
 
-export function dbConvert2Hero(playHero: DBPlayerHero, basicHero: CharacterBasicAttribute): HeroInfo {
+export function db2Domino(playHero: DBPlayerHero, basicHero: CharacterBasicAttribute): HeroInfo {
     var hero: HeroInfo = {
         // 英雄唯一ID
         id: playHero.id,
@@ -75,4 +75,33 @@ export function dbConvert2Hero(playHero: DBPlayerHero, basicHero: CharacterBasic
         }
     }
     return hero;
+}
+
+export function domino2DB(hero: HeroInfo): DBPlayerHero {
+    var playerHero: DBPlayerHero = {
+        // 英雄唯一ID
+        id: hero.id,
+        // 英雄图鉴序号ID
+        seqID: hero.seqID,
+        // 英雄名字
+        name: hero.name,
+        // 英雄等级
+        level: hero.level,
+        // 武器强化信息
+        weaponEnhancement: hero.weaponEnhancement,
+        // 头盔强化信息
+        helmetEnhancement: hero.helmetEnhancement,
+        // 铁甲强化信息
+        armorEnhancement: hero.armorEnhancement,
+        // 手镯强化信息
+        braceletEnhancement: hero.braceletEnhancement,
+        // 战马强化信息
+        horseEnhancementWeapon: hero.horseEnhancementWeapon,
+        // 全属性强化信息
+        dragonEnhancementWeapon: hero.dragonEnhancementWeapon,
+        // 上阵情况
+        deploy: hero.deploy,
+    }
+
+    return playerHero;
 }
