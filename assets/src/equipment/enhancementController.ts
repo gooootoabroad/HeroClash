@@ -1,5 +1,5 @@
 import { _decorator, Button, Color, Component, dragonBones, Label, Node, resources, Sprite, SpriteFrame, Vec3 } from 'cc';
-import { getPlayerHerosInfo, HeroInfo, updatePlayerHeroInfo } from '../domino/domino';
+import { getPlayerHerosNoBase, HeroInfo, updatePlayerHeroNoBase } from '../domino/domino';
 import { EnhancementInfo } from '../domino/database/database';
 import { CurrencyType } from '../resource/currency/kind';
 import { CurrencyManager } from '../resource/currency/manager';
@@ -44,7 +44,7 @@ export class enhancementController extends Component {
     // 初始化所有节点的信息
     private initNode() {
         // TODO 获取上阵的英雄信息
-        let deployedHerosInfo = getPlayerHerosInfo();
+        let deployedHerosInfo = getPlayerHerosNoBase();
         if (deployedHerosInfo.length == 0) {
             return;
         }
@@ -189,7 +189,7 @@ export class enhancementController extends Component {
             this.currencyManager.updateResourceByKind(costInfo.kind, -costInfo.cost);
             // 更新对应数据 TODO 目前只更新武器
             this.heroNodeList[this.currentDisplayIndex].heroInfo.weaponEnhancement = nextEnhancemaneInfo;
-            updatePlayerHeroInfo(this.heroNodeList[this.currentDisplayIndex].heroInfo);
+            updatePlayerHeroNoBase(this.heroNodeList[this.currentDisplayIndex].heroInfo);
         } catch (error) {
             console.error("Failed to enhace %s, err: %s", costInfo.kind, error);
             throw new Error(`Failed to update currency`);
