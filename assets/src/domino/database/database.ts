@@ -54,6 +54,7 @@ export function updateDBPlayerHeroInfo(heroInfo: DBPlayerHero) {
         playHero.deploy = heroInfo.deploy;
         return;
     });
+    console.log(GDBPlayerHeros)
     return;
 }
 

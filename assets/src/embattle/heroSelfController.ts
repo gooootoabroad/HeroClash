@@ -108,25 +108,15 @@ export class heroSelfController extends Component {
         // 如果是未布阵状态，则布阵
         // 如果已经是布阵状态，则取消布阵
         if (this.gHero.deploy == DeployType.none) {
-            // 先更新数据库
-            var newHero = deepCopy(this.gHero);
-            newHero.deploy = freePosition;
-            updatePlayerHeroNoBase(newHero);
-            // 再更新本地数据
             this.gHero.deploy = freePosition;
             this.gDeployNode.active = true;
             lastPosition = freePosition;
         } else {
-            // 先更新数据库
-            var newHero = deepCopy(this.gHero);
-            newHero.deploy = DeployType.none;
-            updatePlayerHeroNoBase(newHero);
-            // 再更新本地数据
             this.gHero.deploy = DeployType.none;
             this.gDeployNode.active = false;
         }
         // 消息由embattle.ts脚本所在的节点监听
-        GEventTarget.emit(GEventHerosBookUpdateDeploy, this.gHero, lastPosition);
+        GEventTarget.emit(GEventHerosBookUpdateDeploy, deepCopy(this.gHero), lastPosition);
     }
 
     // 标记法找出空闲的布阵位置，找到立即返回，找不到说明布阵满了
@@ -149,15 +139,19 @@ export class heroSelfController extends Component {
         return position;
     }
 
-    // 这里不需要更新数据库，由布阵heroEmController.ts更新即可
+    // 接收来自布阵的事件
     private _eventUpdateHero(hero: HeroInfo) {
+        
         // 非本英雄信息则丢弃
         if (hero.id != this.gHero.id) return;
         // 取消布阵，则去掉布阵信息
+        console.log(this.gHero.id, hero.id, this.gHero.deploy)
         if (this.gHero.deploy != DeployType.none && hero.deploy == DeployType.none) {
             this.gDeployNode.active = false;
             this.gHero.deploy = hero.deploy;
         }
+        // 更新数据库
+        updatePlayerHeroNoBase(deepCopy(this.gHero));
     }
 }
 
