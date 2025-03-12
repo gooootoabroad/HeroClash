@@ -1,10 +1,10 @@
-import { _decorator, Component, dragonBones, Label, Node, Sprite } from 'cc';
+import { _decorator, Component, dragonBones, Label, Node, NodeEventType, Sprite } from 'cc';
 import { initAnimation } from '../utils/dragon';
-import { HeroInfo } from '../domino/domino';
+import { HeroInfo, updatePlayerHeroNoBase } from '../domino/domino';
 import { deepCopy } from '../utils/copy';
 import { loadNationsSpriteFrame, loadRaritySpriteFrame } from '../utils/loader';
 import { DeployType } from '../types/type';
-import { GEventTarget, GEventUpdateDeployConent } from '../utils/event';
+import { GEventTarget, GEventHerosBookUpdateDeploy, GEventDeployUpdateHerosBook } from '../utils/event';
 const { ccclass, property } = _decorator;
 
 @ccclass('heroEmController')
@@ -41,7 +41,9 @@ export class heroEmController extends Component {
         this.gLevelLabel = this.gHeroLevelNode.getComponent(Label);
 
         // 这个事件只处理点击图鉴信息英雄上阵使用
-        GEventTarget.on(GEventUpdateDeployConent, this._updateHeroDeploy, this);
+        GEventTarget.on(GEventHerosBookUpdateDeploy, this._eventUpdateHeroDeploy, this);
+
+        this.gHeroBodyNode.on(NodeEventType.TOUCH_END, this._eventUpdateDeployState, this);
     }
     start() {
 
@@ -49,7 +51,8 @@ export class heroEmController extends Component {
     }
 
     protected onDestroy(): void {
-        GEventTarget.off(GEventUpdateDeployConent, this._updateHeroDeploy, this);
+        GEventTarget.off(GEventHerosBookUpdateDeploy, this._eventUpdateHeroDeploy, this);
+        this.gHeroBodyNode.off(NodeEventType.TOUCH_END, this._eventUpdateDeployState, this);
 
     }
     update(deltaTime: number) {
@@ -68,13 +71,14 @@ export class heroEmController extends Component {
         this._updateHero(this.gHero);
     }
 
-    private _updateHeroDeploy(hero: HeroInfo, position: DeployType) {
+    private _eventUpdateHeroDeploy(hero: HeroInfo, position: DeployType) {
         // 非该节点的消息，就抛弃
         if (position != this.gPosition) return;
-        
+
         this._updateHero(hero);
     }
 
+    // 这里的更新信息不需要更新数据库，由图鉴heroSelfController.ts更新即可
     private _updateHero(hero: HeroInfo) {
         this.node.active = false;
 
@@ -91,6 +95,22 @@ export class heroEmController extends Component {
         loadRaritySpriteFrame(this.gRaritySprite, hero.basicHeroAttribute.rarity);
         loadNationsSpriteFrame(this.gNationSprite, hero.basicHeroAttribute.nation);
         this.node.active = true;
+    }
+
+    private _eventUpdateDeployState() {
+        // 如果当前是布阵状态，则取消布阵
+        // 如果当前是未布阵状态，则不需要处理
+        if ((this.gHero == null) || (this.node.active == false)) return;
+
+        // 隐藏节点
+        this.node.active = false;
+        this.gHero.deploy = DeployType.none;
+        var hero = deepCopy(this.gHero);
+        this.gHero = null;
+        // 更新数据库
+        updatePlayerHeroNoBase(hero);
+        // 通知图鉴取消上阵状态
+        GEventTarget.emit(GEventDeployUpdateHerosBook, hero);
     }
 }
 

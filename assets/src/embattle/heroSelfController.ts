@@ -1,14 +1,41 @@
-import { _decorator, Button, Component, Node, NodeEventType } from 'cc';
+import { _decorator, Button, Component, Label, Node, NodeEventType, Sprite } from 'cc';
 import { getPlayerHeros, HeroInfo, updatePlayerHeroNoBase } from '../domino/domino';
 import { deepCopy } from '../utils/copy';
 import { DeployType } from '../types/type';
-import { GEventTarget, GEventUpdateDeployConent } from '../utils/event';
+import { GEventTarget, GEventHerosBookUpdateDeploy, GEventDeployUpdateHerosBook } from '../utils/event';
+import { loadHerosSpriteFrame, loadNationsSpriteFrame, loadRolesSpriteFrame, loadWordsSpriteFrame } from '../utils/loader';
 const { ccclass, property } = _decorator;
 
 @ccclass('heroSelfController')
 export class heroSelfController extends Component {
+    // 标示图鉴图片上阵情况
     @property(Node)
     private gDeployNode: Node = null;
+
+    @property(Node)
+    private gNameTextNode: Node = null;
+
+    @property(Node)
+    private gHeroImageNode: Node = null;
+
+    @property(Node)
+    private gNationNode: Node = null;
+
+    @property(Node)
+    private gRarityNode: Node = null;
+
+    @property(Node)
+    private gRoleNode: Node = null;
+
+    @property(Node)
+    private gLevelNode: Node = null;
+
+    private gHeroNameLabel: Label = null;
+    private gHeroLevelLabel: Label = null;
+    private gHeroImageSprite: Sprite = null;
+    private gHeroRaritySprite: Sprite = null;
+    private gHeroRoleSprite: Sprite = null;
+    private gHeroNationSprite: Sprite = null;
 
     private gHeroButton: Button = null;
 
@@ -16,24 +43,53 @@ export class heroSelfController extends Component {
     private gHero: HeroInfo = null;
 
 
+    // 实例化的情况 onload不会被执行，需要手动调用
     protected onLoad(): void {
+        this.gHeroNameLabel = this.gNameTextNode.getComponent(Label);
+        this.gHeroLevelLabel = this.gLevelNode.getComponent(Label);
+        this.gHeroImageSprite = this.gHeroImageNode.getComponent(Sprite);
+        this.gHeroRaritySprite = this.gRarityNode.getComponent(Sprite);
+        this.gHeroRoleSprite = this.gRoleNode.getComponent(Sprite);
+        this.gHeroNationSprite = this.gNationNode.getComponent(Sprite);
+
         this.gHeroButton = this.node.getComponent(Button);
+
+        this.node.on(NodeEventType.TOUCH_END, this._setDeploy, this);
+        GEventTarget.on(GEventDeployUpdateHerosBook, this._eventUpdateHero, this);
     }
 
     start() {
-        this.node.on(NodeEventType.TOUCH_END, this._setDeploy, this);
+
+
     }
 
     protected onDestroy(): void {
         this.node.off(NodeEventType.TOUCH_END, this._setDeploy, this);
+        GEventTarget.off(GEventDeployUpdateHerosBook, this._eventUpdateHero, this);
+
     }
     update(deltaTime: number) {
 
     }
 
-    // 设置英雄属性
-    public setHeroInfo(hero: HeroInfo) {
+    // 初始化英雄信息，外部调用初始化
+    public initNode(hero: HeroInfo) {
+        this.onLoad();
+
         this.gHero = deepCopy(hero);
+        this.gHeroNameLabel.string = this.gHero.basicHeroAttribute.name;
+        loadHerosSpriteFrame(this.gHeroImageSprite, this.gHero.basicHeroAttribute.imageName);
+        this.gHeroLevelLabel.string = `Lv.${this.gHero.level}`;
+        loadWordsSpriteFrame(this.gHeroRaritySprite, this.gHero.basicHeroAttribute.rarity);
+        loadRolesSpriteFrame(this.gHeroRoleSprite, this.gHero.basicHeroAttribute.role);
+        loadNationsSpriteFrame(this.gHeroNationSprite, this.gHero.basicHeroAttribute.nation);
+
+        // 上阵英雄显示上阵
+        if (this.gHero.deploy == DeployType.none) {
+            this.gDeployNode.active = false;
+        } else {
+            this.gDeployNode.active = true;
+        }
     }
 
     // 设置英雄布阵位置和信息
@@ -70,7 +126,7 @@ export class heroSelfController extends Component {
             this.gDeployNode.active = false;
         }
         // 消息由embattle.ts脚本所在的节点监听
-        GEventTarget.emit(GEventUpdateDeployConent, this.gHero, lastPosition);
+        GEventTarget.emit(GEventHerosBookUpdateDeploy, this.gHero, lastPosition);
     }
 
     // 标记法找出空闲的布阵位置，找到立即返回，找不到说明布阵满了
@@ -78,7 +134,6 @@ export class heroSelfController extends Component {
         let deployArr = [false, false, false, false, false];
 
         heros.forEach((hero) => {
-            console.log(hero.deploy)
             if (hero.deploy == DeployType.none) return;
             deployArr[hero.deploy] = true;
         });
@@ -92,6 +147,17 @@ export class heroSelfController extends Component {
         }
 
         return position;
+    }
+
+    // 这里不需要更新数据库，由布阵heroEmController.ts更新即可
+    private _eventUpdateHero(hero: HeroInfo) {
+        // 非本英雄信息则丢弃
+        if (hero.id != this.gHero.id) return;
+        // 取消布阵，则去掉布阵信息
+        if (this.gHero.deploy != DeployType.none && hero.deploy == DeployType.none) {
+            this.gDeployNode.active = false;
+            this.gHero.deploy = hero.deploy;
+        }
     }
 }
 

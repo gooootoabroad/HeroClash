@@ -1,9 +1,6 @@
 import { _decorator, Component, dragonBones, Label, Node, NodePool, Sprite, spriteAssembler } from 'cc';
 import { getPlayerHeros, HeroInfo } from '../domino/domino';
 import { DeployType } from '../types/type';
-import { AnimationType, initAnimation } from '../utils/dragon';
-import { loadNationsSpriteFrame, loadRaritySpriteFrame } from '../utils/loader';
-import { GEventTarget, GEventUpdateDeployConent } from '../utils/event';
 import { heroEmController } from './heroEmController';
 const { ccclass, property } = _decorator;
 
@@ -32,7 +29,7 @@ export class embattle extends Component {
             this.gHeroNodes[i].getComponent(heroEmController).setPosition(i);
         }
     }
-    
+
     private _initHeros() {
         var heros = getPlayerHeros();
         heros.forEach((hero) => {
