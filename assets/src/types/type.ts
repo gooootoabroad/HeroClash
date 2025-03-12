@@ -34,3 +34,18 @@ export enum DeployType {
     position4 = 3,  // 第四个位置
     position5 = 4,  // 第五个位置
 }
+
+// 图像图层，越往下，显示的越上面
+export enum SiblingIndexType {
+    Zero,
+    One,
+    Two,
+    Three,
+    Four,
+    Five,
+    Six,
+    Seven,
+    Eight,
+    Nine,
+    Top,
+}
