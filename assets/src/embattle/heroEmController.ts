@@ -78,12 +78,14 @@ export class heroEmController extends Component {
         this._updateHero(hero);
     }
 
-    // 这里的更新信息不需要更新数据库，由图鉴heroSelfController.ts更新即可
+    // 接收来自布阵更新英雄信息事件
     private _updateHero(hero: HeroInfo) {
         this.node.active = false;
 
         // 取消上阵的英雄，隐藏就好
         if (hero.deploy == DeployType.none) {
+            this.gHero.deploy = hero.deploy;
+            updatePlayerHeroNoBase(deepCopy(this.gHero));
             this.gHero = null;
             return;
         }
@@ -95,6 +97,7 @@ export class heroEmController extends Component {
         loadRaritySpriteFrame(this.gRaritySprite, hero.basicHeroAttribute.rarity);
         loadNationsSpriteFrame(this.gNationSprite, hero.basicHeroAttribute.nation);
         this.node.active = true;
+        updatePlayerHeroNoBase(deepCopy(this.gHero));
     }
 
     private _eventUpdateDeployState() {
@@ -105,12 +108,9 @@ export class heroEmController extends Component {
         // 隐藏节点
         this.node.active = false;
         this.gHero.deploy = DeployType.none;
-        var hero = deepCopy(this.gHero);
-        this.gHero = null;
-        // 更新数据库
-        updatePlayerHeroNoBase(hero);
         // 通知图鉴取消上阵状态
-        GEventTarget.emit(GEventDeployUpdateHerosBook, hero);
+        GEventTarget.emit(GEventDeployUpdateHerosBook, deepCopy(this.gHero));
+        this.gHero = null;
     }
 }
 
