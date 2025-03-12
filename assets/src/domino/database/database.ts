@@ -73,7 +73,7 @@ var GDBPlayerHeros: DBPlayerHero[] = [
     },
     {
         id: "2",
-        seqID: "1",
+        seqID: "2",
         name: "niuma",
         level: 2,
         weaponEnhancement: { level: 2, value: 2 },
@@ -86,7 +86,7 @@ var GDBPlayerHeros: DBPlayerHero[] = [
     },
     {
         id: "3",
-        seqID: "1",
+        seqID: "3",
         name: "niuma",
         level: 5,
         weaponEnhancement: { level: 2, value: 2 },
@@ -99,7 +99,7 @@ var GDBPlayerHeros: DBPlayerHero[] = [
     },
     {
         id: "4",
-        seqID: "1",
+        seqID: "4",
         name: "niuma",
         level: 7,
         weaponEnhancement: { level: 2, value: 2 },
@@ -112,7 +112,7 @@ var GDBPlayerHeros: DBPlayerHero[] = [
     },
     {
         id: "5",
-        seqID: "1",
+        seqID: "5",
         name: "niuma",
         level: 8,
         weaponEnhancement: { level: 2, value: 2 },
@@ -125,7 +125,7 @@ var GDBPlayerHeros: DBPlayerHero[] = [
     },
     {
         id: "6",
-        seqID: "1",
+        seqID: "6",
         name: "niuma",
         level: 10,
         weaponEnhancement: { level: 2, value: 2 },
