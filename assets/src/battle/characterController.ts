@@ -2,6 +2,7 @@
 
 import { _decorator, Component, dragonBones, find, Label, Layers, Node, resources, Sprite, SpriteFrame, tween, Vec2, Vec3 } from 'cc';
 import { AnimationType, BattleCharacterAttribute, CharacterCampType, CharacterStateType, SiblingIndexType } from './kind';
+import { setChildrensSiblingIndex } from '../utils/sibling';
 const { ccclass, property } = _decorator;
 
 
@@ -68,7 +69,7 @@ export class characterController extends Component {
     public init(attribute: BattleCharacterAttribute, camp: CharacterCampType, state: CharacterStateType, siblingIndex: SiblingIndexType) {
         // 设置所有节点渲染图层
         this.gOriginSiblingIndex = siblingIndex;
-        this.setChildrensSiblingIndex(this.node, siblingIndex);
+        setChildrensSiblingIndex(this.node, siblingIndex);
         
         // 初始化属性
         this.gAttribute = {
@@ -174,7 +175,7 @@ export class characterController extends Component {
     // 英雄攻击
     public attack(targetNode: Node) {
         // 更换层级，渲染显示在其他人物前面
-        this.setChildrensSiblingIndex(this.node, SiblingIndexType.Top);
+        setChildrensSiblingIndex(this.node, SiblingIndexType.Top);
         var attack = 0;
         var targetCharacterController = targetNode.getComponent(characterController);
         // 怒气值满放大招
@@ -204,7 +205,7 @@ export class characterController extends Component {
                 this.gAnger = 0;
             }
             // 恢复渲染层级
-            this.setChildrensSiblingIndex(this.node, this.gOriginSiblingIndex);
+            setChildrensSiblingIndex(this.node, this.gOriginSiblingIndex);
         }, this);
 
     }
@@ -276,14 +277,6 @@ export class characterController extends Component {
             this.gAnger = 100;
         }
         this.gAngerNode.getComponent(Sprite).fillRange = this.gAnger / 100;
-    }
-
-    // 设置节点以及子节点的图层，从父节点开始
-    private setChildrensSiblingIndex(node: Node, siblingIndex: SiblingIndexType) {
-        node.setSiblingIndex(siblingIndex);
-        node.children.forEach(child => {
-            this.setChildrensSiblingIndex(child, siblingIndex);
-        });
     }
 }
 

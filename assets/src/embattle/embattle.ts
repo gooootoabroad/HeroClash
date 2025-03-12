@@ -1,4 +1,4 @@
-import { _decorator, Component, dragonBones, Label, Node, NodePool, Sprite, spriteAssembler } from 'cc';
+import { _decorator, Component, dragonBones, Label, Node, NodeEventType, NodePool, Sprite, spriteAssembler, Vec2 } from 'cc';
 import { getPlayerHeros, HeroInfo } from '../domino/domino';
 import { DeployType } from '../types/type';
 import { heroEmController } from './heroEmController';
@@ -10,23 +10,31 @@ export class embattle extends Component {
     private gHeroNodes: Node[] = [];
 
     protected onLoad(): void {
-        this._setHerosPosition();
+
     }
 
     start() {
+        // 设置英雄自身号数
+        this._setHeros();
+        // 初始化英雄属性
         this._initHeros();
+
     }
 
     protected onDestroy(): void {
+
     }
 
     update(deltaTime: number) {
 
     }
 
-    private _setHerosPosition() {
+    // 设置英雄信息
+    private _setHeros() {
         for (let i = 0; i < this.gHeroNodes.length; i++) {
-            this.gHeroNodes[i].getComponent(heroEmController).setPosition(i);
+            let nodeScript = this.gHeroNodes[i].getComponent(heroEmController);
+            nodeScript.setDeploy(i);
+            nodeScript.setHeroNodes(this.gHeroNodes);
         }
     }
 

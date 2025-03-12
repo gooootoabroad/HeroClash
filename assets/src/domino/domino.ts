@@ -1,6 +1,11 @@
 import { deepCopy } from '../utils/copy';
+import { Mutex } from '../utils/mutex';
 import { db2Domino, domino2DB, getHerosBasicAttMap } from './convert';
 import { CharacterBasicAttribute, DBPlayerHero, getDBHerosBasicAttribute, getDBPlayerHerosInfo, updateDBPlayerHeroInfo } from './database/database';
+
+// TODO临时用锁
+let Glock = new Mutex;
+let lockName = "DB";
 
 export interface HeroInfo extends DBPlayerHero {
     // 图鉴的基础信息
@@ -14,7 +19,10 @@ export function getPlayerHerosNoBase(): HeroInfo[] {
 
 // 更新单个英雄信息
 export function updatePlayerHeroNoBase(heroInfo: HeroInfo) {
-    return updateDBPlayerHeroInfo(domino2DB(heroInfo));
+    Glock.lock(lockName);
+    updateDBPlayerHeroInfo(domino2DB(heroInfo));
+    Glock.unlock(lockName);
+    return;
 }
 
 // 获取英雄基础信息
